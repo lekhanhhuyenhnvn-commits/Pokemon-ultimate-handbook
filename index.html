@@ -18,15 +18,11 @@ body {
     color: #222;
 }
 
-/* =========================
-   HEADER
-========================= */
-
 header {
     background: linear-gradient(135deg, #e53935, #ff7043);
     color: white;
-    padding: 25px 15px;
     text-align: center;
+    padding: 25px 15px;
     box-shadow: 0 3px 12px rgba(0,0,0,.15);
 }
 
@@ -40,10 +36,6 @@ header p {
     opacity: .9;
 }
 
-/* =========================
-   CONTAINER
-========================= */
-
 .container {
     max-width: 1100px;
     margin: 25px auto;
@@ -51,47 +43,41 @@ header p {
 }
 
 /* =========================
-   UPLOAD AREA
+   UPLOAD
 ========================= */
 
-.upload-area {
+.upload-box {
     background: white;
-    border: 2px dashed #d5d5d5;
+    border: 2px dashed #ccc;
     border-radius: 18px;
     padding: 35px 20px;
     text-align: center;
     box-shadow: 0 3px 12px rgba(0,0,0,.07);
-    transition: .2s;
-}
-
-.upload-area.active {
-    border-color: #e53935;
-    background: #fff8f7;
 }
 
 .upload-icon {
-    font-size: 52px;
+    font-size: 50px;
 }
 
-.upload-area h2 {
+.upload-box h2 {
     margin: 8px 0;
 }
 
-.upload-area p {
+.upload-box p {
     color: #777;
 }
 
 .upload-buttons {
     display: flex;
     justify-content: center;
-    gap: 12px;
     flex-wrap: wrap;
+    gap: 12px;
     margin-top: 20px;
 }
 
 button,
 .upload-label {
-    border: 0;
+    border: none;
     border-radius: 10px;
     padding: 12px 18px;
     font-size: 15px;
@@ -103,71 +89,215 @@ button,
 
 button:hover,
 .upload-label:hover {
-    transform: translateY(-1px);
     background: #c62828;
+    transform: translateY(-1px);
 }
 
 input[type="file"] {
     display: none;
 }
 
-.paste-hint {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #888;
-}
-
 /* =========================
    PREVIEW
 ========================= */
 
-.preview-section {
+.preview {
     display: none;
-    margin-top: 25px;
-}
-
-.preview-card {
     background: white;
-    border-radius: 18px;
+    margin-top: 25px;
     padding: 20px;
+    border-radius: 18px;
     box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
-.preview-card h2 {
-    margin-top: 0;
+.preview h2 {
     color: #d32f2f;
 }
 
 .preview-image {
     display: block;
-    width: 100%;
+    max-width: 100%;
     max-height: 600px;
+    margin: auto;
     object-fit: contain;
     border-radius: 12px;
     background: #f5f5f5;
 }
 
-.preview-actions {
+.preview-buttons {
     display: flex;
     justify-content: center;
-    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 15px;
+    gap: 10px;
+    margin-top: 18px;
 }
 
-.analyze-btn {
+.analyze {
     background: #1976d2;
 }
 
-.analyze-btn:hover {
+.analyze:hover {
     background: #1565c0;
 }
 
-.clear-btn {
+.cancel {
     background: #757575;
 }
 
-.clear-btn:hover {
+.cancel:hover {
+    background: #424242;
+}
+
+/* =========================
+   PROCESSING
+========================= */
+
+.processing {
+    display: none;
+    margin-top: 25px;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.spinner {
+    width: 45px;
+    height: 45px;
+    border: 5px solid #eee;
+    border-top: 5px solid #e53935;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result {
+    display: none;
+    margin-top: 25px;
+}
+
+.result-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.pokemon-header {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 25px;
+}
+
+.result-image {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    background: #f5f5f5;
+    border-radius: 12px;
+}
+
+.pokemon-name {
+    font-size: 34px;
+    margin: 0;
+}
+
+.ipa {
+    color: #666;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.section {
+    margin-top: 25px;
+}
+
+.section-title {
+    color: #d32f2f;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+}
+
+.description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.language-box {
+    background: #f7f8fa;
+    padding: 16px;
+    border-radius: 12px;
+    line-height: 1.7;
+}
+
+.language-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.vocabulary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.word {
+    background: #fff3e0;
+    border: 1px solid #ffcc80;
+    padding: 10px 13px;
+    border-radius: 9px;
+}
+
+.word strong {
+    color: #e65100;
+}
+
+.moves {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.move {
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    padding: 10px 13px;
+    border-radius: 9px;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.save {
+    background: #2e7d32;
+}
+
+.save:hover {
+    background: #1b5e20;
+}
+
+.new-image {
+    background: #757575;
+}
+
+.new-image:hover {
     background: #424242;
 }
 
@@ -176,46 +306,42 @@ input[type="file"] {
 ========================= */
 
 .dictionary {
-    margin-top: 30px;
+    margin-top: 35px;
 }
 
-.dictionary-header {
+.dictionary-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 12px;
 }
 
-.dictionary-header h2 {
+.dictionary-top h2 {
     margin: 0;
 }
 
-.search-box {
+.search {
+    width: 260px;
+    max-width: 100%;
     padding: 11px 14px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    width: 250px;
-    max-width: 100%;
     font-size: 15px;
 }
 
-/* =========================
-   DICTIONARY GRID
-========================= */
-
 .dictionary-grid {
-    margin-top: 15px;
     display: grid;
     grid-template-columns:
         repeat(auto-fill, minmax(180px, 1fr));
     gap: 15px;
+    margin-top: 15px;
 }
 
 .dictionary-item {
     background: white;
-    border-radius: 15px;
     padding: 12px;
+    border-radius: 15px;
     box-shadow: 0 3px 10px rgba(0,0,0,.08);
     cursor: pointer;
     transition: .2s;
@@ -223,7 +349,6 @@ input[type="file"] {
 
 .dictionary-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0,0,0,.12);
 }
 
 .dictionary-item img {
@@ -238,26 +363,14 @@ input[type="file"] {
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
-    font-size: 17px;
 }
-
-.dictionary-date {
-    text-align: center;
-    color: #888;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-/* =========================
-   EMPTY
-========================= */
 
 .empty {
     background: white;
-    border-radius: 15px;
     padding: 30px;
     text-align: center;
     color: #777;
+    border-radius: 15px;
     margin-top: 15px;
 }
 
@@ -268,9 +381,9 @@ input[type="file"] {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
     inset: 0;
     background: rgba(0,0,0,.65);
+    z-index: 999;
     padding: 20px;
     overflow-y: auto;
 }
@@ -295,13 +408,9 @@ input[type="file"] {
     margin: 0;
 }
 
-.close-btn {
+.close {
     background: #757575;
     padding: 8px 13px;
-}
-
-.close-btn:hover {
-    background: #424242;
 }
 
 .modal-body {
@@ -310,58 +419,46 @@ input[type="file"] {
 
 .saved-image {
     width: 100%;
-    max-height: 500px;
+    max-height: 450px;
     object-fit: contain;
     background: #f5f5f5;
     border-radius: 12px;
 }
 
-.placeholder-info {
+.saved-content {
     margin-top: 20px;
-    background: #f7f8fa;
-    border-radius: 12px;
-    padding: 18px;
 }
 
-.placeholder-info h3 {
-    color: #d32f2f;
-    margin-top: 0;
-}
-
-.delete-saved {
+.delete {
     background: #d32f2f;
-    margin-top: 15px;
-}
-
-.delete-saved:hover {
-    background: #b71c1c;
+    margin-top: 20px;
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE
 ========================= */
 
-@media (max-width: 600px) {
+@media(max-width:700px) {
 
     header h1 {
         font-size: 25px;
     }
 
-    .upload-area {
-        padding: 25px 15px;
+    .pokemon-header {
+        grid-template-columns: 1fr;
     }
 
-    .dictionary-header {
-        align-items: stretch;
+    .description {
+        grid-template-columns: 1fr;
     }
 
-    .search-box {
-        width: 100%;
+    .pokemon-name {
+        font-size: 28px;
     }
-
 }
 </style>
 </head>
+
 
 <body>
 
@@ -370,7 +467,7 @@ input[type="file"] {
     <h1>⚡ Pokémon Ultimate Handbook</h1>
 
     <p>
-        Your Pokémon English Learning Dictionary
+        Pokémon English Learning Dictionary
     </p>
 
 </header>
@@ -379,13 +476,10 @@ input[type="file"] {
 <div class="container">
 
     <!-- =========================
-         NẠP ẢNH
+         1. NẠP ẢNH
     ========================== -->
 
-    <div
-        id="uploadArea"
-        class="upload-area"
-    >
+    <div class="upload-box">
 
         <div class="upload-icon">
             📷
@@ -415,17 +509,59 @@ input[type="file"] {
             </label>
 
 
-            <button onclick="pasteImage()">
+            <button onclick="pasteInstruction()">
+
                 📋 Dán ảnh
+
             </button>
 
         </div>
 
 
-        <div class="paste-hint">
-
-            💡 Copy một bức ảnh rồi nhấn
+        <p>
+            💡 Copy ảnh rồi nhấn
             <strong>Ctrl + V</strong>
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         2. PREVIEW
+    ========================== -->
+
+    <div
+        id="preview"
+        class="preview"
+    >
+
+        <h2>
+            🖼️ Ảnh đã nạp
+        </h2>
+
+
+        <img
+            id="previewImage"
+            class="preview-image"
+        >
+
+
+        <div class="preview-buttons">
+
+            <button
+                class="analyze"
+                onclick="analyzeImage()"
+            >
+                🤖 Phân tích ảnh
+            </button>
+
+
+            <button
+                class="cancel"
+                onclick="clearAll()"
+            >
+                🗑️ Bỏ ảnh
+            </button>
 
         </div>
 
@@ -433,42 +569,160 @@ input[type="file"] {
 
 
     <!-- =========================
-         PREVIEW
+         3. PROCESSING
     ========================== -->
 
     <div
-        id="previewSection"
-        class="preview-section"
+        id="processing"
+        class="processing"
     >
 
-        <div class="preview-card">
+        <div class="spinner"></div>
 
-            <h2>
-                🖼️ Ảnh vừa nạp
-            </h2>
+        <h3>
+            🤖 Đang xử lý ảnh...
+        </h3>
 
-            <img
-                id="previewImage"
-                class="preview-image"
-                alt="Pokémon"
-            >
+        <p>
+            AI đang nhận diện Pokémon và tạo bài học.
+        </p>
+
+    </div>
 
 
-            <div class="preview-actions">
+    <!-- =========================
+         4. RESULT
+    ========================== -->
+
+    <div
+        id="result"
+        class="result"
+    >
+
+        <div class="result-card">
+
+            <div class="pokemon-header">
+
+                <img
+                    id="resultImage"
+                    class="result-image"
+                >
+
+
+                <div>
+
+                    <h1
+                        id="pokemonName"
+                        class="pokemon-name"
+                    >
+                        Pokémon
+                    </h1>
+
+
+                    <div
+                        id="pokemonIPA"
+                        class="ipa"
+                    >
+                        /IPA/
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="section">
+
+                <h2 class="section-title">
+                    📖 Description
+                </h2>
+
+
+                <div class="description">
+
+                    <div class="language-box">
+
+                        <div class="language-title">
+                            🇬🇧 English
+                        </div>
+
+                        <div id="englishDescription">
+                        </div>
+
+                    </div>
+
+
+                    <div class="language-box">
+
+                        <div class="language-title">
+                            🇻🇳 Tiếng Việt
+                        </div>
+
+                        <div id="vietnameseDescription">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- VOCABULARY -->
+
+            <div class="section">
+
+                <h2 class="section-title">
+                    📚 Vocabulary
+                </h2>
+
+
+                <div
+                    id="vocabulary"
+                    class="vocabulary"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- MOVES -->
+
+            <div class="section">
+
+                <h2 class="section-title">
+                    ⚔️ Moves
+                </h2>
+
+
+                <div
+                    id="moves"
+                    class="moves"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="result-actions">
 
                 <button
-                    class="analyze-btn"
-                    onclick="analyzeImage()"
+                    class="save"
+                    onclick="saveResult()"
                 >
-                    🔍 Phân tích ảnh
+                    💾 Lưu vào từ điển
                 </button>
 
 
                 <button
-                    class="clear-btn"
-                    onclick="clearPreview()"
+                    class="new-image"
+                    onclick="clearAll()"
                 >
-                    🗑️ Bỏ ảnh
+                    📷 Nạp ảnh khác
                 </button>
 
             </div>
@@ -479,12 +733,12 @@ input[type="file"] {
 
 
     <!-- =========================
-         DICTIONARY
+         5. DICTIONARY
     ========================== -->
 
     <div class="dictionary">
 
-        <div class="dictionary-header">
+        <div class="dictionary-top">
 
             <h2>
                 📚 My Pokémon Dictionary
@@ -492,9 +746,8 @@ input[type="file"] {
 
 
             <input
-                type="text"
                 id="searchInput"
-                class="search-box"
+                class="search"
                 placeholder="🔎 Tìm Pokémon..."
                 oninput="searchDictionary()"
             >
@@ -505,7 +758,8 @@ input[type="file"] {
         <div
             id="dictionaryGrid"
             class="dictionary-grid"
-        ></div>
+        >
+        </div>
 
     </div>
 
@@ -513,11 +767,11 @@ input[type="file"] {
 
 
 <!-- =========================
-     MODAL XEM BÀI
+     MODAL
 ========================== -->
 
 <div
-    id="pokemonModal"
+    id="modal"
     class="modal"
 >
 
@@ -525,12 +779,13 @@ input[type="file"] {
 
         <div class="modal-header">
 
-            <h2 id="modalTitle">
+            <h2 id="modalName">
                 Pokémon
             </h2>
 
+
             <button
-                class="close-btn"
+                class="close"
                 onclick="closeModal()"
             >
                 ✕
@@ -544,60 +799,19 @@ input[type="file"] {
             <img
                 id="modalImage"
                 class="saved-image"
-                alt="Pokémon"
             >
 
 
-            <div class="placeholder-info">
-
-                <h3>
-                    📖 Thông tin Pokémon
-                </h3>
-
-                <p>
-                    Bài này đã được lưu vào
-                    Pokémon Dictionary.
-                </p>
-
-                <p>
-                    🤖 Ở bước tiếp theo, AI sẽ
-                    tự động xử lý ảnh và điền:
-                </p>
-
-                <ul>
-
-                    <li>
-                        Tên Pokémon
-                    </li>
-
-                    <li>
-                        IPA
-                    </li>
-
-                    <li>
-                        English description
-                    </li>
-
-                    <li>
-                        Vietnamese translation
-                    </li>
-
-                    <li>
-                        2–3 từ vựng khó
-                    </li>
-
-                    <li>
-                        Moves + nghĩa tiếng Việt
-                    </li>
-
-                </ul>
-
+            <div
+                id="modalContent"
+                class="saved-content"
+            >
             </div>
 
 
             <button
-                id="deleteButton"
-                class="delete-saved"
+                class="delete"
+                id="deleteSaved"
             >
                 🗑️ Xóa khỏi từ điển
             </button>
@@ -612,31 +826,32 @@ input[type="file"] {
 <script>
 
 /* =====================================================
-   INDEXEDDB
+   DATABASE
 ===================================================== */
 
 const DB_NAME =
-    "PokemonUltimateHandbookDB";
+    "PokemonUltimateHandbook";
 
 const DB_VERSION = 1;
 
-const STORE_NAME =
-    "pokemon";
-
+const STORE =
+    "dictionary";
 
 let db;
 
 let currentImage = null;
 
+let currentResult = null;
+
 
 /* =====================================================
-   MỞ DATABASE
+   OPEN DATABASE
 ===================================================== */
 
-function openDatabase() {
+function openDB() {
 
     return new Promise(
-        function(resolve, reject) {
+        (resolve, reject) => {
 
             const request =
                 indexedDB.open(
@@ -646,7 +861,7 @@ function openDatabase() {
 
 
             request.onupgradeneeded =
-                function(event) {
+                event => {
 
                     db =
                         event.target.result;
@@ -654,11 +869,11 @@ function openDatabase() {
 
                     if (
                         !db.objectStoreNames
-                        .contains(STORE_NAME)
+                        .contains(STORE)
                     ) {
 
                         db.createObjectStore(
-                            STORE_NAME,
+                            STORE,
                             {
                                 keyPath: "id",
                                 autoIncrement: true
@@ -671,7 +886,7 @@ function openDatabase() {
 
 
             request.onsuccess =
-                function(event) {
+                event => {
 
                     db =
                         event.target.result;
@@ -682,13 +897,9 @@ function openDatabase() {
 
 
             request.onerror =
-                function() {
-
-                    reject(
-                        request.error
-                    );
-
-                };
+                () => reject(
+                    request.error
+                );
 
         }
     );
@@ -697,72 +908,41 @@ function openDatabase() {
 
 
 /* =====================================================
-   LƯU POKÉMON
+   SAVE TO DATABASE
 ===================================================== */
 
-function savePokemon(imageData) {
+function saveToDB(data) {
 
     return new Promise(
-        function(resolve, reject) {
+        (resolve, reject) => {
 
             const transaction =
                 db.transaction(
-                    [STORE_NAME],
+                    STORE,
                     "readwrite"
                 );
 
 
             const store =
                 transaction.objectStore(
-                    STORE_NAME
+                    STORE
                 );
 
 
-            const pokemon = {
-
-                image: imageData,
-
-                name:
-                    "Pokémon chưa được nhận diện",
-
-                ipa: "",
-
-                english: "",
-
-                vietnamese: "",
-
-                vocabulary: [],
-
-                moves: [],
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
-
-
             const request =
-                store.add(pokemon);
+                store.add(data);
 
 
             request.onsuccess =
-                function() {
-
-                    resolve(
-                        request.result
-                    );
-
-                };
+                () => resolve(
+                    request.result
+                );
 
 
             request.onerror =
-                function() {
-
-                    reject(
-                        request.error
-                    );
-
-                };
+                () => reject(
+                    request.error
+                );
 
         }
     );
@@ -771,49 +951,37 @@ function savePokemon(imageData) {
 
 
 /* =====================================================
-   LẤY TẤT CẢ POKÉMON
+   GET ALL
 ===================================================== */
 
-function getAllPokemon() {
+function getAll() {
 
     return new Promise(
-        function(resolve, reject) {
+        (resolve, reject) => {
 
             const transaction =
                 db.transaction(
-                    [STORE_NAME],
+                    STORE,
                     "readonly"
                 );
 
 
-            const store =
-                transaction.objectStore(
-                    STORE_NAME
-                );
-
-
             const request =
-                store.getAll();
+                transaction
+                .objectStore(STORE)
+                .getAll();
 
 
             request.onsuccess =
-                function() {
-
-                    resolve(
-                        request.result
-                    );
-
-                };
+                () => resolve(
+                    request.result
+                );
 
 
             request.onerror =
-                function() {
-
-                    reject(
-                        request.error
-                    );
-
-                };
+                () => reject(
+                    request.error
+                );
 
         }
     );
@@ -822,47 +990,35 @@ function getAllPokemon() {
 
 
 /* =====================================================
-   XÓA POKÉMON
+   DELETE
 ===================================================== */
 
-function deletePokemon(id) {
+function deleteFromDB(id) {
 
     return new Promise(
-        function(resolve, reject) {
+        (resolve, reject) => {
 
             const transaction =
                 db.transaction(
-                    [STORE_NAME],
+                    STORE,
                     "readwrite"
                 );
 
 
-            const store =
-                transaction.objectStore(
-                    STORE_NAME
-                );
-
-
             const request =
-                store.delete(id);
+                transaction
+                .objectStore(STORE)
+                .delete(id);
 
 
             request.onsuccess =
-                function() {
-
-                    resolve();
-
-                };
+                () => resolve();
 
 
             request.onerror =
-                function() {
-
-                    reject(
-                        request.error
-                    );
-
-                };
+                () => reject(
+                    request.error
+                );
 
         }
     );
@@ -871,47 +1027,494 @@ function deletePokemon(id) {
 
 
 /* =====================================================
-   HIỂN THỊ DICTIONARY
+   FILE → DATA URL
+===================================================== */
+
+function fileToDataURL(file) {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                () => resolve(
+                    reader.result
+                );
+
+
+            reader.onerror =
+                () => reject(
+                    reader.error
+                );
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FILE INPUT
+===================================================== */
+
+document
+.getElementById("imageInput")
+.addEventListener(
+    "change",
+    async event => {
+
+        const file =
+            event.target.files[0];
+
+
+        if (!file) return;
+
+
+        currentImage =
+            await fileToDataURL(file);
+
+
+        showPreview();
+
+    }
+);
+
+
+/* =====================================================
+   PASTE IMAGE
+===================================================== */
+
+document.addEventListener(
+    "paste",
+    async event => {
+
+        const items =
+            event.clipboardData.items;
+
+
+        for (
+            const item of items
+        ) {
+
+            if (
+                item.type
+                .startsWith("image/")
+            ) {
+
+                const file =
+                    item.getAsFile();
+
+
+                currentImage =
+                    await fileToDataURL(file);
+
+
+                showPreview();
+
+                break;
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PASTE BUTTON
+===================================================== */
+
+function pasteInstruction() {
+
+    alert(
+        "Anh hãy copy một bức ảnh trước, " +
+        "sau đó nhấn Ctrl + V để dán vào app."
+    );
+
+}
+
+
+/* =====================================================
+   SHOW PREVIEW
+===================================================== */
+
+function showPreview() {
+
+    document
+    .getElementById("previewImage")
+    .src =
+        currentImage;
+
+
+    document
+    .getElementById("preview")
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById("result")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("processing")
+    .style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   ANALYZE
+===================================================== */
+
+async function analyzeImage() {
+
+    if (!currentImage) {
+
+        alert(
+            "Anh chưa nạp ảnh."
+        );
+
+        return;
+
+    }
+
+
+    document
+    .getElementById("preview")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("processing")
+    .style.display =
+        "block";
+
+
+    /*
+       =================================================
+       CHỖ NÀY SẼ KẾT NỐI AI API
+       =================================================
+
+       AI sẽ nhận currentImage và trả về:
+
+       name
+       ipa
+       english
+       vietnamese
+       vocabulary[]
+       moves[]
+
+       Hiện tại dùng dữ liệu mẫu để
+       kiểm tra giao diện.
+    */
+
+
+    await new Promise(
+        resolve =>
+            setTimeout(resolve, 1200)
+    );
+
+
+    currentResult = {
+
+        name:
+            "Pikachu",
+
+        ipa:
+            "/ˈpiːkətʃuː/",
+
+        english:
+            "Pikachu is a small Electric-type Pokémon. It stores electricity in its cheeks and can release powerful electrical attacks.",
+
+        vietnamese:
+            "Pikachu là một Pokémon hệ Điện nhỏ. Nó tích trữ điện trong má và có thể phóng ra những đòn tấn công điện mạnh.",
+
+        vocabulary: [
+
+            {
+                word: "discharge",
+                meaning: "phóng điện"
+            },
+
+            {
+                word: "cheek",
+                meaning: "má"
+            },
+
+            {
+                word: "release",
+                meaning: "giải phóng; phóng ra"
+            }
+
+        ],
+
+        moves: [
+
+            "Thunderbolt (Đòn Sấm Sét)",
+
+            "Quick Attack (Đòn Đánh Nhanh)",
+
+            "Electro Ball (Bóng Điện)"
+
+        ],
+
+        image:
+            currentImage
+
+    };
+
+
+    showResult();
+
+}
+
+
+/* =====================================================
+   SHOW RESULT
+===================================================== */
+
+function showResult() {
+
+    const data =
+        currentResult;
+
+
+    document
+    .getElementById("processing")
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById("result")
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById("resultImage")
+    .src =
+        data.image;
+
+
+    document
+    .getElementById("pokemonName")
+    .textContent =
+        data.name;
+
+
+    document
+    .getElementById("pokemonIPA")
+    .textContent =
+        data.ipa;
+
+
+    document
+    .getElementById(
+        "englishDescription"
+    )
+    .textContent =
+        data.english;
+
+
+    document
+    .getElementById(
+        "vietnameseDescription"
+    )
+    .textContent =
+        data.vietnamese;
+
+
+    document
+    .getElementById(
+        "vocabulary"
+    )
+    .innerHTML =
+        data.vocabulary
+        .map(
+            item => `
+
+                <div class="word">
+
+                    <strong>
+                        ${escapeHTML(
+                            item.word
+                        )}
+                    </strong>
+
+                    —
+                    ${escapeHTML(
+                        item.meaning
+                    )}
+
+                </div>
+
+            `
+        )
+        .join("");
+
+
+    document
+    .getElementById("moves")
+    .innerHTML =
+        data.moves
+        .map(
+            move => `
+
+                <div class="move">
+
+                    ${escapeHTML(move)}
+
+                </div>
+
+            `
+        )
+        .join("");
+
+
+    window.scrollTo({
+        top:
+            document
+            .getElementById(
+                "result"
+            )
+            .offsetTop - 20,
+
+        behavior:
+            "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   SAVE RESULT
+===================================================== */
+
+async function saveResult() {
+
+    if (!currentResult) {
+
+        alert(
+            "Chưa có bài để lưu."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        await saveToDB({
+
+            name:
+                currentResult.name,
+
+            ipa:
+                currentResult.ipa,
+
+            english:
+                currentResult.english,
+
+            vietnamese:
+                currentResult.vietnamese,
+
+            vocabulary:
+                currentResult.vocabulary,
+
+            moves:
+                currentResult.moves,
+
+            image:
+                currentResult.image,
+
+            createdAt:
+                new Date().toISOString()
+
+        });
+
+
+        alert(
+            "✅ Đã lưu bài vào Pokémon Dictionary!"
+        );
+
+
+        await renderDictionary();
+
+
+    } catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Không thể lưu bài."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER DICTIONARY
 ===================================================== */
 
 async function renderDictionary(
-    filter = ""
+    keyword = ""
 ) {
 
     const grid =
-        document.getElementById(
+        document
+        .getElementById(
             "dictionaryGrid"
         );
 
 
-    const list =
-        await getAllPokemon();
+    const all =
+        await getAll();
 
 
     const filtered =
-        list.filter(
+        all.filter(
             pokemon =>
                 pokemon.name
                 .toLowerCase()
                 .includes(
-                    filter.toLowerCase()
+                    keyword
+                    .toLowerCase()
                 )
         );
 
 
-    if (filtered.length === 0) {
+    if (
+        filtered.length === 0
+    ) {
 
         grid.innerHTML = `
 
             <div class="empty">
 
                 <h3>
-                    📚 Chưa có Pokémon
+                    📚 Từ điển đang trống
                 </h3>
 
                 <p>
-                    Nạp ảnh Pokémon đầu tiên
-                    để tạo từ điển.
+                    Hãy nạp ảnh Pokémon,
+                    phân tích rồi bấm
+                    "Lưu vào từ điển".
                 </p>
 
             </div>
@@ -934,12 +1537,13 @@ async function renderDictionary(
             new Date(a.createdAt)
     )
     .forEach(
-        function(pokemon) {
+        pokemon => {
 
             const item =
                 document.createElement(
                     "div"
                 );
+
 
             item.className =
                 "dictionary-item";
@@ -949,28 +1553,25 @@ async function renderDictionary(
 
                 <img
                     src="${pokemon.image}"
-                    alt="Pokémon"
+                    alt=""
                 >
 
                 <div class="dictionary-name">
-                    ${escapeHtml(
+
+                    ${escapeHTML(
                         pokemon.name
                     )}
-                </div>
 
-                <div class="dictionary-date">
-                    Đã lưu
                 </div>
 
             `;
 
 
             item.onclick =
-                function() {
-
-                    openPokemon(pokemon);
-
-                };
+                () =>
+                    openSavedPokemon(
+                        pokemon
+                    );
 
 
             grid.appendChild(item);
@@ -982,268 +1583,192 @@ async function renderDictionary(
 
 
 /* =====================================================
-   TÌM KIẾM
+   SEARCH
 ===================================================== */
 
 function searchDictionary() {
 
-    const value =
+    const keyword =
         document
-        .getElementById("searchInput")
+        .getElementById(
+            "searchInput"
+        )
         .value;
 
 
-    renderDictionary(value);
-
-}
-
-
-/* =====================================================
-   HIỂN THỊ ẢNH
-===================================================== */
-
-function showImage(imageData) {
-
-    currentImage =
-        imageData;
-
-
-    document
-    .getElementById("previewImage")
-    .src = imageData;
-
-
-    document
-    .getElementById("previewSection")
-    .style.display = "block";
-
-
-    document
-    .getElementById("uploadArea")
-    .classList.add("active");
-
-
-    window.scrollTo({
-        top:
-            document
-            .getElementById(
-                "previewSection"
-            )
-            .offsetTop - 20,
-        behavior: "smooth"
-    });
-
-}
-
-
-/* =====================================================
-   THÊM ẢNH TỪ MÁY
-===================================================== */
-
-document
-.getElementById("imageInput")
-.addEventListener(
-    "change",
-    function(event) {
-
-        const file =
-            event.target.files[0];
-
-
-        if (!file) {
-            return;
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e) {
-
-                showImage(
-                    e.target.result
-                );
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-/* =====================================================
-   CTRL + V
-===================================================== */
-
-document.addEventListener(
-    "paste",
-    function(event) {
-
-        const items =
-            event
-            .clipboardData
-            .items;
-
-
-        for (
-            let i = 0;
-            i < items.length;
-            i++
-        ) {
-
-            const item =
-                items[i];
-
-
-            if (
-                item.type
-                .indexOf("image") !== -1
-            ) {
-
-                const file =
-                    item.getAsFile();
-
-
-                const reader =
-                    new FileReader();
-
-
-                reader.onload =
-                    function(e) {
-
-                        showImage(
-                            e.target.result
-                        );
-
-                    };
-
-
-                reader.readAsDataURL(file);
-
-                break;
-
-            }
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   NÚT DÁN ẢNH
-===================================================== */
-
-function pasteImage() {
-
-    alert(
-        "Anh hãy copy một bức ảnh trước, " +
-        "sau đó nhấn Ctrl + V."
+    renderDictionary(
+        keyword
     );
 
 }
 
 
 /* =====================================================
-   PHÂN TÍCH ẢNH
+   OPEN SAVED
 ===================================================== */
 
-async function analyzeImage() {
-
-    if (!currentImage) {
-
-        alert(
-            "Chưa có ảnh."
-        );
-
-        return;
-
-    }
-
-
-    try {
-
-        const id =
-            await savePokemon(
-                currentImage
-            );
-
-
-        alert(
-            "✅ Ảnh đã được lưu vào " +
-            "Pokémon Dictionary!\n\n" +
-            "Mã bài: " + id +
-            "\n\n" +
-            "Bước tiếp theo sẽ kết nối AI " +
-            "để tự động xử lý nội dung."
-        );
-
-
-        await renderDictionary();
-
-
-        clearPreview();
-
-
-    } catch(error) {
-
-        console.error(error);
-
-        alert(
-            "Không thể lưu ảnh. " +
-            "Anh hãy thử lại."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   MỞ POKÉMON
-===================================================== */
-
-function openPokemon(pokemon) {
+function openSavedPokemon(
+    pokemon
+) {
 
     document
-    .getElementById("modalTitle")
+    .getElementById(
+        "modalName"
+    )
     .textContent =
         pokemon.name;
 
 
     document
-    .getElementById("modalImage")
+    .getElementById(
+        "modalImage"
+    )
     .src =
         pokemon.image;
 
 
-    document
-    .getElementById("pokemonModal")
-    .style.display =
-        "block";
+    const vocabulary =
+        pokemon.vocabulary
+        .map(
+            item => `
+
+                <div class="word">
+
+                    <strong>
+                        ${escapeHTML(
+                            item.word
+                        )}
+                    </strong>
+
+                    —
+                    ${escapeHTML(
+                        item.meaning
+                    )}
+
+                </div>
+
+            `
+        )
+        .join("");
+
+
+    const moves =
+        pokemon.moves
+        .map(
+            move => `
+
+                <div class="move">
+
+                    ${escapeHTML(move)}
+
+                </div>
+
+            `
+        )
+        .join("");
 
 
     document
-    .getElementById("deleteButton")
+    .getElementById(
+        "modalContent"
+    )
+    .innerHTML = `
+
+        <h2>
+            ${escapeHTML(
+                pokemon.name
+            )}
+        </h2>
+
+        <p>
+            <strong>IPA:</strong>
+            ${escapeHTML(
+                pokemon.ipa
+            )}
+        </p>
+
+
+        <div class="description">
+
+            <div class="language-box">
+
+                <div class="language-title">
+                    🇬🇧 English
+                </div>
+
+                ${escapeHTML(
+                    pokemon.english
+                )}
+
+            </div>
+
+
+            <div class="language-box">
+
+                <div class="language-title">
+                    🇻🇳 Tiếng Việt
+                </div>
+
+                ${escapeHTML(
+                    pokemon.vietnamese
+                )}
+
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <h3 class="section-title">
+                📚 Vocabulary
+            </h3>
+
+            <div class="vocabulary">
+
+                ${vocabulary}
+
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <h3 class="section-title">
+                ⚔️ Moves
+            </h3>
+
+            <div class="moves">
+
+                ${moves}
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+    .getElementById(
+        "deleteSaved"
+    )
     .onclick =
-        async function() {
+        async () => {
 
-            const yes =
-                confirm(
+            if (
+                !confirm(
                     "Anh có chắc muốn xóa bài này?"
-                );
+                )
+            ) {
 
-
-            if (!yes) {
                 return;
+
             }
 
 
-            await deletePokemon(
+            await deleteFromDB(
                 pokemon.id
             );
 
@@ -1254,17 +1779,27 @@ function openPokemon(pokemon) {
 
         };
 
+
+    document
+    .getElementById(
+        "modal"
+    )
+    .style.display =
+        "block";
+
 }
 
 
 /* =====================================================
-   ĐÓNG MODAL
+   CLOSE MODAL
 ===================================================== */
 
 function closeModal() {
 
     document
-    .getElementById("pokemonModal")
+    .getElementById(
+        "modal"
+    )
     .style.display =
         "none";
 
@@ -1272,55 +1807,54 @@ function closeModal() {
 
 
 /* =====================================================
-   CLICK RA NGOÀI MODAL
+   CLEAR
 ===================================================== */
 
-document
-.getElementById("pokemonModal")
-.addEventListener(
-    "click",
-    function(event) {
+function clearAll() {
 
-        if (
-            event.target ===
-            this
-        ) {
+    currentImage =
+        null;
 
-            closeModal();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   XÓA ẢNH PREVIEW
-===================================================== */
-
-function clearPreview() {
-
-    currentImage = null;
+    currentResult =
+        null;
 
 
     document
-    .getElementById("previewImage")
-    .src = "";
+    .getElementById(
+        "imageInput"
+    )
+    .value =
+        "";
 
 
     document
-    .getElementById("previewSection")
-    .style.display = "none";
+    .getElementById(
+        "preview"
+    )
+    .style.display =
+        "none";
 
 
     document
-    .getElementById("uploadArea")
-    .classList.remove("active");
+    .getElementById(
+        "result"
+    )
+    .style.display =
+        "none";
 
 
     document
-    .getElementById("imageInput")
-    .value = "";
+    .getElementById(
+        "processing"
+    )
+    .style.display =
+        "none";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
@@ -1329,13 +1863,19 @@ function clearPreview() {
    ESCAPE HTML
 ===================================================== */
 
-function escapeHtml(text) {
+function escapeHTML(
+    value
+) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     div.textContent =
-        text;
+        value ?? "";
+
 
     return div.innerHTML;
 
@@ -1343,14 +1883,14 @@ function escapeHtml(text) {
 
 
 /* =====================================================
-   KHỞI ĐỘNG
+   INIT
 ===================================================== */
 
 async function init() {
 
     try {
 
-        await openDatabase();
+        await openDB();
 
         await renderDictionary();
 
@@ -1359,7 +1899,7 @@ async function init() {
         console.error(error);
 
         alert(
-            "Trình duyệt không thể mở bộ nhớ của app."
+            "Không thể khởi động bộ từ điển."
         );
 
     }
