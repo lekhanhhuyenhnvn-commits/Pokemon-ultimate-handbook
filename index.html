@@ -15,7 +15,7 @@
 
 body{
     margin:0;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial,sans-serif;
     background:#f3f5f8;
     color:#222;
 }
@@ -46,8 +46,8 @@ header p{
     background:white;
     border-radius:18px;
     padding:25px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
     margin-bottom:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
 .upload-box{
@@ -91,34 +91,15 @@ input[type=file]{
     display:none;
 }
 
-.blue{
-    background:#1976d2;
-}
-
-.green{
-    background:#2e7d32;
-}
-
-.gray{
-    background:#757575;
-}
-
-.red{
-    background:#d32f2f;
-}
-
-.orange{
-    background:#ef6c00;
-}
-
 .preview{
     display:none;
 }
 
-.preview img{
+.preview img,
+.result-image{
     display:block;
     width:100%;
-    max-height:550px;
+    max-height:500px;
     object-fit:contain;
     background:#f5f5f5;
     border-radius:12px;
@@ -155,25 +136,26 @@ input[type=file]{
     gap:25px;
 }
 
-.result-image{
-    width:100%;
-    max-height:350px;
-    object-fit:contain;
-    background:#f5f5f5;
-    border-radius:12px;
-}
-
 .name{
-    font-size:32px;
+    font-size:34px;
     font-weight:bold;
-    margin-bottom:5px;
 }
 
 .ipa{
-    font-size:20px;
+    font-size:21px;
     color:#666;
     font-style:italic;
-    margin-bottom:20px;
+    margin:6px 0 20px;
+}
+
+.section{
+    margin-top:25px;
+}
+
+.section h2{
+    color:#d32f2f;
+    border-bottom:2px solid #eee;
+    padding-bottom:8px;
 }
 
 label{
@@ -193,47 +175,45 @@ textarea{
 }
 
 textarea{
-    min-height:150px;
+    min-height:120px;
     resize:vertical;
 }
 
-.section{
-    margin-top:25px;
-}
-
-.section h2{
-    color:#d32f2f;
-    border-bottom:2px solid #eee;
-    padding-bottom:8px;
-}
-
-.language-grid{
+.grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:15px;
 }
 
-.language-box{
-    background:#f8f9fa;
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.info-box{
+    background:#f7f8fa;
     padding:15px;
     border-radius:12px;
 }
 
-.translate-area{
-    text-align:center;
-    margin-top:12px;
+.analysis-note{
+    background:#fff8e1;
+    border-left:4px solid #ffb300;
+    padding:12px 15px;
+    border-radius:8px;
 }
 
 .dictionary-header{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
     gap:15px;
     flex-wrap:wrap;
 }
 
 .search{
-    width:260px;
+    max-width:280px;
 }
 
 .dictionary-grid{
@@ -255,8 +235,8 @@ textarea{
     width:100%;
     height:150px;
     object-fit:contain;
-    border-radius:10px;
     background:#f5f5f5;
+    border-radius:10px;
 }
 
 .dictionary-name{
@@ -277,8 +257,6 @@ textarea{
     text-align:center;
     color:#777;
     padding:30px;
-    background:white;
-    border-radius:15px;
 }
 
 .modal{
@@ -307,27 +285,37 @@ textarea{
     border-radius:12px;
 }
 
-.modal-close{
+.close{
     float:right;
+    background:#777;
 }
 
-.analysis-note{
-    background:#fff8e1;
-    border-left:4px solid #ffb300;
-    padding:12px 15px;
-    border-radius:8px;
-    margin-top:15px;
+.green{
+    background:#2e7d32;
+}
+
+.blue{
+    background:#1976d2;
+}
+
+.gray{
+    background:#757575;
+}
+
+.red{
+    background:#d32f2f;
+}
+
+.orange{
+    background:#ef6c00;
 }
 
 @media(max-width:700px){
 
     .top-info,
-    .language-grid{
+    .grid,
+    .info-grid{
         grid-template-columns:1fr;
-    }
-
-    .name{
-        font-size:27px;
     }
 
 }
@@ -344,24 +332,23 @@ textarea{
 <div class="container">
 
 <!-- =====================================================
-     UPLOAD
+UPLOAD
 ===================================================== -->
 
 <div class="card upload-box">
 
     <div class="upload-icon">📷</div>
 
-    <h2>Nạp ảnh</h2>
+    <h2>Nạp ảnh Pokémon</h2>
 
     <p>
-        Thêm ảnh từ máy hoặc copy ảnh rồi nhấn Ctrl + V
+        Chọn ảnh từ máy hoặc copy ảnh rồi nhấn Ctrl + V
     </p>
 
     <div class="buttons">
 
         <label class="file-label">
             📁 Thêm ảnh từ máy
-
             <input
                 type="file"
                 id="imageInput"
@@ -371,7 +358,7 @@ textarea{
 
         <button
             class="gray"
-            onclick="pasteInstruction()"
+            onclick="pasteHelp()"
         >
             📋 Dán ảnh
         </button>
@@ -382,7 +369,7 @@ textarea{
 
 
 <!-- =====================================================
-     PREVIEW
+PREVIEW
 ===================================================== -->
 
 <div
@@ -392,7 +379,9 @@ textarea{
 
     <h2>🖼️ Ảnh đã nạp</h2>
 
-    <img id="previewImage">
+    <img
+        id="previewImage"
+    >
 
     <div class="buttons">
 
@@ -416,7 +405,7 @@ textarea{
 
 
 <!-- =====================================================
-     PROCESSING
+PROCESSING
 ===================================================== -->
 
 <div
@@ -431,14 +420,14 @@ textarea{
     </h2>
 
     <p id="progressText">
-        Đang khởi động OCR...
+        Đang khởi động...
     </p>
 
 </div>
 
 
 <!-- =====================================================
-     RESULT
+RESULT
 ===================================================== -->
 
 <div
@@ -446,222 +435,138 @@ textarea{
     class="card result"
 >
 
-    <h2>📖 Kiểm tra & phân tích</h2>
-
-    <p>
-        App đã đọc chữ và tự phân loại nội dung.
-        <strong>Anh kiểm tra lại trước khi lưu.</strong>
-    </p>
+    <h2>🧠 Kết quả phân tích</h2>
 
     <div class="analysis-note">
-        💡 Nếu app phân loại sai, anh có thể sửa trực tiếp
-        từng ô bên dưới.
-    </div>
 
+        <strong>App đã tự phân tích theo bố cục ảnh.</strong>
 
-    <!-- =================================================
-         NAME / IPA
-    ================================================== -->
+        <br>
 
-    <div class="section">
-
-        <h2>🟡 Pokémon</h2>
-
-        <div class="top-info">
-
-            <div>
-
-                <img
-                    id="resultImage"
-                    class="result-image"
-                >
-
-            </div>
-
-
-            <div>
-
-                <div
-                    id="displayName"
-                    class="name"
-                >
-                    Pokémon
-                </div>
-
-                <div
-                    id="displayIPA"
-                    class="ipa"
-                >
-                    /Chưa có IPA/
-                </div>
-
-
-                <label>
-                    Tên Pokémon
-                </label>
-
-                <input
-                    id="pokemonName"
-                    placeholder="Tên Pokémon"
-                    oninput="updateName()"
-                >
-
-                <br><br>
-
-                <label>
-                    Phiên âm IPA
-                </label>
-
-                <input
-                    id="pokemonIPA"
-                    placeholder="/.../"
-                    oninput="updateIPA()"
-                >
-
-            </div>
-
-        </div>
+        Phần <b>Pronounced</b> trong ảnh sẽ
+        <b>không được giữ lại</b>.
+        App sẽ dùng IPA của Pokémon.
 
     </div>
 
 
-    <!-- =================================================
-         DESCRIPTION
-    ================================================== -->
+<!-- =====================================================
+NAME
+===================================================== -->
 
-    <div class="section">
+<div class="section">
 
-        <h2>📖 Description</h2>
+    <h2>🟡 Pokémon</h2>
 
-        <div class="language-grid">
+    <div class="top-info">
 
-            <div class="language-box">
+        <div>
 
-                <label>
-                    🇬🇧 English
-                </label>
-
-                <textarea
-                    id="englishText"
-                    placeholder="Miêu tả tiếng Anh..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="language-box">
-
-                <label>
-                    🇻🇳 Tiếng Việt
-                </label>
-
-                <textarea
-                    id="vietnameseText"
-                    placeholder="Bản dịch tiếng Việt..."
-                ></textarea>
-
-            </div>
-
-        </div>
-
-
-        <div class="translate-area">
-
-            <button
-                id="translateButton"
-                class="blue"
-                onclick="translateDescription()"
+            <img
+                id="resultImage"
+                class="result-image"
             >
-                🌐 Dịch sang tiếng Việt
-            </button>
+
+        </div>
+
+        <div>
+
+            <div
+                id="displayName"
+                class="name"
+            >
+                Pokémon
+            </div>
+
+            <div
+                id="displayIPA"
+                class="ipa"
+            >
+                /Chưa có IPA/
+            </div>
+
+
+            <label>
+                Tên Pokémon
+            </label>
+
+            <input
+                id="pokemonName"
+                oninput="nameChanged()"
+            >
+
+            <br>
+
+            <label>
+                Phiên âm IPA
+            </label>
+
+            <input
+                id="pokemonIPA"
+            >
+
+            <br>
+
+            <label>
+                Biệt danh
+            </label>
+
+            <input
+                id="nickname"
+            >
 
         </div>
 
     </div>
 
-
-    <!-- =================================================
-         VOCABULARY
-    ================================================== -->
-
-    <div class="section">
-
-        <h2>📚 2–3 từ vựng khó</h2>
-
-        <p>
-            Chỉ giữ 2–3 từ khó hoặc ít gặp.
-        </p>
-
-        <textarea
-            id="vocabularyText"
-            placeholder="Ví dụ:
-agile — nhanh nhẹn
-discharge — phóng ra
-stamina — sức bền"
-        ></textarea>
-
-    </div>
+</div>
 
 
-    <!-- =================================================
-         MOVES
-    ================================================== -->
+<!-- =====================================================
+DESCRIPTION
+===================================================== -->
 
-    <div class="section">
+<div class="section">
 
-        <h2>⚔️ Moves</h2>
+    <h2>📖 Description</h2>
 
-        <p>
-            Tên move tiếng Anh + nghĩa tiếng Việt trong ngoặc.
-        </p>
+    <div class="grid">
 
-        <textarea
-            id="movesText"
-            placeholder="Thunderbolt (Đòn Sấm Sét)
-Quick Attack (Đòn Đánh Nhanh)"
-        ></textarea>
+        <div>
+
+            <label>
+                🇬🇧 English
+            </label>
+
+            <textarea
+                id="englishText"
+                placeholder="Phần mô tả tiếng Anh..."
+            ></textarea>
+
+        </div>
+
+        <div>
+
+            <label>
+                🇻🇳 Tiếng Việt
+            </label>
+
+            <textarea
+                id="vietnameseText"
+                placeholder="Bản dịch tiếng Việt..."
+            ></textarea>
+
+        </div>
 
     </div>
-
-
-    <!-- =================================================
-         OCR RAW
-    ================================================== -->
-
-    <div class="section">
-
-        <h2>🔎 Văn bản OCR gốc</h2>
-
-        <p>
-            Đây là toàn bộ chữ mà OCR đọc được.
-            Anh có thể sửa nếu OCR đọc sai.
-        </p>
-
-        <textarea
-            id="ocrText"
-        ></textarea>
-
-    </div>
-
-
-    <!-- =================================================
-         SAVE
-    ================================================== -->
 
     <div class="buttons">
 
         <button
-            class="green"
-            onclick="saveToDictionary()"
+            class="blue"
+            onclick="translateDescription()"
         >
-            💾 Đúng rồi — Lưu vào từ điển
-        </button>
-
-        <button
-            class="gray"
-            onclick="resetApp()"
-        >
-            📷 Nạp ảnh khác
+            🌐 Dịch sang tiếng Việt
         </button>
 
     </div>
@@ -670,7 +575,156 @@ Quick Attack (Đòn Đánh Nhanh)"
 
 
 <!-- =====================================================
-     DICTIONARY
+VOCABULARY
+===================================================== -->
+
+<div class="section">
+
+    <h2>📚 Từ vựng khó</h2>
+
+    <p>
+        Chỉ giữ 2–3 từ khó/ít gặp.
+    </p>
+
+    <textarea
+        id="vocabularyText"
+    ></textarea>
+
+</div>
+
+
+<!-- =====================================================
+MOVE
+===================================================== -->
+
+<div class="section">
+
+    <h2>⚔️ Moves</h2>
+
+    <textarea
+        id="movesText"
+        placeholder="Tên Move (nghĩa tiếng Việt)"
+    ></textarea>
+
+</div>
+
+
+<!-- =====================================================
+POKEMON INFORMATION
+===================================================== -->
+
+<div class="section">
+
+    <h2>📊 Thông tin Pokémon</h2>
+
+    <div class="info-grid">
+
+        <div class="info-box">
+
+            <label>Type</label>
+
+            <input
+                id="typeText"
+            >
+
+        </div>
+
+
+        <div class="info-box">
+
+            <label>Height</label>
+
+            <input
+                id="heightText"
+            >
+
+        </div>
+
+
+        <div class="info-box">
+
+            <label>Weight</label>
+
+            <input
+                id="weightText"
+            >
+
+        </div>
+
+
+        <div class="info-box">
+
+            <label>Region</label>
+
+            <input
+                id="regionText"
+            >
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+EVOLUTION
+===================================================== -->
+
+<div class="section">
+
+    <h2>🔄 Evolution / Forms</h2>
+
+    <textarea
+        id="evolutionText"
+        placeholder="Các dạng tiến hóa..."
+    ></textarea>
+
+</div>
+
+
+<!-- =====================================================
+RAW OCR
+===================================================== -->
+
+<div class="section">
+
+    <h2>🔎 OCR gốc</h2>
+
+    <textarea
+        id="ocrText"
+    ></textarea>
+
+</div>
+
+
+<!-- =====================================================
+SAVE
+===================================================== -->
+
+<div class="buttons">
+
+    <button
+        class="green"
+        onclick="savePokemon()"
+    >
+        💾 Đúng rồi — Lưu vào từ điển
+    </button>
+
+    <button
+        class="gray"
+        onclick="resetApp()"
+    >
+        📷 Nạp ảnh khác
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+DICTIONARY
 ===================================================== -->
 
 <div class="card">
@@ -682,14 +736,13 @@ Quick Attack (Đòn Đánh Nhanh)"
         </h2>
 
         <input
-            id="searchInput"
             class="search"
+            id="searchInput"
             placeholder="🔎 Tìm Pokémon..."
             oninput="renderDictionary()"
         >
 
     </div>
-
 
     <div
         id="dictionaryGrid"
@@ -702,7 +755,7 @@ Quick Attack (Đòn Đánh Nhanh)"
 
 
 <!-- =====================================================
-     MODAL
+MODAL
 ===================================================== -->
 
 <div
@@ -713,7 +766,7 @@ Quick Attack (Đòn Đánh Nhanh)"
     <div class="modal-content">
 
         <button
-            class="modal-close gray"
+            class="close"
             onclick="closeModal()"
         >
             ✕
@@ -726,15 +779,19 @@ Quick Attack (Đòn Đánh Nhanh)"
             class="ipa"
         ></div>
 
-        <img id="modalImage">
+        <img
+            id="modalImage"
+        >
 
         <div id="modalBody"></div>
 
+        <br>
+
         <button
-            id="deleteButton"
             class="red"
+            id="deleteButton"
         >
-            🗑️ Xóa
+            🗑️ Xóa khỏi từ điển
         </button>
 
     </div>
@@ -745,7 +802,7 @@ Quick Attack (Đòn Đánh Nhanh)"
 <script>
 
 /* =====================================================
-   DATABASE
+DATABASE
 ===================================================== */
 
 let db = null;
@@ -755,63 +812,305 @@ let currentImage = null;
 const DB_NAME =
     "PokemonUltimateHandbook";
 
-const DB_VERSION = 1;
-
-const STORE_NAME =
-    "dictionary";
+const STORE =
+    "pokemon";
 
 
 /* =====================================================
-   IPA
+IPA DATABASE
 ===================================================== */
 
 const IPA = {
 
-    "pikachu": "/ˈpiːkətʃuː/",
-    "bulbasaur": "/ˈbʌlbəˌsɔːr/",
-    "ivysaur": "/ˈaɪviˌsɔːr/",
-    "venusaur": "/vəˈnəsɔːr/",
+    absol: "/ˈæbsɒl/",
+    pikachu: "/ˈpiːkətʃuː/",
+    raichu: "/ˈraɪtʃuː/",
 
-    "charmander": "/ˈtʃɑːrmændər/",
-    "charmeleon": "/ˌtʃɑːrmɪˈliːən/",
-    "charizard": "/ˈtʃɑːrɪzɑːrd/",
+    bulbasaur: "/ˈbʌlbəsɔːr/",
+    ivysaur: "/ˈaɪvɪsɔːr/",
+    venusaur: "/vəˈnɪsɔːr/",
 
-    "squirtle": "/ˈskwɜːrtəl/",
-    "wartortle": "/ˈwɔːrtɔːrtəl/",
-    "blastoise": "/ˈblæstɔɪs/",
+    charmander: "/ˈtʃɑːrmændər/",
+    charmeleon: "/ˌtʃɑːrmɪˈliːən/",
+    charizard: "/ˈtʃærɪzɑːrd/",
 
-    "raichu": "/ˈraɪtʃuː/",
-    "meowth": "/miˈaʊθ/",
-    "psyduck": "/ˈsaɪdʌk/",
+    squirtle: "/ˈskwɜːrtəl/",
+    wartortle: "/ˈwɔːrtɔːrtəl/",
+    blastoise: "/ˈblæstɔɪs/",
 
-    "eevee": "/ˈiːviː/",
-    "vaporeon": "/ˌveɪpɔːriˈɒn/",
-    "jolteon": "/ˌdʒəʊltiˈɒn/",
-    "flareon": "/ˈflɛəriɒn/",
+    caterpie: "/ˈkætərpi/",
+    metapod: "/ˈmɛtəpɒd/",
+    butterfree: "/ˈbʌtərfriː/",
 
-    "espeon": "/ˈɛspiɒn/",
-    "umbreon": "/ˈʌmbriɒn/",
+    weedle: "/ˈwiːdəl/",
+    kakuna: "/kəˈkuːnə/",
+    beedrill: "/ˈbiːdrɪl/",
 
-    "gengar": "/ˈɡɛŋɡɑːr/",
-    "snorlax": "/ˈsnɔːlæks/",
-    "mew": "/mjuː/",
-    "mewtwo": "/ˈmjuːtuː/",
+    pidgey: "/ˈpɪdʒi/",
+    pidgeotto: "/ˌpɪdʒiˈɒtəʊ/",
+    pidgeot: "/ˈpɪdʒiɒt/",
 
-    "lucario": "/luːˈkɑːriəʊ/",
-    "greninja": "/ɡrəˈnɪndʒə/",
-    "garchomp": "/ˈɡɑːrtʃɒmp/",
-    "rayquaza": "/reɪˈkweɪzə/",
-    "zoroark": "/zəˈrəʊɑːrk/",
-    "sylveon": "/sɪlviˈɒn/"
+    rattata: "/ræˈtætə/",
+    raticate: "/ˈrætɪkeɪt/",
+
+    spearow: "/ˈspɪərəʊ/",
+    fearow: "/ˈfɪəroʊ/",
+
+    ekans: "/ɪˈkænz/",
+    arbok: "/ˈɑːrbɒk/",
+
+    sandshrew: "/ˈsændʃruː/",
+    sandslash: "/ˈsændslæʃ/",
+
+    nidoran: "/ˈnaɪdəræn/",
+    nidorina: "/ˌnaɪdəˈriːnə/",
+    nidorino: "/ˌnaɪdəˈriːnoʊ/",
+    nidoqueen: "/ˈnaɪdəʊkwiːn/",
+    nidoking: "/ˈnaɪdəʊkɪŋ/",
+
+    clefairy: "/ˈklɛfɛəri/",
+    clefable: "/ˈklɛfəbəl/",
+
+    vulpix: "/ˈvʊlpɪks/",
+    ninetales: "/ˈnaɪnteɪlz/",
+
+    jigglypuff: "/ˈdʒɪɡlipʌf/",
+    wigglytuff: "/ˈwɪɡlitʌf/",
+
+    zubat: "/ˈzuːbæt/",
+    golbat: "/ˈɡoʊlbæt/",
+
+    oddish: "/ˈɒdɪʃ/",
+    gloom: "/ɡluːm/",
+    vileplume: "/ˈvaɪlpluːm/",
+
+    paras: "/ˈpærəs/",
+    parasect: "/ˈpærəˌsɛkt/",
+
+    venonat: "/ˈvɛnənæt/",
+    venomoth: "/ˈvɛnəˌmɒθ/",
+
+    diglett: "/ˈdɪɡlɛt/",
+    dugtrio: "/ˈdʌɡtriːoʊ/",
+
+    meowth: "/miˈaʊθ/",
+    persian: "/ˈpɜːrʒən/",
+
+    psyduck: "/ˈsaɪdʌk/",
+    golduck: "/ˈɡoʊldʌk/",
+
+    mankey: "/ˈmæŋki/",
+    primeape: "/ˈpraɪmeɪp/",
+
+    growlithe: "/ˈɡraʊlaɪð/",
+    arcanine: "/ˈɑːrkənaɪn/",
+
+    poliwag: "/ˈpɒliwæɡ/",
+    poliwhirl: "/ˈpɒliwɜːrl/",
+    poliwrath: "/ˈpɒliræθ/",
+
+    abra: "/ˈæbrə/",
+    kadabra: "/kəˈdæbrə/",
+    alakazam: "/ˌæləkəˈzæm/",
+
+    machop: "/ˈmækɒp/",
+    machoke: "/məˈtʃoʊk/",
+    machamp: "/ˈmætʃæmp/",
+
+    bellsprout: "/ˈbɛlsprəʊt/",
+    weepinbell: "/ˈwiːpɪnbɛl/",
+    victreebel: "/ˈvɪktriːbəl/",
+
+    tentacool: "/ˈtɛntəkuːl/",
+    tentacruel: "/ˈtɛntəˌkruːəl/",
+
+    geodude: "/ˈdʒiːəduːd/",
+    graveler: "/ˈɡrævələr/",
+    golem: "/ˈɡoʊləm/",
+
+    ponyta: "/pɒˈniːtə/",
+    rapidash: "/ˈræpɪdæʃ/",
+
+    slowpoke: "/ˈsloʊpoʊk/",
+    slowbro: "/ˈsloʊbroʊ/",
+
+    magnemite: "/ˈmæɡnəmaɪt/",
+    magneton: "/ˈmæɡnɪtɒn/",
+
+    farfetchd: "/ˌfɑːrˈfɛtʃt/",
+    doduo: "/ˈdoʊduːoʊ/",
+    dodrio: "/ˈdoʊdriːoʊ/",
+
+    dewgong: "/ˈdjuːɡɒŋ/",
+    cloyster: "/ˈklɔɪstər/",
+
+    gastly: "/ˈɡæstli/",
+    haunter: "/ˈhɔːntər/",
+    gengar: "/ˈɡɛŋɡɑːr/",
+
+    drowzee: "/ˈdraʊzi/",
+    hypno: "/ˈhɪpnoʊ/",
+
+    krabby: "/ˈkræbi/",
+    kingler: "/ˈkɪŋlər/",
+
+    voltorb: "/ˈvoʊltɔːrb/",
+    electrode: "/ɪˈlɛktrəʊd/",
+
+    exeggcute: "/ˈɛɡzɛkjuːt/",
+    exeggutor: "/ɪɡˈzɛɡjuːtər/",
+
+    cubone: "/ˈkjuːboʊn/",
+    marowak: "/ˈmærəwæk/",
+
+    hitmonlee: "/ˌhɪtmɒnˈliː/",
+    hitmonchan: "/ˌhɪtmɒnˈtʃæn/",
+
+    lickitung: "/ˈlɪkɪtʌŋ/",
+
+    koffing: "/ˈkɒfɪŋ/",
+    weezing: "/ˈwiːzɪŋ/",
+
+    rhyhorn: "/ˈraɪhɔːrn/",
+    rhydon: "/ˈraɪdɒn/",
+
+    chansey: "/ˈtʃænzi/",
+    tangela: "/tænˈdʒɛlə/",
+
+    kangaskhan: "/ˈkæŋɡəskæn/",
+
+    horsea: "/ˈhɔːrsi/",
+    seadra: "/ˈsiːdrə/",
+
+    goldeen: "/ɡoʊlˈdiːn/",
+    seaking: "/ˈsiːkɪŋ/",
+
+    staryu: "/ˈstɑːrjuː/",
+    starmie: "/ˈstɑːrmi/",
+
+    mrMime: "/ˌmɪstərˈmaɪm/",
+
+    scyther: "/ˈsaɪðər/",
+    jynx: "/dʒɪŋks/",
+
+    electabuzz: "/ɪˈlɛktəbʌz/",
+    magmar: "/ˈmæɡmɑːr/",
+
+    pinsir: "/ˈpɪnsɪər/",
+    tauros: "/ˈtɔːrɒs/",
+
+    magikarp: "/ˈmædʒɪkɑːrp/",
+    gyarados: "/ˌɡaɪəˈrɑːdɒs/",
+
+    lapras: "/ˈlæprəs/",
+    ditto: "/ˈdɪtoʊ/",
+
+    eevee: "/ˈiːviː/",
+    vaporeon: "/ˌveɪpɔːriˈɒn/",
+    jolteon: "/ˌdʒoʊltiˈɒn/",
+    flareon: "/ˈflɛəriɒn/",
+
+    porygon: "/ˈpɒrɪɡɒn/",
+    omanyte: "/ˈoʊməniːt/",
+    omastar: "/ˈoʊməstɑːr/",
+
+    kabuto: "/kəˈbuːtoʊ/",
+    kabutops: "/kəˈbuːtɒps/",
+
+    aerodactyl: "/ˌɛərəˈdæktɪl/",
+
+    snorlax: "/ˈsnɔːlæks/",
+    articuno: "/ˌɑːrtɪˈkuːnoʊ/",
+    zapdos: "/ˈzæpdoʊs/",
+    moltres: "/ˈmoʊltrɛs/",
+
+    dratini: "/drəˈtiːni/",
+    dragonair: "/ˌdræɡənˈɛər/",
+    dragonite: "/ˈdræɡənaɪt/",
+
+    mewtwo: "/ˈmjuːtuː/",
+    mew: "/mjuː/",
+
+    chikorita: "/ˌtʃɪkəˈriːtə/",
+    cyndaquil: "/ˈsɪndəkwɪl/",
+    totodile: "/ˈtoʊtədaɪl/",
+
+    lugia: "/ˈluːdʒiə/",
+    hooh: "/huːˈoʊ/",
+
+    celebi: "/ˈsɛləbi/",
+
+    treecko: "/ˈtriːkoʊ/",
+    grovyle: "/ˈɡroʊvaɪl/",
+    sceptile: "/ˈsɛptaɪl/",
+
+    torchic: "/ˈtɔːrtʃɪk/",
+    combusken: "/kəmˈbʌskən/",
+    blaziken: "/ˈbleɪzɪkən/",
+
+    mudkip: "/ˈmʌdkɪp/",
+    marshtomp: "/ˈmɑːrʃtɒmp/",
+    swampert: "/ˈswɒmpɜːrt/",
+
+    ralts: "/ræls/",
+    kirlia: "/ˈkɪərliə/",
+    gardevoir: "/ˈɡɑːrdəvwɑːr/",
+    gallade: "/ɡəˈleɪd/",
+
+    sableye: "/ˈseɪblaɪ/",
+    mawile: "/ˈmɔːwaɪl/",
+    aron: "/ˈærɒn/",
+    lairon: "/ˈleɪrɒn/",
+    aggron: "/ˈæɡrɒn/",
+
+    meditite: "/ˈmɛdɪtaɪt/",
+    medicham: "/ˈmɛdɪtʃæm/",
+
+    absol: "/ˈæbsɒl/",
+
+    snorunt: "/ˈsnɔːrʌnt/",
+    glalie: "/ˈɡleɪli/",
+
+    latias: "/ˈleɪtiæs/",
+    latios: "/ˈleɪtiɒs/",
+    kyogre: "/kaɪˈɒɡər/",
+    groudon: "/ˈɡraʊdən/",
+    rayquaza: "/reɪˈkweɪzə/",
+    jirachi: "/dʒɪˈrɑːtʃi/",
+    deoxys: "/ˈdiːɒksɪs/",
+
+    turtwig: "/ˈtɜːrtwɪɡ/",
+    chimchar: "/ˈtʃɪmtʃɑːr/",
+    piplup: "/ˈpɪplʌp/",
+
+    lucario: "/luːˈkɑːriəʊ/",
+    garchomp: "/ˈɡɑːrtʃɒmp/",
+    riolu: "/riːˈoʊluː/",
+    shinx: "/ʃɪŋks/",
+
+    giratina: "/ˌɡɪrəˈtiːnə/",
+    darkrai: "/dɑːrkˈraɪ/",
+    arceus: "/ˈɑːrsiəs/",
+
+    snivy: "/ˈsnaɪvi/",
+    tepig: "/ˈtɛpɪɡ/",
+    oshawott: "/ˈoʊʃəwɒt/",
+
+    zoroark: "/zəˈroʊɑːrk/",
+    zorua: "/zəˈruːə/",
+
+    greninja: "/ɡrəˈnɪndʒə/",
+
+    sylveon: "/sɪlviˈɒn/"
 
 };
 
 
 /* =====================================================
-   MỞ DATABASE
+OPEN DATABASE
 ===================================================== */
 
-function openDatabase(){
+function openDB(){
 
     return new Promise(
         (resolve,reject)=>{
@@ -819,25 +1118,25 @@ function openDatabase(){
             const request =
                 indexedDB.open(
                     DB_NAME,
-                    DB_VERSION
+                    1
                 );
 
 
             request.onupgradeneeded =
-                function(event){
+                function(e){
 
                     db =
-                        event.target.result;
+                        e.target.result;
 
 
                     if(
                         !db.objectStoreNames.contains(
-                            STORE_NAME
+                            STORE
                         )
                     ){
 
                         db.createObjectStore(
-                            STORE_NAME,
+                            STORE,
                             {
                                 keyPath:"id",
                                 autoIncrement:true
@@ -850,10 +1149,10 @@ function openDatabase(){
 
 
             request.onsuccess =
-                function(event){
+                function(e){
 
                     db =
-                        event.target.result;
+                        e.target.result;
 
                     resolve();
 
@@ -876,7 +1175,7 @@ function openDatabase(){
 
 
 /* =====================================================
-   FILE → DATA URL
+FILE TO DATA URL
 ===================================================== */
 
 function fileToDataURL(file){
@@ -889,26 +1188,22 @@ function fileToDataURL(file){
 
 
             reader.onload =
-                function(){
-
+                () =>
                     resolve(
                         reader.result
                     );
 
-                };
-
 
             reader.onerror =
-                function(){
-
+                () =>
                     reject(
                         reader.error
                     );
 
-                };
 
-
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(
+                file
+            );
 
         }
     );
@@ -917,17 +1212,17 @@ function fileToDataURL(file){
 
 
 /* =====================================================
-   FILE INPUT
+FILE INPUT
 ===================================================== */
 
 document
 .getElementById("imageInput")
 .addEventListener(
     "change",
-    async function(event){
+    async function(e){
 
         const file =
-            event.target.files[0];
+            e.target.files[0];
 
 
         if(!file){
@@ -936,7 +1231,9 @@ document
 
 
         currentImage =
-            await fileToDataURL(file);
+            await fileToDataURL(
+                file
+            );
 
 
         showPreview();
@@ -946,15 +1243,15 @@ document
 
 
 /* =====================================================
-   PASTE ẢNH
+PASTE IMAGE
 ===================================================== */
 
 document.addEventListener(
     "paste",
-    async function(event){
+    async function(e){
 
         const items =
-            event.clipboardData.items;
+            e.clipboardData.items;
 
 
         for(
@@ -990,7 +1287,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   SHOW PREVIEW
+SHOW PREVIEW
 ===================================================== */
 
 function showPreview(){
@@ -1014,7 +1311,7 @@ function showPreview(){
 
 
 /* =====================================================
-   OCR
+OCR
 ===================================================== */
 
 async function startOCR(){
@@ -1046,14 +1343,6 @@ async function startOCR(){
         "block";
 
 
-    document
-    .getElementById(
-        "processingTitle"
-    )
-    .textContent =
-        "🔍 Đang đọc chữ trong ảnh...";
-
-
     try{
 
         const result =
@@ -1063,34 +1352,30 @@ async function startOCR(){
                 {
 
                     logger:
-                    function(message){
+                    function(m){
 
                         if(
-                            message.status
+                            m.status
                         ){
-
-                            const percent =
-                                Math.round(
-                                    (
-                                        message.progress
-                                        ||
-                                        0
-                                    )
-                                    *
-                                    100
-                                );
-
 
                             document
                             .getElementById(
                                 "progressText"
                             )
                             .textContent =
-                                message.status
+                                m.status
                                 +
                                 " "
                                 +
-                                percent
+                                Math.round(
+                                    (
+                                        m.progress
+                                        ||
+                                        0
+                                    )
+                                    *
+                                    100
+                                )
                                 +
                                 "%";
 
@@ -1103,119 +1388,27 @@ async function startOCR(){
 
 
         const text =
-            result.data.text.trim();
+            result.data.text;
 
-
-        /* ============================================
-           HIỆN BƯỚC PHÂN TÍCH
-        ============================================ */
 
         document
         .getElementById(
             "processingTitle"
         )
         .textContent =
-            "🧠 Đang phân tích văn bản...";
+            "🧠 Đang phân tích bố cục...";
 
 
-        document
-        .getElementById(
-            "progressText"
-        )
-        .textContent =
-            "Đang tìm tên, IPA, mô tả và Moves...";
-
-
-        await new Promise(
-            resolve =>
-                setTimeout(
-                    resolve,
-                    500
-                )
-        );
-
-
-        /* ============================================
-           PHÂN TÍCH
-        ============================================ */
-
-        const analysis =
-            analyzeOCRText(
+        const data =
+            analyzePokemonText(
                 text
             );
 
 
-        /* ============================================
-           ĐIỀN KẾT QUẢ
-        ============================================ */
-
-        document
-        .getElementById(
-            "ocrText"
-        )
-        .value =
-            text;
-
-
-        document
-        .getElementById(
-            "pokemonName"
-        )
-        .value =
-            analysis.name;
-
-
-        document
-        .getElementById(
-            "pokemonIPA"
-        )
-        .value =
-            analysis.ipa;
-
-
-        document
-        .getElementById(
-            "englishText"
-        )
-        .value =
-            analysis.description;
-
-
-        document
-        .getElementById(
-            "movesText"
-        )
-        .value =
-            analysis.moves;
-
-
-        document
-        .getElementById(
-            "vocabularyText"
-        )
-        .value =
-            analysis.vocabulary;
-
-
-        document
-        .getElementById(
-            "vietnameseText"
-        )
-        .value =
-            "";
-
-
-        document
-        .getElementById(
-            "resultImage"
-        )
-        .src =
-            currentImage;
-
-
-        updateName();
-
-        updateIPA();
+        fillResult(
+            data,
+            text
+        );
 
 
         document
@@ -1256,7 +1449,7 @@ async function startOCR(){
 
 
         alert(
-            "Không đọc được chữ trong ảnh."
+            "Có lỗi khi đọc ảnh."
         );
 
     }
@@ -1265,100 +1458,276 @@ async function startOCR(){
 
 
 /* =====================================================
-   PHÂN TÍCH OCR
+NORMALIZE
 ===================================================== */
 
-function analyzeOCRText(text){
+function normalizeText(text){
 
-    const lines =
-        text
-        .split(/\r?\n/)
-        .map(
-            line =>
-                line
-                .replace(
-                    /\s+/g,
-                    " "
-                )
-                .trim()
-        )
-        .filter(Boolean);
+    return text
+    .replace(
+        /\r/g,
+        ""
+    )
+    .replace(
+        /[ \t]+/g,
+        " "
+    )
+    .trim();
 
-
-    let name = "";
-
-    let ipa = "";
-
-    let descriptionLines = [];
-
-    let moveLines = [];
-
-    let vocabulary = [];
+}
 
 
-    /* =================================================
-       1. TÌM IPA
-    ================================================= */
+/* =====================================================
+FIND SECTION
+===================================================== */
+
+function findHeaderIndex(
+    lines,
+    patterns,
+    start
+){
 
     for(
-        const line of lines
+        let i =
+            start || 0;
+        i <
+            lines.length;
+        i++
     ){
 
-        const ipaMatch =
-            line.match(
-                /\/[^\/]{2,50}\//
-            );
+        const line =
+            lines[i]
+            .toLowerCase()
+            .trim();
 
 
-        if(ipaMatch){
+        for(
+            const pattern
+            of patterns
+        ){
 
-            ipa =
-                ipaMatch[0];
+            if(
+                pattern.test(
+                    line
+                )
+            ){
 
-            break;
+                return i;
+
+            }
 
         }
 
     }
 
 
-    /* =================================================
-       2. TÌM TÊN POKÉMON
-    ================================================= */
+    return -1;
+
+}
+
+
+/* =====================================================
+CLEAN SECTION
+===================================================== */
+
+function cleanSection(
+    lines,
+    start,
+    end
+){
+
+    if(
+        start < 0
+    ){
+
+        return "";
+
+    }
+
+
+    return lines
+    .slice(
+        start + 1,
+        end > start
+            ? end
+            : lines.length
+    )
+    .filter(
+        line =>
+            line.trim()
+    )
+    .join("\n");
+
+}
+
+
+/* =====================================================
+ANALYZE POKEMON TEXT
+===================================================== */
+
+function analyzePokemonText(text){
+
+    const normalized =
+        normalizeText(
+            text
+        );
+
+
+    const lines =
+        normalized
+        .split("\n")
+        .map(
+            x =>
+                x.trim()
+        )
+        .filter(Boolean);
+
+
+    /*
+       Các tiêu đề cố định
+    */
+
+    const pronouncedIndex =
+        findHeaderIndex(
+            lines,
+            [
+                /^pronounced\b/i,
+                /^pronunciation\b/i
+            ]
+        );
+
+
+    const moveIndex =
+        findHeaderIndex(
+            lines,
+            [
+                /^move[s]?\b/i,
+                /^attack[s]?\b/i
+            ]
+        );
+
+
+    const typeIndex =
+        findHeaderIndex(
+            lines,
+            [
+                /^type\b/i
+            ]
+        );
+
+
+    const heightIndex =
+        findHeaderIndex(
+            lines,
+            [
+                /^height\b/i
+            ]
+        );
+
+
+    const weightIndex =
+        findHeaderIndex(
+            lines,
+            [
+                /^weight\b/i
+            ]
+        );
+
+
+    const regionIndex =
+        findHeaderIndex(
+            lines,
+            [
+                /^region\b/i
+            ]
+        );
+
+
+    const evolutionIndex =
+        findHeaderIndex(
+            lines,
+            [
+                /^evolution\b/i,
+                /^evolutions\b/i,
+                /^forms\b/i,
+                /^evolution \/ forms\b/i
+            ]
+        );
+
+
+    /*
+       Description thường nằm giữa
+       Pronounced và Move.
+    */
+
+    let descriptionStart =
+        pronouncedIndex >= 0
+            ? pronouncedIndex + 2
+            : 0;
+
+
+    let descriptionEnd =
+        moveIndex >= 0
+            ? moveIndex
+            : (
+                typeIndex >= 0
+                    ? typeIndex
+                    : lines.length
+            );
+
+
+    /*
+       Tên nằm ở đầu ảnh.
+    */
+
+    let name =
+        "";
+
+
+    let nameIndex = -1;
+
+
+    /*
+       Ưu tiên tìm tên trong danh sách IPA.
+    */
 
     const knownNames =
-        Object.keys(IPA);
+        Object.keys(
+            IPA
+        );
 
 
     for(
-        const line of lines
+        let i = 0;
+        i <
+            Math.min(
+                lines.length,
+                10
+            );
+        i++
     ){
 
-        const clean =
-            line
-            .toLowerCase()
-            .replace(
-                /[^a-z]/g,
-                ""
+        const cleaned =
+            cleanPokemonName(
+                lines[i]
             );
 
 
-        const found =
-            knownNames.find(
-                pokemon =>
-                    clean ===
-                    pokemon
+        const key =
+            pokemonKey(
+                cleaned
             );
 
 
-        if(found){
+        if(
+            IPA[key]
+        ){
 
             name =
-                found
-                .charAt(0)
-                .toUpperCase()
-                +
-                found.slice(1);
+                cleaned;
+
+            nameIndex =
+                i;
 
             break;
 
@@ -1368,44 +1737,48 @@ function analyzeOCRText(text){
 
 
     /*
-       Nếu chưa tìm thấy trong danh sách IPA,
-       lấy dòng chữ ngắn, giống tên nhất.
+       Nếu không có trong IPA database,
+       lấy dòng đầu tiên hợp lý.
     */
 
     if(!name){
 
         for(
-            const line of lines
+            let i = 0;
+            i <
+                Math.min(
+                    lines.length,
+                    8
+                );
+            i++
         ){
 
-            const candidate =
-                line
-                .replace(
-                    /[^A-Za-zÀ-ỹ' -]/g,
-                    ""
-                )
-                .trim();
-
-
-            const words =
-                candidate
-                .split(/\s+/);
+            const line =
+                lines[i];
 
 
             if(
-                candidate.length >= 3
+                isHeader(line)
+            ){
+
+                continue;
+
+            }
+
+
+            if(
+                line.length >= 2
                 &&
-                candidate.length <= 25
-                &&
-                words.length <= 3
-                &&
-                !containsDescriptionWord(
-                    candidate
-                )
+                line.length <= 30
             ){
 
                 name =
-                    candidate;
+                    cleanPokemonName(
+                        line
+                    );
+
+                nameIndex =
+                    i;
 
                 break;
 
@@ -1416,232 +1789,181 @@ function analyzeOCRText(text){
     }
 
 
-    /* =================================================
-       3. NHẬN IPA TỪ DATABASE
-    ================================================= */
+    /*
+       Biệt danh:
+       dòng ngay sau tên, trước Pronounced.
+    */
+
+    let nickname = "";
+
 
     if(
-        !ipa &&
-        name
+        nameIndex >= 0 &&
+        pronouncedIndex > nameIndex
     ){
 
-        const key =
-            name
-            .toLowerCase();
-
-
-        if(
-            IPA[key]
-        ){
-
-            ipa =
-                IPA[key];
-
-        }
-
-    }
-
-
-    /* =================================================
-       4. XÁC ĐỊNH CÁC DÒNG MOVE
-    ================================================= */
-
-    let inMoves = false;
-
-    let inDescription = false;
-
-
-    for(
-        let i = 0;
-        i < lines.length;
-        i++
-    ){
-
-        const line =
-            lines[i];
-
-
-        const lower =
-            line.toLowerCase();
-
-
-        /* MOVE HEADER */
-
-        if(
-            /^(moves?|move set|attacks?)\s*[:\-]?$/i
-            .test(line)
-            ||
-            lower.includes("moves:")
-            ||
-            lower.includes("moves ")
-        ){
-
-            inMoves = true;
-
-            inDescription = false;
-
-            continue;
-
-        }
-
-
-        /* DESCRIPTION HEADER */
-
-        if(
-            /^(description|about|overview)\s*[:\-]?$/i
-            .test(line)
-            ||
-            lower.includes("description:")
-        ){
-
-            inDescription = true;
-
-            inMoves = false;
-
-            continue;
-
-        }
-
-
-        /* MOVE DETECTION */
-
-        if(
-            inMoves
-        ){
-
-            if(
-                line.length > 1
-            ){
-
-                moveLines.push(
-                    line
-                );
-
-            }
-
-            continue;
-
-        }
-
-
-        /* Nếu dòng giống move */
-
-        if(
-            looksLikeMove(line)
-        ){
-
-            moveLines.push(
-                line
+        const nicknameLines =
+            lines.slice(
+                nameIndex + 1,
+                pronouncedIndex
             );
 
-            continue;
 
-        }
-
-
-        /* =============================================
-           DESCRIPTION
-        ============================================= */
-
-        if(
-            line !== name
-            &&
-            line !== ipa
-        ){
-
-            if(
-                looksLikeDescription(line)
-                ||
-                inDescription
-            ){
-
-                descriptionLines.push(
-                    line
-                );
-
-            }
-
-        }
+        nickname =
+            nicknameLines
+            .filter(
+                line =>
+                    !isPronunciationLine(
+                        line
+                    )
+            )
+            .join(" ");
 
     }
 
 
-    /* =================================================
-       5. NẾU KHÔNG TÌM ĐƯỢC DESCRIPTION
-    ================================================= */
-
-    if(
-        descriptionLines.length === 0
-    ){
-
-        for(
-            const line of lines
-        ){
-
-            if(
-                line === name ||
-                line === ipa
-            ){
-
-                continue;
-
-            }
+    /*
+       QUAN TRỌNG:
+       Phần PRONOUNCED bị bỏ hoàn toàn.
+       Không lấy dòng AB-sol.
+    */
 
 
-            if(
-                looksLikeMove(line)
-            ){
-
-                continue;
-
-            }
+    let ipa =
+        getIPA(name);
 
 
-            if(
-                line.length >= 30
-            ){
+    /*
+       Description
+    */
 
-                descriptionLines.push(
+    let description =
+        lines
+        .slice(
+            descriptionStart,
+            descriptionEnd
+        )
+        .filter(
+            line =>
+                !isPronunciationLine(
                     line
-                );
-
-            }
-
-        }
-
-    }
+                )
+        )
+        .join("\n");
 
 
-    /* =================================================
-       6. CHỌN 2–3 TỪ KHÓ
-    ================================================= */
+    /*
+       Nếu đoạn trên còn tiêu đề linh tinh
+       thì loại bỏ.
+    */
 
-    vocabulary =
+    description =
+        removeUnwantedLines(
+            description
+        );
+
+
+    /*
+       MOVE
+    */
+
+    let moves =
+        cleanSection(
+            lines,
+            moveIndex,
+            typeIndex >= 0
+                ? typeIndex
+                : (
+                    heightIndex >= 0
+                        ? heightIndex
+                        : lines.length
+                )
+        );
+
+
+    /*
+       TYPE
+    */
+
+    let type =
+        cleanValueSection(
+            lines,
+            typeIndex,
+            heightIndex
+        );
+
+
+    /*
+       HEIGHT
+    */
+
+    let height =
+        cleanValueSection(
+            lines,
+            heightIndex,
+            weightIndex
+        );
+
+
+    /*
+       WEIGHT
+    */
+
+    let weight =
+        cleanValueSection(
+            lines,
+            weightIndex,
+            regionIndex
+        );
+
+
+    /*
+       REGION
+    */
+
+    let region =
+        cleanValueSection(
+            lines,
+            regionIndex,
+            evolutionIndex
+        );
+
+
+    /*
+       EVOLUTION
+    */
+
+    let evolution =
+        cleanValueSection(
+            lines,
+            evolutionIndex,
+            lines.length
+        );
+
+
+    /*
+       Từ khó
+    */
+
+    let vocabulary =
         findDifficultWords(
-            descriptionLines.join(" ")
+            description
         );
 
 
     return {
 
-        name:name,
-
-        ipa:ipa,
-
-        description:
-            descriptionLines.join(
-                "\n"
-            ),
-
-        moves:
-            formatMoves(
-                moveLines
-            ),
-
-        vocabulary:
-            vocabulary.join(
-                "\n"
-            )
+        name,
+        ipa,
+        nickname,
+        description,
+        moves,
+        type,
+        height,
+        weight,
+        region,
+        evolution,
+        vocabulary
 
     };
 
@@ -1649,39 +1971,273 @@ function analyzeOCRText(text){
 
 
 /* =====================================================
-   TỪ KHÓ
+CLEAN POKEMON NAME
+===================================================== */
+
+function cleanPokemonName(line){
+
+    return line
+    .replace(
+        /^(pokemon|pokémon)\s*/i,
+        ""
+    )
+    .replace(
+        /[^A-Za-zÀ-ỹ' -]/g,
+        ""
+    )
+    .trim();
+
+}
+
+
+/* =====================================================
+POKEMON KEY
+===================================================== */
+
+function pokemonKey(name){
+
+    return name
+    .toLowerCase()
+    .replace(
+        /[^a-z]/g,
+        ""
+    );
+
+}
+
+
+/* =====================================================
+GET IPA
+===================================================== */
+
+function getIPA(name){
+
+    const key =
+        pokemonKey(
+            name
+        );
+
+
+    if(
+        IPA[key]
+    ){
+
+        return IPA[key];
+
+    }
+
+
+    /*
+       Không tìm thấy IPA thì để trống,
+       không dùng phiên âm trong ảnh.
+    */
+
+    return "";
+
+}
+
+
+/* =====================================================
+IS PRONUNCIATION
+===================================================== */
+
+function isPronunciationLine(line){
+
+    const text =
+        line.trim();
+
+
+    /*
+       Ví dụ:
+       AB-sol
+       AB sol
+       ab-suhl
+       ABSOL
+    */
+
+    if(
+        /^[A-Za-z]+(?:[- ][A-Za-z]+)+$/
+        .test(text)
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+       IPA dạng /.../
+    */
+
+    if(
+        /^\/.*\/$/.test(text)
+    ){
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =====================================================
+HEADERS
+===================================================== */
+
+function isHeader(line){
+
+    return /^(pronounced|pronunciation|move|moves|attack|attacks|type|height|weight|region|evolution|evolutions|forms)$/i
+        .test(
+            line.trim()
+        );
+
+}
+
+
+/* =====================================================
+CLEAN VALUE
+===================================================== */
+
+function cleanValueSection(
+    lines,
+    headerIndex,
+    nextIndex
+){
+
+    if(
+        headerIndex < 0
+    ){
+
+        return "";
+
+    }
+
+
+    const end =
+        nextIndex >= 0
+            ? nextIndex
+            : lines.length;
+
+
+    return lines
+    .slice(
+        headerIndex + 1,
+        end
+    )
+    .filter(
+        line =>
+            line.trim()
+    )
+    .join("\n");
+
+}
+
+
+/* =====================================================
+REMOVE UNWANTED
+===================================================== */
+
+function removeUnwantedLines(text){
+
+    return text
+    .split("\n")
+    .filter(
+        line =>
+            !isPronunciationLine(
+                line
+            )
+    )
+    .filter(
+        line =>
+            !isHeader(
+                line
+            )
+    )
+    .join("\n");
+
+}
+
+
+/* =====================================================
+VOCABULARY
 ===================================================== */
 
 function findDifficultWords(text){
 
-    const stopWords = new Set([
+    const stop =
+        new Set([
 
-        "about","after","again","their",
-        "there","these","those","which",
-        "while","where","when","with",
-        "from","have","has","that",
-        "this","they","them","into",
-        "over","under","also","than",
-        "then","very","more","most",
-        "some","such","will","would",
-        "could","should","being","been",
-        "pokemon","pokémon","type",
-        "types","using","used","make",
-        "made","like","often","only",
-        "each","other","both","many",
-        "much","because","during",
-        "through","around","power",
-        "attack","attacks","ability",
-        "abilities"
+            "about",
+            "after",
+            "again",
+            "their",
+            "there",
+            "these",
+            "those",
+            "which",
+            "while",
+            "where",
+            "when",
+            "with",
+            "from",
+            "have",
+            "has",
+            "that",
+            "this",
+            "they",
+            "them",
+            "into",
+            "over",
+            "under",
+            "also",
+            "than",
+            "then",
+            "very",
+            "more",
+            "most",
+            "some",
+            "such",
+            "will",
+            "would",
+            "could",
+            "should",
+            "being",
+            "been",
+            "pokemon",
+            "pokémon",
+            "type",
+            "types",
+            "using",
+            "used",
+            "make",
+            "made",
+            "like",
+            "often",
+            "only",
+            "each",
+            "other",
+            "both",
+            "many",
+            "much",
+            "because",
+            "during",
+            "through",
+            "around",
+            "power",
+            "attack",
+            "attacks"
 
-    ]);
+        ]);
 
 
     const words =
         text
         .toLowerCase()
         .match(
-            /\b[a-z]{6,}\b/g
+            /\b[a-z]{7,}\b/g
         )
         ||
         [];
@@ -1692,7 +2248,7 @@ function findDifficultWords(text){
             ...new Set(
                 words.filter(
                     word =>
-                        !stopWords.has(
+                        !stop.has(
                             word
                         )
                 )
@@ -1700,217 +2256,160 @@ function findDifficultWords(text){
         ];
 
 
-    /*
-       Ưu tiên từ dài,
-       nhưng chỉ lấy tối đa 3.
-    */
-
     unique.sort(
-        (a,b)=>
+        (a,b) =>
             b.length -
             a.length
     );
 
 
     return unique
-        .slice(0,3)
-        .map(
-            word =>
-                word +
-                " — chưa dịch"
-        );
-
-}
-
-
-/* =====================================================
-   DESCRIPTION DETECTION
-===================================================== */
-
-function looksLikeDescription(line){
-
-    if(
-        line.length < 25
-    ){
-
-        return false;
-
-    }
-
-
-    const lower =
-        line.toLowerCase();
-
-
-    const indicators = [
-
-        "is a",
-        "is an",
-        "has",
-        "have",
-        "can",
-        "its",
-        "it has",
-        "it can",
-        "known for",
-        "usually",
-        "often",
-        "when",
-        "because",
-        "during",
-        "this pokemon",
-        "this pokémon",
-        "pokemon is",
-        "pokémon is"
-
-    ];
-
-
-    return indicators.some(
+    .slice(
+        0,
+        3
+    )
+    .map(
         word =>
-            lower.includes(
-                word
-            )
-    );
+            word
+            +
+            " — chưa dịch"
+    )
+    .join("\n");
 
 }
 
 
 /* =====================================================
-   MOVE DETECTION
+FILL RESULT
 ===================================================== */
 
-function looksLikeMove(line){
+function fillResult(
+    data,
+    rawText
+){
 
-    const lower =
-        line.toLowerCase();
-
-
-    const moveWords = [
-
-        "thunderbolt",
-        "quick attack",
-        "iron tail",
-        "tackle",
-        "flamethrower",
-        "water gun",
-        "vine whip",
-        "razor leaf",
-        "ember",
-        "scratch",
-        "bite",
-        "surf",
-        "hydro pump",
-        "psychic",
-        "shadow ball",
-        "ice beam",
-        "earthquake",
-        "swift",
-        "protect",
-        "double team",
-        "focus blast",
-        "dragon claw",
-        "dragon pulse",
-        "aerial ace",
-        "slash"
-
-    ];
+    document
+    .getElementById(
+        "resultImage"
+    )
+    .src =
+        currentImage;
 
 
-    return moveWords.some(
-        move =>
-            lower.includes(
-                move
-            )
-    );
+    document
+    .getElementById(
+        "pokemonName"
+    )
+    .value =
+        data.name;
+
+
+    document
+    .getElementById(
+        "pokemonIPA"
+    )
+    .value =
+        data.ipa;
+
+
+    document
+    .getElementById(
+        "nickname"
+    )
+    .value =
+        data.nickname;
+
+
+    document
+    .getElementById(
+        "englishText"
+    )
+    .value =
+        data.description;
+
+
+    document
+    .getElementById(
+        "vietnameseText"
+    )
+    .value =
+        "";
+
+
+    document
+    .getElementById(
+        "vocabularyText"
+    )
+    .value =
+        data.vocabulary;
+
+
+    document
+    .getElementById(
+        "movesText"
+    )
+    .value =
+        data.moves;
+
+
+    document
+    .getElementById(
+        "typeText"
+    )
+    .value =
+        data.type;
+
+
+    document
+    .getElementById(
+        "heightText"
+    )
+    .value =
+        data.height;
+
+
+    document
+    .getElementById(
+        "weightText"
+    )
+    .value =
+        data.weight;
+
+
+    document
+    .getElementById(
+        "regionText"
+    )
+    .value =
+        data.region;
+
+
+    document
+    .getElementById(
+        "evolutionText"
+    )
+    .value =
+        data.evolution;
+
+
+    document
+    .getElementById(
+        "ocrText"
+    )
+    .value =
+        rawText;
+
+
+    nameChanged();
 
 }
 
 
 /* =====================================================
-   FORMAT MOVES
+NAME CHANGED
 ===================================================== */
 
-function formatMoves(lines){
-
-    if(
-        lines.length === 0
-    ){
-
-        return "";
-
-    }
-
-
-    return lines
-        .map(
-            line => {
-
-                /*
-                   Nếu đã có nghĩa trong ngoặc
-                   thì giữ nguyên.
-                */
-
-                if(
-                    /\(.+\)/.test(line)
-                ){
-
-                    return line;
-
-                }
-
-
-                return line;
-
-            }
-        )
-        .join("\n");
-
-}
-
-
-/* =====================================================
-   CHECK DESCRIPTION WORD
-===================================================== */
-
-function containsDescriptionWord(text){
-
-    const lower =
-        text.toLowerCase();
-
-
-    const words = [
-
-        "pokemon",
-        "description",
-        "ability",
-        "moves",
-        "attack",
-        "type",
-        "electric",
-        "fire",
-        "water",
-        "grass",
-        "psychic"
-
-    ];
-
-
-    return words.some(
-        word =>
-            lower.includes(
-                word
-            )
-    );
-
-}
-
-
-/* =====================================================
-   NAME UPDATE
-===================================================== */
-
-function updateName(){
+function nameChanged(){
 
     const name =
         document
@@ -1930,20 +2429,25 @@ function updateName(){
         "Pokémon";
 
 
-    const key =
-        name.toLowerCase();
+    const ipa =
+        getIPA(
+            name
+        );
 
 
-    if(
-        IPA[key]
-    ){
+    /*
+       Nếu tìm được IPA,
+       tự thay IPA.
+    */
+
+    if(ipa){
 
         document
         .getElementById(
             "pokemonIPA"
         )
         .value =
-            IPA[key];
+            ipa;
 
     }
 
@@ -1954,8 +2458,18 @@ function updateName(){
 
 
 /* =====================================================
-   IPA UPDATE
+UPDATE IPA
 ===================================================== */
+
+document
+.getElementById(
+    "pokemonIPA"
+)
+.addEventListener(
+    "input",
+    updateIPA
+);
+
 
 function updateIPA(){
 
@@ -1977,7 +2491,7 @@ function updateIPA(){
 
 
 /* =====================================================
-   DỊCH
+TRANSLATE
 ===================================================== */
 
 async function translateDescription(){
@@ -1994,7 +2508,7 @@ async function translateDescription(){
     if(!english){
 
         alert(
-            "Chưa có phần Description."
+            "Chưa có Description."
         );
 
         return;
@@ -2002,31 +2516,17 @@ async function translateDescription(){
     }
 
 
-    const button =
-        document
-        .getElementById(
-            "translateButton"
-        );
-
-
-    button.disabled = true;
-
-    button.textContent =
-        "⏳ Đang dịch...";
-
-
     try{
 
         const paragraphs =
             english
-            .split(/\n+/)
-            .map(
-                x => x.trim()
+            .split(
+                /\n+/
             )
             .filter(Boolean);
 
 
-        const translated = [];
+        const result = [];
 
 
         for(
@@ -2034,63 +2534,38 @@ async function translateDescription(){
             of paragraphs
         ){
 
-            try{
-
-                const url =
-                    "https://api.mymemory.translated.net/get"
-                    +
-                    "?q="
-                    +
-                    encodeURIComponent(
-                        paragraph
-                    )
-                    +
-                    "&langpair=en|vi";
+            const url =
+                "https://api.mymemory.translated.net/get"
+                +
+                "?q="
+                +
+                encodeURIComponent(
+                    paragraph
+                )
+                +
+                "&langpair=en|vi";
 
 
-                const response =
-                    await fetch(
-                        url
-                    );
+            const response =
+                await fetch(
+                    url
+                );
 
 
-                if(!response.ok){
-
-                    throw new Error(
-                        "Translation error"
-                    );
-
-                }
+            const data =
+                await response.json();
 
 
-                const data =
-                    await response.json();
+            if(
+                data.responseData
+                &&
+                data.responseData.translatedText
+            ){
 
-
-                if(
-                    data.responseData
-                    &&
-                    data.responseData.translatedText
-                ){
-
-                    translated.push(
-                        data
-                        .responseData
-                        .translatedText
-                    );
-
-                }else{
-
-                    translated.push(
-                        "[Không dịch được]"
-                    );
-
-                }
-
-            }catch(error){
-
-                translated.push(
-                    "[Lỗi dịch đoạn này]"
+                result.push(
+                    data
+                    .responseData
+                    .translatedText
                 );
 
             }
@@ -2112,34 +2587,29 @@ async function translateDescription(){
             "vietnameseText"
         )
         .value =
-            translated.join(
+            result.join(
                 "\n"
             );
+
 
     }catch(error){
 
         console.error(error);
 
         alert(
-            "Không thể kết nối nguồn dịch."
+            "Không thể dịch lúc này."
         );
 
     }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "🌐 Dịch sang tiếng Việt";
 
 }
 
 
 /* =====================================================
-   SAVE
+SAVE
 ===================================================== */
 
-function saveToDictionary(){
+function savePokemon(){
 
     const name =
         document
@@ -2153,7 +2623,7 @@ function saveToDictionary(){
     if(!name){
 
         alert(
-            "Anh hãy nhập tên Pokémon."
+            "Anh hãy kiểm tra tên Pokémon."
         );
 
         return;
@@ -2161,14 +2631,21 @@ function saveToDictionary(){
     }
 
 
-    const data = {
+    const pokemon = {
 
-        name:name,
+        name,
 
         ipa:
             document
             .getElementById(
                 "pokemonIPA"
+            )
+            .value,
+
+        nickname:
+            document
+            .getElementById(
+                "nickname"
             )
             .value,
 
@@ -2200,6 +2677,41 @@ function saveToDictionary(){
             )
             .value,
 
+        type:
+            document
+            .getElementById(
+                "typeText"
+            )
+            .value,
+
+        height:
+            document
+            .getElementById(
+                "heightText"
+            )
+            .value,
+
+        weight:
+            document
+            .getElementById(
+                "weightText"
+            )
+            .value,
+
+        region:
+            document
+            .getElementById(
+                "regionText"
+            )
+            .value,
+
+        evolution:
+            document
+            .getElementById(
+                "evolutionText"
+            )
+            .value,
+
         ocr:
             document
             .getElementById(
@@ -2211,30 +2723,32 @@ function saveToDictionary(){
             currentImage,
 
         createdAt:
-            new Date().toISOString()
+            Date.now()
 
     };
 
 
     const transaction =
         db.transaction(
-            STORE_NAME,
+            STORE,
             "readwrite"
         );
 
 
     transaction
     .objectStore(
-        STORE_NAME
+        STORE
     )
-    .add(data);
+    .add(
+        pokemon
+    );
 
 
     transaction.oncomplete =
         function(){
 
             alert(
-                "✅ Đã lưu vào Pokémon Dictionary!"
+                "✅ Đã lưu vào Pokémon Ultimate Handbook!"
             );
 
 
@@ -2247,7 +2761,7 @@ function saveToDictionary(){
         function(){
 
             alert(
-                "Không thể lưu."
+                "Không thể lưu Pokémon."
             );
 
         };
@@ -2256,7 +2770,7 @@ function saveToDictionary(){
 
 
 /* =====================================================
-   RENDER DICTIONARY
+RENDER DICTIONARY
 ===================================================== */
 
 function renderDictionary(){
@@ -2266,30 +2780,14 @@ function renderDictionary(){
     }
 
 
-    const grid =
-        document
-        .getElementById(
-            "dictionaryGrid"
-        );
-
-
-    const search =
-        document
-        .getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase();
-
-
     const request =
         db
         .transaction(
-            STORE_NAME,
+            STORE,
             "readonly"
         )
         .objectStore(
-            STORE_NAME
+            STORE
         )
         .getAll();
 
@@ -2297,14 +2795,20 @@ function renderDictionary(){
     request.onsuccess =
         function(){
 
+            const search =
+                document
+                .getElementById(
+                    "searchInput"
+                )
+                .value
+                .toLowerCase();
+
+
             let list =
-                request.result;
-
-
-            list =
-                list.filter(
-                    item =>
-                        item.name
+                request.result
+                .filter(
+                    pokemon =>
+                        pokemon.name
                         .toLowerCase()
                         .includes(
                             search
@@ -2313,15 +2817,17 @@ function renderDictionary(){
 
 
             list.sort(
-                (a,b)=>
-                    new Date(
-                        b.createdAt
-                    )
-                    -
-                    new Date(
-                        a.createdAt
-                    )
+                (a,b) =>
+                    b.createdAt -
+                    a.createdAt
             );
+
+
+            const grid =
+                document
+                .getElementById(
+                    "dictionaryGrid"
+                );
 
 
             if(
@@ -2332,15 +2838,7 @@ function renderDictionary(){
 
                     <div class="empty">
 
-                        <h3>
-                            📚 Chưa có bài nào
-                        </h3>
-
-                        <p>
-                            Nạp ảnh → OCR →
-                            phân tích → dịch →
-                            kiểm tra → lưu.
-                        </p>
+                        📚 Chưa có Pokémon nào.
 
                     </div>
 
@@ -2370,36 +2868,35 @@ function renderDictionary(){
                     item.innerHTML = `
 
                         <img
-                            src="${pokemon.image}"
+                            src="${escapeHTML(
+                                pokemon.image
+                            )}"
                         >
 
-                        <div class="dictionary-name">
-
+                        <div
+                            class="dictionary-name"
+                        >
                             ${escapeHTML(
                                 pokemon.name
                             )}
-
                         </div>
 
-                        <div class="dictionary-ipa">
-
+                        <div
+                            class="dictionary-ipa"
+                        >
                             ${escapeHTML(
                                 pokemon.ipa
                             )}
-
                         </div>
 
                     `;
 
 
                     item.onclick =
-                        function(){
-
+                        () =>
                             openPokemon(
                                 pokemon
                             );
-
-                        };
 
 
                     grid.appendChild(
@@ -2415,10 +2912,12 @@ function renderDictionary(){
 
 
 /* =====================================================
-   OPEN POKEMON
+OPEN
 ===================================================== */
 
-function openPokemon(pokemon){
+function openPokemon(
+    pokemon
+){
 
     document
     .getElementById(
@@ -2450,56 +2949,83 @@ function openPokemon(pokemon){
     )
     .innerHTML = `
 
-        <div class="section">
+        <h3>
+            ${escapeHTML(
+                pokemon.nickname
+            )}
+        </h3>
 
-            <h3>🇬🇧 English</h3>
+        <h3>📖 Description</h3>
 
-            <p>
-                ${formatText(
-                    pokemon.english
-                )}
-            </p>
+        <h4>🇬🇧 English</h4>
 
-        </div>
+        <p>
+            ${formatText(
+                pokemon.english
+            )}
+        </p>
 
+        <h4>🇻🇳 Tiếng Việt</h4>
 
-        <div class="section">
+        <p>
+            ${formatText(
+                pokemon.vietnamese
+            )}
+        </p>
 
-            <h3>🇻🇳 Tiếng Việt</h3>
+        <h3>📚 Vocabulary</h3>
 
-            <p>
-                ${formatText(
-                    pokemon.vietnamese
-                )}
-            </p>
+        <p>
+            ${formatText(
+                pokemon.vocabulary
+            )}
+        </p>
 
-        </div>
+        <h3>⚔️ Moves</h3>
 
+        <p>
+            ${formatText(
+                pokemon.moves
+            )}
+        </p>
 
-        <div class="section">
+        <h3>📊 Information</h3>
 
-            <h3>📚 Vocabulary</h3>
+        <p>
+            <b>Type:</b>
+            ${formatText(
+                pokemon.type
+            )}
+        </p>
 
-            <p>
-                ${formatText(
-                    pokemon.vocabulary
-                )}
-            </p>
+        <p>
+            <b>Height:</b>
+            ${formatText(
+                pokemon.height
+            )}
+        </p>
 
-        </div>
+        <p>
+            <b>Weight:</b>
+            ${formatText(
+                pokemon.weight
+            )}
+        </p>
 
+        <p>
+            <b>Region:</b>
+            ${formatText(
+                pokemon.region
+            )}
+        </p>
 
-        <div class="section">
+        <h3>🔄 Evolution / Forms</h3>
 
-            <h3>⚔️ Moves</h3>
-
-            <p>
-                ${formatText(
-                    pokemon.moves
-                )}
-            </p>
-
-        </div>
+        <p>
+            ${formatText(
+                pokemon.evolution
+            )}
+        </p>
 
     `;
 
@@ -2529,14 +3055,14 @@ function openPokemon(pokemon){
 
 
 /* =====================================================
-   DELETE
+DELETE
 ===================================================== */
 
 function deletePokemon(id){
 
     if(
         !confirm(
-            "Anh có chắc muốn xóa bài này?"
+            "Anh có chắc muốn xóa Pokémon này?"
         )
     ){
 
@@ -2547,16 +3073,18 @@ function deletePokemon(id){
 
     const transaction =
         db.transaction(
-            STORE_NAME,
+            STORE,
             "readwrite"
         );
 
 
     transaction
     .objectStore(
-        STORE_NAME
+        STORE
     )
-    .delete(id);
+    .delete(
+        id
+    );
 
 
     transaction.oncomplete =
@@ -2572,7 +3100,7 @@ function deletePokemon(id){
 
 
 /* =====================================================
-   CLOSE
+CLOSE
 ===================================================== */
 
 function closeModal(){
@@ -2588,7 +3116,7 @@ function closeModal(){
 
 
 /* =====================================================
-   RESET
+RESET
 ===================================================== */
 
 function resetApp(){
@@ -2600,7 +3128,8 @@ function resetApp(){
     .getElementById(
         "imageInput"
     )
-    .value = "";
+    .value =
+        "";
 
 
     document
@@ -2626,66 +3155,24 @@ function resetApp(){
     .style.display =
         "none";
 
-
-    const ids = [
-
-        "pokemonName",
-        "pokemonIPA",
-        "englishText",
-        "vietnameseText",
-        "vocabularyText",
-        "movesText",
-        "ocrText"
-
-    ];
-
-
-    ids.forEach(
-        id => {
-
-            document
-            .getElementById(
-                id
-            )
-            .value = "";
-
-        }
-    );
-
-
-    document
-    .getElementById(
-        "displayName"
-    )
-    .textContent =
-        "Pokémon";
-
-
-    document
-    .getElementById(
-        "displayIPA"
-    )
-    .textContent =
-        "/Chưa có IPA/";
-
 }
 
 
 /* =====================================================
-   PASTE HELP
+PASTE HELP
 ===================================================== */
 
-function pasteInstruction(){
+function pasteHelp(){
 
     alert(
-        "Anh copy ảnh → quay lại app → nhấn Ctrl + V. Ảnh sẽ tự xuất hiện."
+        "Anh copy ảnh → quay lại app → nhấn Ctrl + V."
     );
 
 }
 
 
 /* =====================================================
-   ESCAPE
+ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
@@ -2719,14 +3206,14 @@ function formatText(value){
 
 
 /* =====================================================
-   INIT
+INIT
 ===================================================== */
 
 async function init(){
 
     try{
 
-        await openDatabase();
+        await openDB();
 
         renderDictionary();
 
@@ -2735,7 +3222,7 @@ async function init(){
         console.error(error);
 
         alert(
-            "Không thể mở bộ nhớ từ điển."
+            "Không mở được bộ nhớ từ điển."
         );
 
     }
