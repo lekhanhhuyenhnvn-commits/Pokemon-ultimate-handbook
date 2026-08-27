@@ -14,16 +14,20 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
+    background: #f3f5f8;
     color: #222;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header {
     background: linear-gradient(135deg, #e53935, #ff7043);
     color: white;
     padding: 25px 15px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 12px rgba(0,0,0,.15);
 }
 
 header h1 {
@@ -33,8 +37,12 @@ header h1 {
 
 header p {
     margin: 8px 0 0;
-    opacity: 0.9;
+    opacity: .9;
 }
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container {
     max-width: 1100px;
@@ -42,231 +50,315 @@ header p {
     padding: 0 15px;
 }
 
-.toolbar {
+/* =========================
+   UPLOAD AREA
+========================= */
+
+.upload-area {
     background: white;
-    padding: 18px;
-    border-radius: 15px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
+    border: 2px dashed #d5d5d5;
+    border-radius: 18px;
+    padding: 35px 20px;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    transition: .2s;
+}
+
+.upload-area.active {
+    border-color: #e53935;
+    background: #fff8f7;
+}
+
+.upload-icon {
+    font-size: 52px;
+}
+
+.upload-area h2 {
+    margin: 8px 0;
+}
+
+.upload-area p {
+    color: #777;
+}
+
+.upload-buttons {
     display: flex;
+    justify-content: center;
+    gap: 12px;
     flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
+    margin-top: 20px;
 }
 
 button,
 .upload-label {
-    border: none;
-    background: #e53935;
-    color: white;
-    padding: 11px 16px;
-    border-radius: 9px;
-    cursor: pointer;
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 18px;
     font-size: 15px;
-    transition: 0.2s;
+    cursor: pointer;
+    color: white;
+    background: #e53935;
+    transition: .2s;
 }
 
 button:hover,
 .upload-label:hover {
-    background: #c62828;
     transform: translateY(-1px);
+    background: #c62828;
 }
 
 input[type="file"] {
     display: none;
 }
 
-input[type="text"] {
-    flex: 1;
-    min-width: 200px;
-    padding: 11px;
-    border: 1px solid #ddd;
-    border-radius: 9px;
-    font-size: 15px;
+.paste-hint {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #888;
 }
 
-.empty {
-    background: white;
-    padding: 50px 20px;
-    text-align: center;
-    border-radius: 15px;
-    color: #777;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+/* =========================
+   PREVIEW
+========================= */
+
+.preview-section {
+    display: none;
+    margin-top: 25px;
 }
 
-.pokemon-card {
+.preview-card {
     background: white;
     border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 25px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
-.card-top {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 25px;
-    padding: 25px;
-}
-
-.pokemon-image {
-    width: 100%;
-    max-height: 350px;
-    object-fit: contain;
-    border-radius: 14px;
-    background: #f1f3f5;
-}
-
-.pokemon-name {
-    font-size: 34px;
-    margin: 0 0 5px;
-}
-
-.ipa {
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.section {
-    margin-top: 22px;
-}
-
-.section h3 {
-    margin-bottom: 10px;
+.preview-card h2 {
+    margin-top: 0;
     color: #d32f2f;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 7px;
 }
 
-.description {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.preview-image {
+    display: block;
+    width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #f5f5f5;
 }
 
-.language-box {
-    padding: 15px;
-    border-radius: 10px;
-    background: #f7f8fa;
-    line-height: 1.6;
-}
-
-.language-title {
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.vocab {
+.preview-actions {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.word {
-    background: #fff3e0;
-    border: 1px solid #ffcc80;
-    padding: 10px 13px;
-    border-radius: 9px;
-}
-
-.word strong {
-    color: #e65100;
-}
-
-.moves {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.move {
-    background: #e3f2fd;
-    border: 1px solid #90caf9;
-    padding: 10px 13px;
-    border-radius: 9px;
-}
-
-.card-actions {
-    padding: 0 25px 25px;
-    display: flex;
+    justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
+    margin-top: 15px;
 }
 
-.delete-btn {
-    background: #757575;
-}
-
-.delete-btn:hover {
-    background: #424242;
-}
-
-.listen-btn {
+.analyze-btn {
     background: #1976d2;
 }
 
-.listen-btn:hover {
+.analyze-btn:hover {
     background: #1565c0;
 }
 
-.library {
+.clear-btn {
+    background: #757575;
+}
+
+.clear-btn:hover {
+    background: #424242;
+}
+
+/* =========================
+   DICTIONARY
+========================= */
+
+.dictionary {
     margin-top: 30px;
 }
 
-.library h2 {
-    margin-bottom: 15px;
+.dictionary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.library-list {
+.dictionary-header h2 {
+    margin: 0;
+}
+
+.search-box {
+    padding: 11px 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 250px;
+    max-width: 100%;
+    font-size: 15px;
+}
+
+/* =========================
+   DICTIONARY GRID
+========================= */
+
+.dictionary-grid {
+    margin-top: 15px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
     gap: 15px;
 }
 
-.library-item {
+.dictionary-item {
     background: white;
-    border-radius: 13px;
+    border-radius: 15px;
     padding: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.08);
     cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    transition: 0.2s;
+    transition: .2s;
 }
 
-.library-item:hover {
+.dictionary-item:hover {
     transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
 }
 
-.library-item img {
+.dictionary-item img {
     width: 100%;
-    height: 140px;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: #f5f5f5;
+}
+
+.dictionary-name {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.dictionary-date {
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    color: #777;
+    margin-top: 15px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    max-width: 900px;
+    margin: 30px auto;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.close-btn {
+    background: #757575;
+    padding: 8px 13px;
+}
+
+.close-btn:hover {
+    background: #424242;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.saved-image {
+    width: 100%;
+    max-height: 500px;
     object-fit: contain;
     background: #f5f5f5;
-    border-radius: 9px;
+    border-radius: 12px;
 }
 
-.library-item-name {
-    font-weight: bold;
-    text-align: center;
-    margin-top: 8px;
+.placeholder-info {
+    margin-top: 20px;
+    background: #f7f8fa;
+    border-radius: 12px;
+    padding: 18px;
 }
 
-@media (max-width: 750px) {
-    .card-top {
-        grid-template-columns: 1fr;
-    }
+.placeholder-info h3 {
+    color: #d32f2f;
+    margin-top: 0;
+}
 
-    .description {
-        grid-template-columns: 1fr;
-    }
+.delete-saved {
+    background: #d32f2f;
+    margin-top: 15px;
+}
 
-    .pokemon-name {
-        font-size: 28px;
-    }
+.delete-saved:hover {
+    background: #b71c1c;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
 
     header h1 {
         font-size: 25px;
     }
+
+    .upload-area {
+        padding: 25px 15px;
+    }
+
+    .dictionary-header {
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
 }
 </style>
 </head>
@@ -274,531 +366,1008 @@ input[type="text"] {
 <body>
 
 <header>
+
     <h1>⚡ Pokémon Ultimate Handbook</h1>
-    <p>Your Pokémon English Learning Handbook</p>
+
+    <p>
+        Your Pokémon English Learning Dictionary
+    </p>
+
 </header>
+
 
 <div class="container">
 
-    <div class="toolbar">
+    <!-- =========================
+         NẠP ẢNH
+    ========================== -->
 
-        <label class="upload-label">
-            📷 Nạp ảnh Pokémon
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-            >
-        </label>
+    <div
+        id="uploadArea"
+        class="upload-area"
+    >
 
-        <input
-            type="text"
-            id="pokemonNameInput"
-            placeholder="Tên Pokémon..."
-        >
+        <div class="upload-icon">
+            📷
+        </div>
 
-        <button onclick="addPokemon()">
-            ➕ Thêm Pokémon
-        </button>
+        <h2>
+            Nạp ảnh Pokémon
+        </h2>
 
-    </div>
+        <p>
+            Dán ảnh hoặc thêm ảnh từ máy
+        </p>
 
-    <div id="pokemonContainer">
 
-        <div class="empty">
-            <h2>📚 Pokémon Ultimate Handbook</h2>
-            <p>Hãy chọn ảnh Pokémon và nhập tên để bắt đầu.</p>
+        <div class="upload-buttons">
+
+            <label class="upload-label">
+
+                📁 Thêm ảnh từ máy
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                >
+
+            </label>
+
+
+            <button onclick="pasteImage()">
+                📋 Dán ảnh
+            </button>
+
+        </div>
+
+
+        <div class="paste-hint">
+
+            💡 Copy một bức ảnh rồi nhấn
+            <strong>Ctrl + V</strong>
+
         </div>
 
     </div>
 
-    <div class="library">
 
-        <h2>📖 Pokémon Library</h2>
+    <!-- =========================
+         PREVIEW
+    ========================== -->
+
+    <div
+        id="previewSection"
+        class="preview-section"
+    >
+
+        <div class="preview-card">
+
+            <h2>
+                🖼️ Ảnh vừa nạp
+            </h2>
+
+            <img
+                id="previewImage"
+                class="preview-image"
+                alt="Pokémon"
+            >
+
+
+            <div class="preview-actions">
+
+                <button
+                    class="analyze-btn"
+                    onclick="analyzeImage()"
+                >
+                    🔍 Phân tích ảnh
+                </button>
+
+
+                <button
+                    class="clear-btn"
+                    onclick="clearPreview()"
+                >
+                    🗑️ Bỏ ảnh
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DICTIONARY
+    ========================== -->
+
+    <div class="dictionary">
+
+        <div class="dictionary-header">
+
+            <h2>
+                📚 My Pokémon Dictionary
+            </h2>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search-box"
+                placeholder="🔎 Tìm Pokémon..."
+                oninput="searchDictionary()"
+            >
+
+        </div>
+
 
         <div
-            id="libraryList"
-            class="library-list"
+            id="dictionaryGrid"
+            class="dictionary-grid"
         ></div>
 
     </div>
 
 </div>
 
-<script>
 
-let selectedImage = null;
+<!-- =========================
+     MODAL XEM BÀI
+========================== -->
 
-let pokemonList =
-    JSON.parse(
-        localStorage.getItem("pokemonUltimateHandbook")
-    ) || [];
+<div
+    id="pokemonModal"
+    class="modal"
+>
 
+    <div class="modal-content">
 
-// =========================
-// CHỌN ẢNH
-// =========================
+        <div class="modal-header">
 
-document
-.getElementById("imageInput")
-.addEventListener("change", function(event) {
+            <h2 id="modalTitle">
+                Pokémon
+            </h2>
 
-    const file = event.target.files[0];
-
-    if (!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-
-        selectedImage = e.target.result;
-
-        alert("Đã chọn ảnh Pokémon!");
-
-    };
-
-    reader.readAsDataURL(file);
-
-});
-
-
-// =========================
-// THÊM POKÉMON
-// =========================
-
-function addPokemon() {
-
-    const name =
-        document
-        .getElementById("pokemonNameInput")
-        .value
-        .trim();
-
-    if (!name) {
-
-        alert("Anh hãy nhập tên Pokémon.");
-
-        return;
-    }
-
-    if (!selectedImage) {
-
-        alert("Anh hãy chọn ảnh Pokémon.");
-
-        return;
-    }
-
-
-    const pokemon = {
-
-        id: Date.now(),
-
-        name: name,
-
-        ipa: "",
-
-        image: selectedImage,
-
-        english:
-            "This Pokémon's English description will be added here.",
-
-        vietnamese:
-            "Phần mô tả tiếng Việt của Pokémon sẽ được thêm ở đây.",
-
-        vocabulary: [
-            {
-                word: "example",
-                meaning: "ví dụ"
-            },
-            {
-                word: "powerful",
-                meaning: "mạnh mẽ"
-            }
-        ],
-
-        moves: [
-            "Thunderbolt (Đòn Sấm Sét)",
-            "Quick Attack (Đòn Đánh Nhanh)"
-        ]
-
-    };
-
-
-    pokemonList.push(pokemon);
-
-    saveData();
-
-    displayPokemon(pokemon);
-
-    renderLibrary();
-
-
-    document
-    .getElementById("pokemonNameInput")
-    .value = "";
-
-    document
-    .getElementById("imageInput")
-    .value = "";
-
-    selectedImage = null;
-
-}
-
-
-// =========================
-// HIỂN THỊ POKÉMON
-// =========================
-
-function displayPokemon(pokemon) {
-
-    const container =
-        document.getElementById("pokemonContainer");
-
-
-    container.innerHTML = `
-
-        <div class="pokemon-card">
-
-            <div class="card-top">
-
-                <div>
-
-                    <img
-                        class="pokemon-image"
-                        src="${pokemon.image}"
-                        alt="${pokemon.name}"
-                    >
-
-                </div>
-
-
-                <div>
-
-                    <h2 class="pokemon-name">
-                        ${pokemon.name}
-                    </h2>
-
-                    <div class="ipa">
-                        IPA:
-                        <strong>
-                            ${pokemon.ipa || "Chưa có"}
-                        </strong>
-                    </div>
-
-
-                    <div class="section">
-
-                        <h3>📖 Description</h3>
-
-                        <div class="description">
-
-                            <div class="language-box">
-
-                                <div class="language-title">
-                                    🇬🇧 English
-                                </div>
-
-                                ${pokemon.english}
-
-                            </div>
-
-
-                            <div class="language-box">
-
-                                <div class="language-title">
-                                    🇻🇳 Tiếng Việt
-                                </div>
-
-                                ${pokemon.vietnamese}
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="section">
-
-                        <h3>📚 Vocabulary</h3>
-
-                        <div class="vocab">
-
-                            ${
-                                pokemon.vocabulary
-                                .map(v => `
-                                    <div class="word">
-
-                                        <strong>
-                                            ${v.word}
-                                        </strong>
-
-                                        —
-                                        ${v.meaning}
-
-                                    </div>
-                                `)
-                                .join("")
-                            }
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="section">
-
-                        <h3>⚔️ Moves</h3>
-
-                        <div class="moves">
-
-                            ${
-                                pokemon.moves
-                                .map(move => `
-                                    <div class="move">
-                                        ${move}
-                                    </div>
-                                `)
-                                .join("")
-                            }
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="card-actions">
-
-                <button
-                    class="listen-btn"
-                    onclick="speakPokemon(${pokemon.id})"
-                >
-                    🔊 Listen
-                </button>
-
-                <button
-                    class="delete-btn"
-                    onclick="deletePokemon(${pokemon.id})"
-                >
-                    🗑️ Xóa Pokémon
-                </button>
-
-            </div>
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+                ✕
+            </button>
 
         </div>
 
-    `;
+
+        <div class="modal-body">
+
+            <img
+                id="modalImage"
+                class="saved-image"
+                alt="Pokémon"
+            >
+
+
+            <div class="placeholder-info">
+
+                <h3>
+                    📖 Thông tin Pokémon
+                </h3>
+
+                <p>
+                    Bài này đã được lưu vào
+                    Pokémon Dictionary.
+                </p>
+
+                <p>
+                    🤖 Ở bước tiếp theo, AI sẽ
+                    tự động xử lý ảnh và điền:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Tên Pokémon
+                    </li>
+
+                    <li>
+                        IPA
+                    </li>
+
+                    <li>
+                        English description
+                    </li>
+
+                    <li>
+                        Vietnamese translation
+                    </li>
+
+                    <li>
+                        2–3 từ vựng khó
+                    </li>
+
+                    <li>
+                        Moves + nghĩa tiếng Việt
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <button
+                id="deleteButton"
+                class="delete-saved"
+            >
+                🗑️ Xóa khỏi từ điển
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   INDEXEDDB
+===================================================== */
+
+const DB_NAME =
+    "PokemonUltimateHandbookDB";
+
+const DB_VERSION = 1;
+
+const STORE_NAME =
+    "pokemon";
+
+
+let db;
+
+let currentImage = null;
+
+
+/* =====================================================
+   MỞ DATABASE
+===================================================== */
+
+function openDatabase() {
+
+    return new Promise(
+        function(resolve, reject) {
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+
+
+            request.onupgradeneeded =
+                function(event) {
+
+                    db =
+                        event.target.result;
+
+
+                    if (
+                        !db.objectStoreNames
+                        .contains(STORE_NAME)
+                    ) {
+
+                        db.createObjectStore(
+                            STORE_NAME,
+                            {
+                                keyPath: "id",
+                                autoIncrement: true
+                            }
+                        );
+
+                    }
+
+                };
+
+
+            request.onsuccess =
+                function(event) {
+
+                    db =
+                        event.target.result;
+
+                    resolve(db);
+
+                };
+
+
+            request.onerror =
+                function() {
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
 
 }
 
 
-// =========================
-// ĐỌC TIẾNG ANH
-// =========================
+/* =====================================================
+   LƯU POKÉMON
+===================================================== */
 
-function speakPokemon(id) {
+function savePokemon(imageData) {
 
-    const pokemon =
-        pokemonList.find(
-            p => p.id === id
-        );
+    return new Promise(
+        function(resolve, reject) {
 
-    if (!pokemon) return;
-
-
-    const text =
-        pokemon.english;
+            const transaction =
+                db.transaction(
+                    [STORE_NAME],
+                    "readwrite"
+                );
 
 
-    if (!("speechSynthesis" in window)) {
-
-        alert(
-            "Trình duyệt của anh không hỗ trợ đọc tiếng Anh."
-        );
-
-        return;
-    }
+            const store =
+                transaction.objectStore(
+                    STORE_NAME
+                );
 
 
-    speechSynthesis.cancel();
+            const pokemon = {
+
+                image: imageData,
+
+                name:
+                    "Pokémon chưa được nhận diện",
+
+                ipa: "",
+
+                english: "",
+
+                vietnamese: "",
+
+                vocabulary: [],
+
+                moves: [],
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
 
 
-    const utterance =
-        new SpeechSynthesisUtterance(text);
+            const request =
+                store.add(pokemon);
 
 
-    utterance.lang = "en-US";
+            request.onsuccess =
+                function() {
 
-    utterance.rate = 0.85;
+                    resolve(
+                        request.result
+                    );
 
-    utterance.pitch = 1;
+                };
 
 
-    speechSynthesis.speak(utterance);
+            request.onerror =
+                function() {
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
 
 }
 
 
-// =========================
-// XÓA POKÉMON
-// =========================
+/* =====================================================
+   LẤY TẤT CẢ POKÉMON
+===================================================== */
+
+function getAllPokemon() {
+
+    return new Promise(
+        function(resolve, reject) {
+
+            const transaction =
+                db.transaction(
+                    [STORE_NAME],
+                    "readonly"
+                );
+
+
+            const store =
+                transaction.objectStore(
+                    STORE_NAME
+                );
+
+
+            const request =
+                store.getAll();
+
+
+            request.onsuccess =
+                function() {
+
+                    resolve(
+                        request.result
+                    );
+
+                };
+
+
+            request.onerror =
+                function() {
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   XÓA POKÉMON
+===================================================== */
 
 function deletePokemon(id) {
 
-    if (
-        !confirm(
-            "Anh có chắc muốn xóa Pokémon này?"
-        )
-    ) {
-        return;
-    }
+    return new Promise(
+        function(resolve, reject) {
+
+            const transaction =
+                db.transaction(
+                    [STORE_NAME],
+                    "readwrite"
+                );
 
 
-    pokemonList =
-        pokemonList.filter(
-            p => p.id !== id
+            const store =
+                transaction.objectStore(
+                    STORE_NAME
+                );
+
+
+            const request =
+                store.delete(id);
+
+
+            request.onsuccess =
+                function() {
+
+                    resolve();
+
+                };
+
+
+            request.onerror =
+                function() {
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   HIỂN THỊ DICTIONARY
+===================================================== */
+
+async function renderDictionary(
+    filter = ""
+) {
+
+    const grid =
+        document.getElementById(
+            "dictionaryGrid"
         );
 
 
-    saveData();
+    const list =
+        await getAllPokemon();
 
-    renderLibrary();
 
-
-    if (pokemonList.length > 0) {
-
-        displayPokemon(
-            pokemonList[pokemonList.length - 1]
+    const filtered =
+        list.filter(
+            pokemon =>
+                pokemon.name
+                .toLowerCase()
+                .includes(
+                    filter.toLowerCase()
+                )
         );
 
-    } else {
 
-        document
-        .getElementById("pokemonContainer")
-        .innerHTML = `
+    if (filtered.length === 0) {
+
+        grid.innerHTML = `
 
             <div class="empty">
 
-                <h2>📚 Pokémon Ultimate Handbook</h2>
+                <h3>
+                    📚 Chưa có Pokémon
+                </h3>
 
                 <p>
-                    Hãy chọn ảnh Pokémon và nhập tên để bắt đầu.
+                    Nạp ảnh Pokémon đầu tiên
+                    để tạo từ điển.
                 </p>
 
             </div>
 
         `;
 
+        return;
+
     }
 
-}
+
+    grid.innerHTML = "";
 
 
-// =========================
-// LƯU DỮ LIỆU
-// =========================
+    filtered
+    .sort(
+        (a,b) =>
+            new Date(b.createdAt)
+            -
+            new Date(a.createdAt)
+    )
+    .forEach(
+        function(pokemon) {
 
-function saveData() {
+            const item =
+                document.createElement(
+                    "div"
+                );
 
-    localStorage.setItem(
+            item.className =
+                "dictionary-item";
 
-        "pokemonUltimateHandbook",
 
-        JSON.stringify(pokemonList)
+            item.innerHTML = `
 
+                <img
+                    src="${pokemon.image}"
+                    alt="Pokémon"
+                >
+
+                <div class="dictionary-name">
+                    ${escapeHtml(
+                        pokemon.name
+                    )}
+                </div>
+
+                <div class="dictionary-date">
+                    Đã lưu
+                </div>
+
+            `;
+
+
+            item.onclick =
+                function() {
+
+                    openPokemon(pokemon);
+
+                };
+
+
+            grid.appendChild(item);
+
+        }
     );
 
 }
 
 
-// =========================
-// THƯ VIỆN
-// =========================
+/* =====================================================
+   TÌM KIẾM
+===================================================== */
 
-function renderLibrary() {
+function searchDictionary() {
 
-    const library =
-        document.getElementById("libraryList");
-
-
-    if (pokemonList.length === 0) {
-
-        library.innerHTML =
-            "<p>Chưa có Pokémon nào.</p>";
-
-        return;
-    }
+    const value =
+        document
+        .getElementById("searchInput")
+        .value;
 
 
-    library.innerHTML =
-
-        pokemonList
-        .map(pokemon => `
-
-            <div
-                class="library-item"
-                onclick="displayPokemonById(${pokemon.id})"
-            >
-
-                <img
-                    src="${pokemon.image}"
-                    alt="${pokemon.name}"
-                >
-
-                <div class="library-item-name">
-                    ${pokemon.name}
-                </div>
-
-            </div>
-
-        `)
-        .join("");
+    renderDictionary(value);
 
 }
 
 
-// =========================
-// MỞ POKÉMON TỪ THƯ VIỆN
-// =========================
+/* =====================================================
+   HIỂN THỊ ẢNH
+===================================================== */
 
-function displayPokemonById(id) {
+function showImage(imageData) {
 
-    const pokemon =
-        pokemonList.find(
-            p => p.id === id
-        );
+    currentImage =
+        imageData;
 
-    if (!pokemon) return;
 
-    displayPokemon(pokemon);
+    document
+    .getElementById("previewImage")
+    .src = imageData;
+
+
+    document
+    .getElementById("previewSection")
+    .style.display = "block";
+
+
+    document
+    .getElementById("uploadArea")
+    .classList.add("active");
+
 
     window.scrollTo({
-        top: 0,
+        top:
+            document
+            .getElementById(
+                "previewSection"
+            )
+            .offsetTop - 20,
         behavior: "smooth"
     });
 
 }
 
 
-// =========================
-// KHỞI ĐỘNG APP
-// =========================
+/* =====================================================
+   THÊM ẢNH TỪ MÁY
+===================================================== */
 
-renderLibrary();
+document
+.getElementById("imageInput")
+.addEventListener(
+    "change",
+    function(event) {
+
+        const file =
+            event.target.files[0];
 
 
-if (pokemonList.length > 0) {
+        if (!file) {
+            return;
+        }
 
-    displayPokemon(
-        pokemonList[pokemonList.length - 1]
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e) {
+
+                showImage(
+                    e.target.result
+                );
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =====================================================
+   CTRL + V
+===================================================== */
+
+document.addEventListener(
+    "paste",
+    function(event) {
+
+        const items =
+            event
+            .clipboardData
+            .items;
+
+
+        for (
+            let i = 0;
+            i < items.length;
+            i++
+        ) {
+
+            const item =
+                items[i];
+
+
+            if (
+                item.type
+                .indexOf("image") !== -1
+            ) {
+
+                const file =
+                    item.getAsFile();
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function(e) {
+
+                        showImage(
+                            e.target.result
+                        );
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+                break;
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NÚT DÁN ẢNH
+===================================================== */
+
+function pasteImage() {
+
+    alert(
+        "Anh hãy copy một bức ảnh trước, " +
+        "sau đó nhấn Ctrl + V."
     );
 
 }
+
+
+/* =====================================================
+   PHÂN TÍCH ẢNH
+===================================================== */
+
+async function analyzeImage() {
+
+    if (!currentImage) {
+
+        alert(
+            "Chưa có ảnh."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        const id =
+            await savePokemon(
+                currentImage
+            );
+
+
+        alert(
+            "✅ Ảnh đã được lưu vào " +
+            "Pokémon Dictionary!\n\n" +
+            "Mã bài: " + id +
+            "\n\n" +
+            "Bước tiếp theo sẽ kết nối AI " +
+            "để tự động xử lý nội dung."
+        );
+
+
+        await renderDictionary();
+
+
+        clearPreview();
+
+
+    } catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Không thể lưu ảnh. " +
+            "Anh hãy thử lại."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   MỞ POKÉMON
+===================================================== */
+
+function openPokemon(pokemon) {
+
+    document
+    .getElementById("modalTitle")
+    .textContent =
+        pokemon.name;
+
+
+    document
+    .getElementById("modalImage")
+    .src =
+        pokemon.image;
+
+
+    document
+    .getElementById("pokemonModal")
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById("deleteButton")
+    .onclick =
+        async function() {
+
+            const yes =
+                confirm(
+                    "Anh có chắc muốn xóa bài này?"
+                );
+
+
+            if (!yes) {
+                return;
+            }
+
+
+            await deletePokemon(
+                pokemon.id
+            );
+
+
+            closeModal();
+
+            renderDictionary();
+
+        };
+
+}
+
+
+/* =====================================================
+   ĐÓNG MODAL
+===================================================== */
+
+function closeModal() {
+
+    document
+    .getElementById("pokemonModal")
+    .style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   CLICK RA NGOÀI MODAL
+===================================================== */
+
+document
+.getElementById("pokemonModal")
+.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target ===
+            this
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   XÓA ẢNH PREVIEW
+===================================================== */
+
+function clearPreview() {
+
+    currentImage = null;
+
+
+    document
+    .getElementById("previewImage")
+    .src = "";
+
+
+    document
+    .getElementById("previewSection")
+    .style.display = "none";
+
+
+    document
+    .getElementById("uploadArea")
+    .classList.remove("active");
+
+
+    document
+    .getElementById("imageInput")
+    .value = "";
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   KHỞI ĐỘNG
+===================================================== */
+
+async function init() {
+
+    try {
+
+        await openDatabase();
+
+        await renderDictionary();
+
+    } catch(error) {
+
+        console.error(error);
+
+        alert(
+            "Trình duyệt không thể mở bộ nhớ của app."
+        );
+
+    }
+
+}
+
+
+init();
 
 </script>
 
