@@ -10,363 +10,360 @@
 
 <style>
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f3f5f8;
-    color: #222;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f3f5f8;
+    color:#222;
 }
 
-header {
-    background: linear-gradient(135deg,#e53935,#ff7043);
-    color: white;
-    text-align: center;
-    padding: 25px 15px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.15);
+header{
+    background:linear-gradient(135deg,#e53935,#ff7043);
+    color:white;
+    text-align:center;
+    padding:25px 15px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 30px;
+header h1{
+    margin:0;
+    font-size:30px;
 }
 
-header p {
-    margin: 8px 0 0;
+header p{
+    margin:8px 0 0;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 25px auto;
-    padding: 0 15px;
+.container{
+    max-width:1100px;
+    margin:25px auto;
+    padding:0 15px;
 }
 
-/* UPLOAD */
-
-.upload-box {
-    background: white;
-    border: 2px dashed #ccc;
-    border-radius: 18px;
-    padding: 35px 20px;
-    text-align: center;
-    box-shadow: 0 3px 12px rgba(0,0,0,.07);
+.upload-box{
+    background:white;
+    border:2px dashed #ccc;
+    border-radius:18px;
+    padding:35px 20px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.upload-icon {
-    font-size: 55px;
+.upload-icon{
+    font-size:55px;
 }
 
-.upload-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+.upload-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:20px;
 }
 
 button,
-.upload-label {
-    border: none;
-    border-radius: 10px;
-    padding: 12px 18px;
-    font-size: 15px;
-    cursor: pointer;
-    color: white;
-    background: #e53935;
+.upload-label{
+    border:none;
+    border-radius:10px;
+    padding:12px 18px;
+    font-size:15px;
+    cursor:pointer;
+    color:white;
+    background:#e53935;
 }
 
 button:hover,
-.upload-label:hover {
-    background: #c62828;
+.upload-label:hover{
+    background:#c62828;
 }
 
-input[type=file] {
-    display: none;
+input[type=file]{
+    display:none;
 }
 
-/* PREVIEW */
-
-.preview {
-    display: none;
-    margin-top: 25px;
-    background: white;
-    padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+.preview{
+    display:none;
+    margin-top:25px;
+    background:white;
+    padding:20px;
+    border-radius:18px;
 }
 
-.preview img {
-    width: 100%;
-    max-height: 600px;
-    object-fit: contain;
-    border-radius: 12px;
-    background: #f5f5f5;
+.preview img{
+    width:100%;
+    max-height:600px;
+    object-fit:contain;
+    border-radius:12px;
+    background:#f5f5f5;
 }
 
-.preview-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 15px;
+.preview-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
 }
 
-.analyze {
-    background: #1976d2;
+.analyze{
+    background:#1976d2;
 }
 
-.cancel {
-    background: #757575;
+.cancel{
+    background:#757575;
 }
 
-/* PROCESSING */
-
-.processing {
-    display: none;
-    margin-top: 25px;
-    background: white;
-    border-radius: 18px;
-    padding: 30px;
-    text-align: center;
+.processing{
+    display:none;
+    margin-top:25px;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
 }
 
-.spinner {
-    width: 45px;
-    height: 45px;
-    border: 5px solid #eee;
-    border-top: 5px solid #e53935;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: auto;
+.spinner{
+    width:45px;
+    height:45px;
+    border:5px solid #eee;
+    border-top:5px solid #e53935;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:auto;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
     }
 }
 
-/* RESULT */
-
-.result {
-    display: none;
-    margin-top: 25px;
+.result{
+    display:none;
+    margin-top:25px;
 }
 
-.result-card {
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+.result-card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
 }
 
-.result-image {
-    width: 100%;
-    max-height: 350px;
-    object-fit: contain;
-    background: #f5f5f5;
-    border-radius: 12px;
+.result-grid{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:25px;
 }
 
-.result-grid {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 25px;
+.result-image{
+    width:100%;
+    max-height:350px;
+    object-fit:contain;
+    background:#f5f5f5;
+    border-radius:12px;
 }
 
-.field {
-    margin-top: 20px;
+.pokemon-name{
+    font-size:34px;
+    margin:0;
 }
 
-.field label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
+.pokemon-ipa{
+    font-size:20px;
+    color:#666;
+    margin-top:8px;
+    font-style:italic;
+}
+
+.field{
+    margin-top:20px;
+}
+
+.field label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
 input,
-textarea {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 15px;
-    font-family: inherit;
+textarea{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:12px;
+    font-size:15px;
+    font-family:inherit;
 }
 
-textarea {
-    min-height: 130px;
-    resize: vertical;
+textarea{
+    min-height:130px;
+    resize:vertical;
 }
 
-.description {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.description{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.language-box {
-    background: #f7f8fa;
-    padding: 15px;
-    border-radius: 12px;
+.language-box{
+    background:#f7f8fa;
+    padding:15px;
+    border-radius:12px;
 }
 
-.section {
-    margin-top: 25px;
+.section{
+    margin-top:25px;
 }
 
-.section-title {
-    color: #d32f2f;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 8px;
+.section-title{
+    color:#d32f2f;
+    border-bottom:2px solid #eee;
+    padding-bottom:8px;
 }
 
-.result-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 25px;
+.translate-box{
+    text-align:center;
+    margin-top:15px;
 }
 
-.save {
-    background: #2e7d32;
+.translate{
+    background:#1976d2;
 }
 
-.save:hover {
-    background: #1b5e20;
+.translate:hover{
+    background:#0d47a1;
 }
 
-/* DICTIONARY */
-
-.dictionary {
-    margin-top: 35px;
+.result-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:25px;
 }
 
-.dictionary-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+.save{
+    background:#2e7d32;
 }
 
-.dictionary-top h2 {
-    margin: 0;
+.save:hover{
+    background:#1b5e20;
 }
 
-.search {
-    width: 260px;
-    padding: 11px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+.dictionary{
+    margin-top:35px;
 }
 
-.dictionary-grid {
-    display: grid;
+.dictionary-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.search{
+    width:260px;
+    padding:11px;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.dictionary-grid{
+    display:grid;
     grid-template-columns:
         repeat(auto-fill,minmax(180px,1fr));
-    gap: 15px;
-    margin-top: 15px;
+    gap:15px;
+    margin-top:15px;
 }
 
-.dictionary-item {
-    background: white;
-    padding: 12px;
-    border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,.08);
-    cursor: pointer;
+.dictionary-item{
+    background:white;
+    padding:12px;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    cursor:pointer;
 }
 
-.dictionary-item:hover {
-    transform: translateY(-3px);
+.dictionary-item img{
+    width:100%;
+    height:150px;
+    object-fit:contain;
+    border-radius:10px;
+    background:#f5f5f5;
 }
 
-.dictionary-item img {
-    width: 100%;
-    height: 150px;
-    object-fit: contain;
-    border-radius: 10px;
-    background: #f5f5f5;
+.dictionary-name{
+    text-align:center;
+    font-weight:bold;
+    margin-top:10px;
 }
 
-.dictionary-name {
-    text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
+.dictionary-ipa{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    font-style:italic;
+    margin-top:4px;
 }
 
-.empty {
-    background: white;
-    padding: 30px;
-    text-align: center;
-    color: #777;
-    border-radius: 15px;
+.empty{
+    background:white;
+    padding:30px;
+    text-align:center;
+    color:#777;
+    border-radius:15px;
 }
 
-/* MODAL */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    z-index: 999;
-    padding: 20px;
-    overflow-y: auto;
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:999;
+    padding:20px;
+    overflow-y:auto;
 }
 
-.modal-content {
-    background: white;
-    max-width: 900px;
-    margin: 30px auto;
-    border-radius: 18px;
-    padding: 20px;
+.modal-content{
+    background:white;
+    max-width:900px;
+    margin:30px auto;
+    border-radius:18px;
+    padding:20px;
 }
 
-.modal-content img {
-    width: 100%;
-    max-height: 450px;
-    object-fit: contain;
+.modal-content img{
+    width:100%;
+    max-height:450px;
+    object-fit:contain;
 }
 
-.close {
-    float: right;
-    background: #757575;
+.close{
+    float:right;
+    background:#757575;
 }
 
-.delete {
-    background: #d32f2f;
-    margin-top: 20px;
+.delete{
+    background:#d32f2f;
+    margin-top:20px;
 }
 
-.vocabulary,
-.moves {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.word,
-.move {
-    background: #f5f5f5;
-    border-radius: 8px;
-    padding: 9px 12px;
-}
-
-@media(max-width:700px) {
+@media(max-width:700px){
 
     .result-grid,
-    .description {
-        grid-template-columns: 1fr;
+    .description{
+        grid-template-columns:1fr;
     }
 
-    header h1 {
-        font-size: 25px;
+    .pokemon-name{
+        font-size:28px;
     }
+
 }
 
 </style>
@@ -375,18 +372,20 @@ textarea {
 
 <body>
 
+
 <header>
 
-    <h1>⚡ Pokémon Ultimate Handbook</h1>
+<h1>⚡ Pokémon Ultimate Handbook</h1>
 
-    <p>
-        Pokémon English Learning Dictionary
-    </p>
+<p>
+Pokémon English Learning Dictionary
+</p>
 
 </header>
 
 
 <div class="container">
+
 
 <!-- =========================
      UPLOAD
@@ -394,47 +393,44 @@ textarea {
 
 <div class="upload-box">
 
-    <div class="upload-icon">
-        📷
-    </div>
+<div class="upload-icon">
+📷
+</div>
 
-    <h2>
-        Nạp ảnh Pokémon
-    </h2>
+<h2>
+Nạp ảnh Pokémon
+</h2>
 
-    <p>
-        Thêm ảnh từ máy hoặc dán ảnh
-    </p>
+<p>
+Thêm ảnh từ máy hoặc dán ảnh
+</p>
 
+<div class="upload-buttons">
 
-    <div class="upload-buttons">
+<label class="upload-label">
 
-        <label class="upload-label">
+📁 Thêm ảnh từ máy
 
-            📁 Thêm ảnh từ máy
+<input
+type="file"
+id="imageInput"
+accept="image/*"
+>
 
-            <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-            >
-
-        </label>
-
-
-        <button onclick="pasteHelp()">
-
-            📋 Dán ảnh
-
-        </button>
-
-    </div>
+</label>
 
 
-    <p>
-        💡 Copy ảnh → quay lại app →
-        <strong>Ctrl + V</strong>
-    </p>
+<button onclick="pasteHelp()">
+
+📋 Dán ảnh
+
+</button>
+
+</div>
+
+<p>
+Copy ảnh → quay lại app → <strong>Ctrl + V</strong>
+</p>
 
 </div>
 
@@ -444,39 +440,41 @@ textarea {
 ========================= -->
 
 <div
-    id="preview"
-    class="preview"
+id="preview"
+class="preview"
 >
 
-    <h2>
-        🖼️ Ảnh đã nạp
-    </h2>
+<h2>
+🖼️ Ảnh đã nạp
+</h2>
+
+<img
+id="previewImage"
+>
 
 
-    <img
-        id="previewImage"
-        alt="Preview"
-    >
+<div class="preview-buttons">
+
+<button
+class="analyze"
+onclick="analyzeImage()"
+>
+
+🔍 Đọc thông tin ảnh
+
+</button>
 
 
-    <div class="preview-buttons">
+<button
+class="cancel"
+onclick="resetApp()"
+>
 
-        <button
-            class="analyze"
-            onclick="analyzeImage()"
-        >
-            🔍 Đọc thông tin ảnh
-        </button>
+🗑️ Bỏ ảnh
 
+</button>
 
-        <button
-            class="cancel"
-            onclick="resetApp()"
-        >
-            🗑️ Bỏ ảnh
-        </button>
-
-    </div>
+</div>
 
 </div>
 
@@ -486,19 +484,19 @@ textarea {
 ========================= -->
 
 <div
-    id="processing"
-    class="processing"
+id="processing"
+class="processing"
 >
 
-    <div class="spinner"></div>
+<div class="spinner"></div>
 
-    <h3>
-        🔍 Đang đọc ảnh...
-    </h3>
+<h3>
+🔍 Đang đọc ảnh...
+</h3>
 
-    <p id="progressText">
-        Đang khởi động OCR...
-    </p>
+<p id="progressText">
+Đang khởi động OCR...
+</p>
 
 </div>
 
@@ -508,191 +506,224 @@ textarea {
 ========================= -->
 
 <div
-    id="result"
-    class="result"
+id="result"
+class="result"
 >
 
 <div class="result-card">
 
-    <h2>
-        📖 Kiểm tra thông tin
-    </h2>
 
-    <p>
-        Anh kiểm tra/chỉnh sửa nội dung trước khi lưu.
-    </p>
+<h2>
+📖 Kiểm tra thông tin
+</h2>
 
 
-    <div class="result-grid">
-
-        <div>
-
-            <img
-                id="resultImage"
-                class="result-image"
-            >
-
-        </div>
+<div class="result-grid">
 
 
-        <div>
+<div>
 
-            <div class="field">
+<img
+id="resultImage"
+class="result-image"
+>
 
-                <label>
-                    Tên Pokémon
-                </label>
-
-                <input
-                    id="pokemonName"
-                    placeholder="Tên Pokémon"
-                >
-
-            </div>
+</div>
 
 
-            <div class="field">
-
-                <label>
-                    IPA
-                </label>
-
-                <input
-                    id="pokemonIPA"
-                    placeholder="/.../"
-                >
-
-            </div>
-
-        </div>
-
-    </div>
+<div>
 
 
-    <!-- DESCRIPTION -->
-
-    <div class="section">
-
-        <h2 class="section-title">
-            📖 Description
-        </h2>
-
-
-        <div class="description">
-
-            <div class="language-box">
-
-                <strong>
-                    🇬🇧 English
-                </strong>
-
-                <textarea
-                    id="english"
-                    placeholder="Nội dung tiếng Anh..."
-                ></textarea>
-
-            </div>
+<h1
+id="displayName"
+class="pokemon-name"
+>
+Pokémon
+</h1>
 
 
-            <div class="language-box">
-
-                <strong>
-                    🇻🇳 Tiếng Việt
-                </strong>
-
-                <textarea
-                    id="vietnamese"
-                    placeholder="Bản dịch tiếng Việt..."
-                ></textarea>
-
-            </div>
-
-        </div>
-
-    </div>
+<div
+id="displayIPA"
+class="pokemon-ipa"
+>
+/IPA/
+</div>
 
 
-    <!-- VOCABULARY -->
+<div class="field">
 
-    <div class="section">
+<label>
+Tên Pokémon
+</label>
 
-        <h2 class="section-title">
-            📚 Vocabulary
-        </h2>
+<input
+id="pokemonName"
+oninput="updateName()"
+placeholder="Tên Pokémon"
+>
 
-        <p>
-            Chỉ giữ 2–3 từ khó/ít gặp.
-        </p>
-
-
-        <textarea
-            id="vocabulary"
-            placeholder="Ví dụ:
-
-discharge — phóng điện
-release — phóng ra
-agile — nhanh nhẹn"
-        ></textarea>
-
-    </div>
+</div>
 
 
-    <!-- MOVES -->
+<div class="field">
 
-    <div class="section">
+<label>
+Phiên âm IPA
+</label>
 
-        <h2 class="section-title">
-            ⚔️ Moves
-        </h2>
+<input
+id="pokemonIPA"
+oninput="updateIPA()"
+placeholder="/.../"
+>
+
+</div>
 
 
-        <textarea
-            id="moves"
-            placeholder="Ví dụ:
+</div>
 
-Thunderbolt (Đòn Sấm Sét)
+</div>
+
+
+<!-- DESCRIPTION -->
+
+<div class="section">
+
+<h2 class="section-title">
+📖 Description
+</h2>
+
+
+<div class="description">
+
+
+<div class="language-box">
+
+<strong>
+🇬🇧 English
+</strong>
+
+<textarea
+id="english"
+placeholder="Nội dung tiếng Anh..."
+></textarea>
+
+</div>
+
+
+<div class="language-box">
+
+<strong>
+🇻🇳 Tiếng Việt
+</strong>
+
+<textarea
+id="vietnamese"
+placeholder="Bản dịch tiếng Việt..."
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="translate-box">
+
+<button
+id="translateButton"
+class="translate"
+onclick="translateCurrentText()"
+>
+
+🌐 Dịch sang tiếng Việt
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<!-- VOCABULARY -->
+
+<div class="section">
+
+<h2 class="section-title">
+📚 Vocabulary
+</h2>
+
+<p>
+Chỉ cần 2–3 từ khó hoặc ít gặp.
+</p>
+
+<textarea
+id="vocabulary"
+placeholder="discharge — phóng điện
+agile — nhanh nhẹn
+release — phóng ra"
+></textarea>
+
+</div>
+
+
+<!-- MOVES -->
+
+<div class="section">
+
+<h2 class="section-title">
+⚔️ Moves
+</h2>
+
+<textarea
+id="moves"
+placeholder="Thunderbolt (Đòn Sấm Sét)
 Quick Attack (Đòn Đánh Nhanh)"
-        ></textarea>
+></textarea>
 
-    </div>
-
-
-    <!-- OCR TEXT -->
-
-    <div class="section">
-
-        <h2 class="section-title">
-            🔎 Văn bản OCR đọc được
-        </h2>
+</div>
 
 
-        <textarea
-            id="ocrText"
-            placeholder="Văn bản đọc từ ảnh..."
-        ></textarea>
+<!-- OCR -->
 
-    </div>
+<div class="section">
 
+<h2 class="section-title">
+🔎 Văn bản đọc được
+</h2>
 
-    <!-- BUTTONS -->
+<textarea
+id="ocrText"
+></textarea>
 
-    <div class="result-buttons">
-
-        <button
-            class="save"
-            onclick="saveResult()"
-        >
-            💾 Lưu vào từ điển
-        </button>
+</div>
 
 
-        <button
-            onclick="resetApp()"
-        >
-            📷 Nạp ảnh khác
-        </button>
+<!-- BUTTONS -->
 
-    </div>
+<div class="result-buttons">
+
+<button
+class="save"
+onclick="saveResult()"
+>
+
+💾 Lưu vào từ điển
+
+</button>
+
+
+<button
+onclick="resetApp()"
+>
+
+📷 Nạp ảnh khác
+
+</button>
+
+</div>
+
 
 </div>
 
@@ -705,29 +736,32 @@ Quick Attack (Đòn Đánh Nhanh)"
 
 <div class="dictionary">
 
-    <div class="dictionary-top">
 
-        <h2>
-            📚 My Pokémon Dictionary
-        </h2>
+<div class="dictionary-top">
 
-
-        <input
-            id="search"
-            class="search"
-            placeholder="🔎 Tìm Pokémon..."
-            oninput="renderDictionary()"
-        >
-
-    </div>
+<h2>
+📚 My Pokémon Dictionary
+</h2>
 
 
-    <div
-        id="dictionaryGrid"
-        class="dictionary-grid"
-    ></div>
+<input
+id="search"
+class="search"
+placeholder="🔎 Tìm Pokémon..."
+oninput="renderDictionary()"
+>
 
 </div>
+
+
+<div
+id="dictionaryGrid"
+class="dictionary-grid"
+></div>
+
+
+</div>
+
 
 </div>
 
@@ -737,37 +771,49 @@ Quick Attack (Đòn Đánh Nhanh)"
 ========================= -->
 
 <div
-    id="modal"
-    class="modal"
+id="modal"
+class="modal"
 >
 
 <div class="modal-content">
 
-    <button
-        class="close"
-        onclick="closeModal()"
-    >
-        ✕
-    </button>
+
+<button
+class="close"
+onclick="closeModal()"
+>
+
+✕
+
+</button>
 
 
-    <h2 id="modalName"></h2>
+<h2 id="modalName"></h2>
 
 
-    <img
-        id="modalImage"
-    >
+<p
+id="modalIPA"
+class="pokemon-ipa"
+></p>
 
 
-    <div id="modalText"></div>
+<img
+id="modalImage"
+>
 
 
-    <button
-        class="delete"
-        id="deleteButton"
-    >
-        🗑️ Xóa khỏi từ điển
-    </button>
+<div id="modalText"></div>
+
+
+<button
+class="delete"
+id="deleteButton"
+>
+
+🗑️ Xóa khỏi từ điển
+
+</button>
+
 
 </div>
 
@@ -776,18 +822,65 @@ Quick Attack (Đòn Đánh Nhanh)"
 
 <script>
 
+
+/* =====================================================
+   IPA
+===================================================== */
+
+const IPA = {
+
+"bulbasaur":"/ˈbʌlbəˌsɔːr/",
+"ivysaur":"/ˈaɪviˌsɔːr/",
+"venusaur":"/vəˈnəsɔːr/",
+
+"charmander":"/ˈtʃɑːrmændər/",
+"charmeleon":"/ˌtʃɑːrmɪˈliːən/",
+"charizard":"/ˈtʃɑːrɪzɑːrd/",
+
+"squirtle":"/ˈskwɜːrtəl/",
+"wartortle":"/ˈwɔːrtɔːrtəl/",
+"blastoise":"/ˈblæstɔɪs/",
+
+"pikachu":"/ˈpiːkətʃuː/",
+"raichu":"/ˈraɪtʃuː/",
+"meowth":"/miˈaʊθ/",
+"psyduck":"/ˈsaɪdʌk/",
+
+"eevee":"/ˈiːviː/",
+"vaporeon":"/ˌveɪpɔːriˈɒn/",
+"jolteon":"/ˌdʒəʊltiˈɒn/",
+"flareon":"/ˈflɛəriɒn/",
+
+"espeon":"/ˈɛspiɒn/",
+"umbreon":"/ˈʌmbriɒn/",
+
+"gengar":"/ˈɡɛŋɡɑːr/",
+"snorlax":"/ˈsnɔːlæks/",
+
+"mew":"/mjuː/",
+"mewtwo":"/ˈmjuːtuː/",
+
+"lucario":"/luːˈkɑːriəʊ/",
+"greninja":"/ɡrəˈnɪndʒə/",
+"garchomp":"/ˈɡɑːrtʃɒmp/",
+"rayquaza":"/reɪˈkweɪzə/",
+"zoroark":"/zəˈrəʊɑːrk/",
+"sylveon":"/sɪlviˈɒn/"
+
+};
+
+
 /* =====================================================
    DATABASE
 ===================================================== */
 
 const DB_NAME =
-    "PokemonUltimateHandbookDB";
+"PokemonUltimateHandbookDB";
 
 const DB_VERSION = 1;
 
 const STORE =
-    "pokemon";
-
+"pokemon";
 
 let db;
 
@@ -798,65 +891,56 @@ let currentImage = null;
    OPEN DATABASE
 ===================================================== */
 
-function openDatabase() {
+function openDatabase(){
 
-    return new Promise(
-        (resolve,reject) => {
+return new Promise((resolve,reject)=>{
 
-            const request =
-                indexedDB.open(
-                    DB_NAME,
-                    DB_VERSION
-                );
-
-
-            request.onupgradeneeded =
-                event => {
-
-                    db =
-                        event.target.result;
+const request =
+indexedDB.open(
+DB_NAME,
+DB_VERSION
+);
 
 
-                    if(
-                        !db.objectStoreNames
-                        .contains(STORE)
-                    ){
+request.onupgradeneeded =
+event=>{
 
-                        db.createObjectStore(
-                            STORE,
-                            {
-                                keyPath:"id",
-                                autoIncrement:true
-                            }
-                        );
-
-                    }
-
-                };
+db =
+event.target.result;
 
 
-            request.onsuccess =
-                event => {
+if(
+!db.objectStoreNames.contains(STORE)
+){
 
-                    db =
-                        event.target.result;
+db.createObjectStore(
+STORE,
+{
+keyPath:"id",
+autoIncrement:true
+}
+);
 
-                    resolve(db);
+}
 
-                };
+};
 
 
-            request.onerror =
-                () => {
+request.onsuccess =
+event=>{
 
-                    reject(
-                        request.error
-                    );
+db =
+event.target.result;
 
-                };
+resolve(db);
 
-        }
-    );
+};
+
+
+request.onerror =
+()=>reject(request.error);
+
+});
 
 }
 
@@ -865,77 +949,68 @@ function openDatabase() {
    ADD
 ===================================================== */
 
-function addPokemon(data) {
+function addPokemon(data){
 
-    return new Promise(
-        (resolve,reject) => {
+return new Promise(
+(resolve,reject)=>{
 
-            const transaction =
-                db.transaction(
-                    STORE,
-                    "readwrite"
-                );
-
-
-            const request =
-                transaction
-                .objectStore(STORE)
-                .add(data);
+const request =
+db
+.transaction(
+STORE,
+"readwrite"
+)
+.objectStore(STORE)
+.add(data);
 
 
-            request.onsuccess =
-                () =>
-                    resolve(
-                        request.result
-                    );
+request.onsuccess =
+()=>resolve(
+request.result
+);
 
 
-            request.onerror =
-                () =>
-                    reject(
-                        request.error
-                    );
+request.onerror =
+()=>reject(
+request.error
+);
 
-        }
-    );
+});
 
 }
 
 
 /* =====================================================
-   GET ALL
+   GET
 ===================================================== */
 
-function getPokemon() {
+function getPokemon(){
 
-    return new Promise(
-        (resolve,reject) => {
+return new Promise(
+(resolve,reject)=>{
 
-            const request =
-                db
-                .transaction(
-                    STORE,
-                    "readonly"
-                )
-                .objectStore(STORE)
-                .getAll();
-
-
-            request.onsuccess =
-                () =>
-                    resolve(
-                        request.result
-                    );
+const request =
+db
+.transaction(
+STORE,
+"readonly"
+)
+.objectStore(STORE)
+.getAll();
 
 
-            request.onerror =
-                () =>
-                    reject(
-                        request.error
-                    );
+request.onsuccess =
+()=>resolve(
+request.result
+);
 
-        }
-    );
+
+request.onerror =
+()=>reject(
+request.error
+);
+
+});
 
 }
 
@@ -944,68 +1019,63 @@ function getPokemon() {
    DELETE
 ===================================================== */
 
-function deletePokemon(id) {
+function deletePokemon(id){
 
-    return new Promise(
-        (resolve,reject) => {
+return new Promise(
+(resolve,reject)=>{
 
-            const request =
-                db
-                .transaction(
-                    STORE,
-                    "readwrite"
-                )
-                .objectStore(STORE)
-                .delete(id);
-
-
-            request.onsuccess =
-                () => resolve();
+const request =
+db
+.transaction(
+STORE,
+"readwrite"
+)
+.objectStore(STORE)
+.delete(id);
 
 
-            request.onerror =
-                () =>
-                    reject(
-                        request.error
-                    );
+request.onsuccess =
+()=>resolve();
 
-        }
-    );
+
+request.onerror =
+()=>reject(
+request.error
+);
+
+});
 
 }
 
 
 /* =====================================================
-   FILE TO DATA URL
+   FILE → DATA URL
 ===================================================== */
 
-function fileToDataURL(file) {
+function fileToDataURL(file){
 
-    return new Promise(
-        (resolve,reject) => {
+return new Promise(
+(resolve,reject)=>{
 
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                () =>
-                    resolve(
-                        reader.result
-                    );
+const reader =
+new FileReader();
 
 
-            reader.onerror =
-                () =>
-                    reject(
-                        reader.error
-                    );
+reader.onload =
+()=>resolve(
+reader.result
+);
 
 
-            reader.readAsDataURL(file);
+reader.onerror =
+()=>reject(
+reader.error
+);
 
-        }
-    );
+
+reader.readAsDataURL(file);
+
+});
 
 }
 
@@ -1017,23 +1087,20 @@ function fileToDataURL(file) {
 document
 .getElementById("imageInput")
 .addEventListener(
-    "change",
-    async event => {
+"change",
+async event=>{
 
-        const file =
-            event.target.files[0];
+const file =
+event.target.files[0];
 
+if(!file)return;
 
-        if(!file) return;
+currentImage =
+await fileToDataURL(file);
 
+showPreview();
 
-        currentImage =
-            await fileToDataURL(file);
-
-
-        showPreview();
-
-    }
+}
 );
 
 
@@ -1042,40 +1109,38 @@ document
 ===================================================== */
 
 document.addEventListener(
-    "paste",
-    async event => {
+"paste",
+async event=>{
 
-        const items =
-            event.clipboardData.items;
-
-
-        for(
-            const item of items
-        ){
-
-            if(
-                item.type
-                .startsWith("image/")
-            ){
-
-                const file =
-                    item.getAsFile();
+const items =
+event.clipboardData.items;
 
 
-                currentImage =
-                    await fileToDataURL(file);
+for(
+const item of items
+){
+
+if(
+item.type.startsWith("image/")
+){
+
+const file =
+item.getAsFile();
 
 
-                showPreview();
+currentImage =
+await fileToDataURL(file);
 
 
-                break;
+showPreview();
 
-            }
+break;
 
-        }
+}
 
-    }
+}
+
+}
 );
 
 
@@ -1085,22 +1150,20 @@ document.addEventListener(
 
 function showPreview(){
 
-    document
-    .getElementById("previewImage")
-    .src =
-        currentImage;
+document
+.getElementById(
+"previewImage"
+)
+.src =
+currentImage;
 
 
-    document
-    .getElementById("preview")
-    .style.display =
-        "block";
-
-
-    document
-    .getElementById("result")
-    .style.display =
-        "none";
+document
+.getElementById(
+"preview"
+)
+.style.display =
+"block";
 
 }
 
@@ -1111,236 +1174,474 @@ function showPreview(){
 
 async function analyzeImage(){
 
-    if(!currentImage){
+if(!currentImage){
 
-        alert(
-            "Anh chưa nạp ảnh."
-        );
-
-        return;
-
-    }
-
-
-    document
-    .getElementById("preview")
-    .style.display =
-        "none";
-
-
-    document
-    .getElementById("processing")
-    .style.display =
-        "block";
-
+alert(
+"Anh chưa nạp ảnh."
+);
 
-    try{
+return;
 
-        const result =
-            await Tesseract.recognize(
-                currentImage,
-                "eng",
-                {
-
-                    logger:
-                        message => {
-
-                            if(
-                                message.status
-                            ){
-
-                                document
-                                .getElementById(
-                                    "progressText"
-                                )
-                                .textContent =
-                                    message.status
-                                    +
-                                    " " +
-                                    Math.round(
-                                        (
-                                            message.progress
-                                            || 0
-                                        ) * 100
-                                    )
-                                    +
-                                    "%";
+}
 
-                            }
 
-                        }
+document
+.getElementById(
+"preview"
+)
+.style.display =
+"none";
 
-                }
-            );
 
+document
+.getElementById(
+"processing"
+)
+.style.display =
+"block";
 
-        const text =
-            result.data.text.trim();
 
+try{
 
-        document
-        .getElementById("ocrText")
-        .value =
-            text;
+const result =
+await Tesseract.recognize(
+currentImage,
+"eng",
+{
 
+logger:
+message=>{
 
-        document
-        .getElementById("resultImage")
-        .src =
-            currentImage;
+if(message.status){
 
+document
+.getElementById(
+"progressText"
+)
+.textContent =
+message.status
++
+" "
++
+Math.round(
+(message.progress||0)
+*
+100
+)
++
+"%";
 
-        /*
-         * Thử tìm tên Pokémon
-         * trong phần OCR.
-         */
+}
 
-        const pokemonNames = [
+}
 
-            "Bulbasaur",
-            "Ivysaur",
-            "Venusaur",
-            "Charmander",
-            "Charmeleon",
-            "Charizard",
-            "Squirtle",
-            "Wartortle",
-            "Blastoise",
-            "Pikachu",
-            "Raichu",
-            "Meowth",
-            "Psyduck",
-            "Eevee",
-            "Vaporeon",
-            "Jolteon",
-            "Flareon",
-            "Espeon",
-            "Umbreon",
-            "Gengar",
-            "Snorlax",
-            "Mew",
-            "Mewtwo",
-            "Lucario",
-            "Greninja",
-            "Garchomp",
-            "Rayquaza",
-            "Zoroark",
-            "Sylveon"
+}
+);
 
-        ];
 
+const text =
+result.data.text.trim();
 
-        let detectedName = "";
 
+document
+.getElementById(
+"ocrText"
+)
+.value =
+text;
 
-        for(
-            const name of pokemonNames
-        ){
 
-            if(
-                text
-                .toLowerCase()
-                .includes(
-                    name.toLowerCase()
-                )
-            ){
+document
+.getElementById(
+"resultImage"
+)
+.src =
+currentImage;
 
-                detectedName =
-                    name;
 
-                break;
+/* TÌM TÊN */
 
-            }
+let detectedName = "";
 
-        }
+const names =
+Object.keys(IPA);
 
 
-        document
-        .getElementById("pokemonName")
-        .value =
-            detectedName;
+for(
+const name of names
+){
 
+if(
+text
+.toLowerCase()
+.includes(
+name.toLowerCase()
+)
+){
 
-        document
-        .getElementById("pokemonIPA")
-        .value =
-            "";
+detectedName =
+name.charAt(0).toUpperCase()
++
+name.slice(1);
 
+break;
 
-        document
-        .getElementById("english")
-        .value =
-            text;
+}
 
+}
 
-        document
-        .getElementById("vietnamese")
-        .value =
-            "";
 
+document
+.getElementById(
+"pokemonName"
+)
+.value =
+detectedName;
 
-        document
-        .getElementById("vocabulary")
-        .value =
-            "";
 
+document
+.getElementById(
+"displayName"
+)
+.textContent =
+detectedName ||
+"Pokémon";
 
-        document
-        .getElementById("moves")
-        .value =
-            "";
 
+setIPA(detectedName);
 
-        document
-        .getElementById("processing")
-        .style.display =
-            "none";
 
+document
+.getElementById(
+"english"
+)
+.value =
+text;
 
-        document
-        .getElementById("result")
-        .style.display =
-            "block";
 
+document
+.getElementById(
+"vietnamese"
+)
+.value =
+"";
 
-        window.scrollTo({
 
-            top:
-                document
-                .getElementById(
-                    "result"
-                )
-                .offsetTop - 20,
+document
+.getElementById(
+"vocabulary"
+)
+.value =
+"";
 
-            behavior:
-                "smooth"
 
-        });
+document
+.getElementById(
+"moves"
+)
+.value =
+"";
 
 
-    }catch(error){
+document
+.getElementById(
+"processing"
+)
+.style.display =
+"none";
 
-        console.error(error);
 
+document
+.getElementById(
+"result"
+)
+.style.display =
+"block";
 
-        document
-        .getElementById("processing")
-        .style.display =
-            "none";
 
+}catch(error){
 
-        document
-        .getElementById("preview")
-        .style.display =
-            "block";
+console.error(error);
 
 
-        alert(
-            "OCR không đọc được ảnh. " +
-            "Anh thử ảnh rõ hơn nhé."
-        );
+document
+.getElementById(
+"processing"
+)
+.style.display =
+"none";
 
-    }
+
+document
+.getElementById(
+"preview"
+)
+.style.display =
+"block";
+
+
+alert(
+"Không đọc được ảnh."
+);
+
+}
+
+}
+
+
+/* =====================================================
+   IPA
+===================================================== */
+
+function setIPA(name){
+
+const key =
+name
+.trim()
+.toLowerCase();
+
+
+const ipa =
+IPA[key] || "";
+
+
+document
+.getElementById(
+"pokemonIPA"
+)
+.value =
+ipa;
+
+
+document
+.getElementById(
+"displayIPA"
+)
+.textContent =
+ipa ||
+"/Chưa có IPA/";
+
+}
+
+
+/* =====================================================
+   NAME UPDATE
+===================================================== */
+
+function updateName(){
+
+const name =
+document
+.getElementById(
+"pokemonName"
+)
+.value;
+
+
+document
+.getElementById(
+"displayName"
+)
+.textContent =
+name ||
+"Pokémon";
+
+
+setIPA(name);
+
+}
+
+
+/* =====================================================
+   IPA UPDATE
+===================================================== */
+
+function updateIPA(){
+
+document
+.getElementById(
+"displayIPA"
+)
+.textContent =
+document
+.getElementById(
+"pokemonIPA"
+)
+.value ||
+"/Chưa có IPA/";
+
+}
+
+
+/* =====================================================
+   TRANSLATE
+===================================================== */
+
+async function translateText(text){
+
+if(!text.trim())
+return "";
+
+
+const sentences =
+text
+.split(/\n+/)
+.map(x=>x.trim())
+.filter(Boolean);
+
+
+const translated=[];
+
+
+for(
+const sentence of sentences
+){
+
+try{
+
+const url =
+"https://api.mymemory.translated.net/get"
++
+"?q="
++
+encodeURIComponent(sentence)
++
+"&langpair=en|vi";
+
+
+const response =
+await fetch(url);
+
+
+if(!response.ok)
+throw new Error(
+"Translation error"
+);
+
+
+const data =
+await response.json();
+
+
+if(
+data.responseData &&
+data.responseData.translatedText
+){
+
+translated.push(
+data.responseData.translatedText
+);
+
+}else{
+
+translated.push(
+"[Không dịch được]"
+);
+
+}
+
+}catch(error){
+
+console.error(error);
+
+translated.push(
+"[Lỗi dịch]"
+);
+
+}
+
+
+await new Promise(
+resolve =>
+setTimeout(
+resolve,
+300
+)
+);
+
+}
+
+
+return translated.join("\n");
+
+}
+
+
+/* =====================================================
+   TRANSLATE BUTTON
+===================================================== */
+
+async function translateCurrentText(){
+
+const english =
+document
+.getElementById(
+"english"
+)
+.value
+.trim();
+
+
+if(!english){
+
+alert(
+"Chưa có nội dung tiếng Anh."
+);
+
+return;
+
+}
+
+
+const button =
+document
+.getElementById(
+"translateButton"
+);
+
+
+button.disabled =
+true;
+
+
+button.textContent =
+"⏳ Đang dịch...";
+
+
+try{
+
+const vietnamese =
+await translateText(
+english
+);
+
+
+document
+.getElementById(
+"vietnamese"
+)
+.value =
+vietnamese;
+
+
+}catch(error){
+
+console.error(error);
+
+
+alert(
+"Không thể kết nối nguồn dịch."
+);
+
+}
+
+
+button.disabled =
+false;
+
+
+button.textContent =
+"🌐 Dịch sang tiếng Việt";
 
 }
 
@@ -1351,113 +1652,104 @@ async function analyzeImage(){
 
 async function saveResult(){
 
-    const name =
-        document
-        .getElementById(
-            "pokemonName"
-        )
-        .value
-        .trim();
+const name =
+document
+.getElementById(
+"pokemonName"
+)
+.value
+.trim();
 
 
-    if(!name){
+if(!name){
 
-        alert(
-            "Anh hãy nhập tên Pokémon trước."
-        );
+alert(
+"Anh hãy nhập tên Pokémon."
+);
 
-        return;
+return;
 
-    }
-
-
-    const data = {
-
-        name:
-
-            name,
-
-        ipa:
-
-            document
-            .getElementById(
-                "pokemonIPA"
-            )
-            .value,
-
-        english:
-
-            document
-            .getElementById(
-                "english"
-            )
-            .value,
-
-        vietnamese:
-
-            document
-            .getElementById(
-                "vietnamese"
-            )
-            .value,
-
-        vocabulary:
-
-            document
-            .getElementById(
-                "vocabulary"
-            )
-            .value,
-
-        moves:
-
-            document
-            .getElementById(
-                "moves"
-            )
-            .value,
-
-        ocr:
-
-            document
-            .getElementById(
-                "ocrText"
-            )
-            .value,
-
-        image:
-
-            currentImage,
-
-        createdAt:
-
-            new Date().toISOString()
-
-    };
+}
 
 
-    try{
+const data={
 
-        await addPokemon(data);
+name:name,
+
+ipa:
+document
+.getElementById(
+"pokemonIPA"
+)
+.value,
+
+english:
+document
+.getElementById(
+"english"
+)
+.value,
+
+vietnamese:
+document
+.getElementById(
+"vietnamese"
+)
+.value,
+
+vocabulary:
+document
+.getElementById(
+"vocabulary"
+)
+.value,
+
+moves:
+document
+.getElementById(
+"moves"
+)
+.value,
+
+ocr:
+document
+.getElementById(
+"ocrText"
+)
+.value,
+
+image:
+currentImage,
+
+createdAt:
+new Date().toISOString()
+
+};
 
 
-        alert(
-            "✅ Đã lưu vào Pokémon Dictionary!"
-        );
+try{
+
+await addPokemon(data);
 
 
-        await renderDictionary();
+alert(
+"✅ Đã lưu vào Pokémon Dictionary!"
+);
 
 
-    }catch(error){
+renderDictionary();
 
-        console.error(error);
 
-        alert(
-            "Không thể lưu bài."
-        );
+}catch(error){
 
-    }
+console.error(error);
+
+
+alert(
+"Không thể lưu bài."
+);
+
+}
 
 }
 
@@ -1468,111 +1760,117 @@ async function saveResult(){
 
 async function renderDictionary(){
 
-    const grid =
-        document
-        .getElementById(
-            "dictionaryGrid"
-        );
+const grid =
+document
+.getElementById(
+"dictionaryGrid"
+);
 
 
-    const search =
-        document
-        .getElementById(
-            "search"
-        )
-        .value
-        .toLowerCase()
-        .trim();
+const keyword =
+document
+.getElementById(
+"search"
+)
+.value
+.toLowerCase();
 
 
-    const all =
-        await getPokemon();
+const all =
+await getPokemon();
 
 
-    const list =
-        all.filter(
-            item =>
-                item.name
-                .toLowerCase()
-                .includes(search)
-        );
+const list =
+all.filter(
+item =>
+item.name
+.toLowerCase()
+.includes(keyword)
+);
 
 
-    if(!list.length){
+if(!list.length){
 
-        grid.innerHTML = `
+grid.innerHTML=`
 
-            <div class="empty">
+<div class="empty">
 
-                <h3>
-                    📚 Chưa có Pokémon
-                </h3>
+<h3>
+📚 Chưa có Pokémon
+</h3>
 
-                <p>
-                    Nạp ảnh → đọc → kiểm tra
-                    → Lưu vào từ điển.
-                </p>
+<p>
+Nạp ảnh → OCR → dịch → kiểm tra → lưu.
+</p>
 
-            </div>
+</div>
 
-        `;
+`;
 
-        return;
+return;
 
-    }
-
-
-    grid.innerHTML = "";
+}
 
 
-    list
-    .sort(
-        (a,b) =>
-            new Date(b.createdAt)
-            -
-            new Date(a.createdAt)
-    )
-    .forEach(
-        pokemon => {
-
-            const div =
-                document.createElement(
-                    "div"
-                );
+grid.innerHTML="";
 
 
-            div.className =
-                "dictionary-item";
+list
+.sort(
+(a,b)=>
+new Date(b.createdAt)
+-
+new Date(a.createdAt)
+)
+.forEach(
+pokemon=>{
+
+const item =
+document.createElement(
+"div"
+);
 
 
-            div.innerHTML = `
-
-                <img
-                    src="${pokemon.image}"
-                >
-
-                <div class="dictionary-name">
-
-                    ${escapeHTML(
-                        pokemon.name
-                    )}
-
-                </div>
-
-            `;
+item.className =
+"dictionary-item";
 
 
-            div.onclick =
-                () =>
-                    openPokemon(
-                        pokemon
-                    );
+item.innerHTML=`
+
+<img
+src="${pokemon.image}"
+>
+
+<div class="dictionary-name">
+
+${escapeHTML(
+pokemon.name
+)}
+
+</div>
+
+<div class="dictionary-ipa">
+
+${escapeHTML(
+pokemon.ipa
+)}
+
+</div>
+
+`;
 
 
-            grid.appendChild(div);
+item.onclick =
+() =>
+openPokemon(
+pokemon
+);
 
-        }
-    );
+
+grid.appendChild(item);
+
+}
+);
 
 }
 
@@ -1583,164 +1881,146 @@ async function renderDictionary(){
 
 function openPokemon(pokemon){
 
-    document
-    .getElementById(
-        "modalName"
-    )
-    .textContent =
-        pokemon.name;
+document
+.getElementById(
+"modalName"
+)
+.textContent =
+pokemon.name;
 
 
-    document
-    .getElementById(
-        "modalImage"
-    )
-    .src =
-        pokemon.image;
+document
+.getElementById(
+"modalIPA"
+)
+.textContent =
+pokemon.ipa;
 
 
-    document
-    .getElementById(
-        "modalText"
-    )
-    .innerHTML = `
-
-        <p>
-            <strong>IPA:</strong>
-            ${escapeHTML(
-                pokemon.ipa
-            )}
-        </p>
-
-        <div class="description">
-
-            <div class="language-box">
-
-                <strong>
-                    🇬🇧 English
-                </strong>
-
-                <p>
-                    ${escapeHTML(
-                        pokemon.english
-                    )}
-                </p>
-
-            </div>
-
-            <div class="language-box">
-
-                <strong>
-                    🇻🇳 Tiếng Việt
-                </strong>
-
-                <p>
-                    ${escapeHTML(
-                        pokemon.vietnamese
-                    )}
-                </p>
-
-            </div>
-
-        </div>
+document
+.getElementById(
+"modalImage"
+)
+.src =
+pokemon.image;
 
 
-        <div class="section">
+document
+.getElementById(
+"modalText"
+)
+.innerHTML=`
 
-            <h3>
-                📚 Vocabulary
-            </h3>
+<div class="description">
 
-            <div class="vocabulary">
+<div class="language-box">
 
-                ${escapeHTML(
-                    pokemon.vocabulary
-                ).replace(
-                    /\n/g,
-                    "<br>"
-                )}
+<strong>
+🇬🇧 English
+</strong>
 
-            </div>
+<p>
+${escapeHTML(
+pokemon.english
+).replace(
+/\n/g,
+"<br>"
+)}
+</p>
 
-        </div>
-
-
-        <div class="section">
-
-            <h3>
-                ⚔️ Moves
-            </h3>
-
-            <div class="moves">
-
-                ${escapeHTML(
-                    pokemon.moves
-                ).replace(
-                    /\n/g,
-                    "<br>"
-                )}
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="section">
+<div class="language-box">
 
-            <h3>
-                🔎 OCR
-            </h3>
+<strong>
+🇻🇳 Tiếng Việt
+</strong>
 
-            <p>
-                ${escapeHTML(
-                    pokemon.ocr
-                ).replace(
-                    /\n/g,
-                    "<br>"
-                )}
-            </p>
+<p>
+${escapeHTML(
+pokemon.vietnamese
+).replace(
+/\n/g,
+"<br>"
+)}
+</p>
 
-        </div>
+</div>
 
-    `;
-
-
-    document
-    .getElementById(
-        "deleteButton"
-    )
-    .onclick =
-        async function(){
-
-            if(
-                !confirm(
-                    "Anh có chắc muốn xóa bài này?"
-                )
-            ){
-
-                return;
-
-            }
+</div>
 
 
-            await deletePokemon(
-                pokemon.id
-            );
+<div class="section">
+
+<h3>
+📚 Vocabulary
+</h3>
+
+<p>
+${escapeHTML(
+pokemon.vocabulary
+).replace(
+/\n/g,
+"<br>"
+)}
+</p>
+
+</div>
 
 
-            closeModal();
+<div class="section">
 
-            renderDictionary();
+<h3>
+⚔️ Moves
+</h3>
 
-        };
+<p>
+${escapeHTML(
+pokemon.moves
+).replace(
+/\n/g,
+"<br>"
+)}
+</p>
+
+</div>
+
+`;
 
 
-    document
-    .getElementById(
-        "modal"
-    )
-    .style.display =
-        "block";
+document
+.getElementById(
+"deleteButton"
+)
+.onclick =
+async()=>{
+
+if(
+!confirm(
+"Xóa Pokémon này?"
+)
+)return;
+
+
+await deletePokemon(
+pokemon.id
+);
+
+
+closeModal();
+
+renderDictionary();
+
+};
+
+
+document
+.getElementById(
+"modal"
+)
+.style.display =
+"block";
 
 }
 
@@ -1751,12 +2031,12 @@ function openPokemon(pokemon){
 
 function closeModal(){
 
-    document
-    .getElementById(
-        "modal"
-    )
-    .style.display =
-        "none";
+document
+.getElementById(
+"modal"
+)
+.style.display =
+"none";
 
 }
 
@@ -1767,46 +2047,38 @@ function closeModal(){
 
 function resetApp(){
 
-    currentImage =
-        null;
+currentImage=null;
 
 
-    document
-    .getElementById(
-        "imageInput"
-    )
-    .value =
-        "";
+document
+.getElementById(
+"imageInput"
+)
+.value="";
 
 
-    document
-    .getElementById(
-        "preview"
-    )
-    .style.display =
-        "none";
+document
+.getElementById(
+"preview"
+)
+.style.display =
+"none";
 
 
-    document
-    .getElementById(
-        "processing"
-    )
-    .style.display =
-        "none";
+document
+.getElementById(
+"processing"
+)
+.style.display =
+"none";
 
 
-    document
-    .getElementById(
-        "result"
-    )
-    .style.display =
-        "none";
-
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+document
+.getElementById(
+"result"
+)
+.style.display =
+"none";
 
 }
 
@@ -1817,11 +2089,9 @@ function resetApp(){
 
 function pasteHelp(){
 
-    alert(
-        "Anh copy ảnh trước, " +
-        "sau đó quay lại trang này " +
-        "và nhấn Ctrl + V."
-    );
+alert(
+"Copy ảnh → quay lại app → nhấn Ctrl + V."
+);
 
 }
 
@@ -1832,17 +2102,17 @@ function pasteHelp(){
 
 function escapeHTML(value){
 
-    const div =
-        document.createElement(
-            "div"
-        );
+const div =
+document.createElement(
+"div"
+);
 
 
-    div.textContent =
-        value || "";
+div.textContent =
+value || "";
 
 
-    return div.innerHTML;
+return div.innerHTML;
 
 }
 
@@ -1853,9 +2123,21 @@ function escapeHTML(value){
 
 async function init(){
 
-    await openDatabase();
+try{
 
-    await renderDictionary();
+await openDatabase();
+
+await renderDictionary();
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Không thể mở bộ nhớ từ điển."
+);
+
+}
 
 }
 
