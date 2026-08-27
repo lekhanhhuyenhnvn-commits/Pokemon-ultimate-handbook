@@ -107,6 +107,10 @@ input[type=file]{
     background:#d32f2f;
 }
 
+.orange{
+    background:#ef6c00;
+}
+
 .preview{
     display:none;
 }
@@ -307,6 +311,14 @@ textarea{
     float:right;
 }
 
+.analysis-note{
+    background:#fff8e1;
+    border-left:4px solid #ffb300;
+    padding:12px 15px;
+    border-radius:8px;
+    margin-top:15px;
+}
+
 @media(max-width:700px){
 
     .top-info,
@@ -331,115 +343,129 @@ textarea{
 
 <div class="container">
 
-    <!-- =========================
-         NẠP ẢNH
-    ========================== -->
+<!-- =====================================================
+     UPLOAD
+===================================================== -->
 
-    <div class="card upload-box">
+<div class="card upload-box">
 
-        <div class="upload-icon">📷</div>
+    <div class="upload-icon">📷</div>
 
-        <h2>Nạp ảnh</h2>
+    <h2>Nạp ảnh</h2>
 
-        <p>
-            Thêm ảnh từ máy hoặc copy ảnh rồi nhấn Ctrl + V
-        </p>
+    <p>
+        Thêm ảnh từ máy hoặc copy ảnh rồi nhấn Ctrl + V
+    </p>
 
-        <div class="buttons">
+    <div class="buttons">
 
-            <label class="file-label">
-                📁 Thêm ảnh từ máy
+        <label class="file-label">
+            📁 Thêm ảnh từ máy
 
-                <input
-                    type="file"
-                    id="imageInput"
-                    accept="image/*"
-                >
-            </label>
-
-            <button
-                class="gray"
-                onclick="pasteInstruction()"
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
             >
-                📋 Dán ảnh
-            </button>
+        </label>
 
-        </div>
+        <button
+            class="gray"
+            onclick="pasteInstruction()"
+        >
+            📋 Dán ảnh
+        </button>
 
     </div>
 
-
-    <!-- =========================
-         PREVIEW
-    ========================== -->
-
-    <div
-        id="previewCard"
-        class="card preview"
-    >
-
-        <h2>🖼️ Ảnh đã nạp</h2>
-
-        <img id="previewImage">
-
-        <div class="buttons">
-
-            <button
-                class="blue"
-                onclick="startOCR()"
-            >
-                🔍 Đọc chữ trong ảnh
-            </button>
-
-            <button
-                class="gray"
-                onclick="resetApp()"
-            >
-                Bỏ ảnh
-            </button>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <!-- =========================
-         OCR PROCESSING
-    ========================== -->
+<!-- =====================================================
+     PREVIEW
+===================================================== -->
 
-    <div
-        id="processingCard"
-        class="card processing"
-    >
+<div
+    id="previewCard"
+    class="card preview"
+>
 
-        <div class="spinner"></div>
+    <h2>🖼️ Ảnh đã nạp</h2>
 
-        <h2>🔍 Đang đọc chữ...</h2>
+    <img id="previewImage">
 
-        <p id="progressText">
-            Đang khởi động OCR...
-        </p>
+    <div class="buttons">
+
+        <button
+            class="blue"
+            onclick="startOCR()"
+        >
+            🔍 Đọc chữ trong ảnh
+        </button>
+
+        <button
+            class="gray"
+            onclick="resetApp()"
+        >
+            Bỏ ảnh
+        </button>
 
     </div>
 
-
-    <!-- =========================
-         KẾT QUẢ
-    ========================== -->
-
-    <div
-        id="resultCard"
-        class="card result"
-    >
-
-        <h2>📖 Kiểm tra bài</h2>
-
-        <p>
-            Anh kiểm tra và sửa nội dung trước khi lưu.
-        </p>
+</div>
 
 
-        <!-- TOP -->
+<!-- =====================================================
+     PROCESSING
+===================================================== -->
+
+<div
+    id="processingCard"
+    class="card processing"
+>
+
+    <div class="spinner"></div>
+
+    <h2 id="processingTitle">
+        🔍 Đang đọc chữ...
+    </h2>
+
+    <p id="progressText">
+        Đang khởi động OCR...
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<div
+    id="resultCard"
+    class="card result"
+>
+
+    <h2>📖 Kiểm tra & phân tích</h2>
+
+    <p>
+        App đã đọc chữ và tự phân loại nội dung.
+        <strong>Anh kiểm tra lại trước khi lưu.</strong>
+    </p>
+
+    <div class="analysis-note">
+        💡 Nếu app phân loại sai, anh có thể sửa trực tiếp
+        từng ô bên dưới.
+    </div>
+
+
+    <!-- =================================================
+         NAME / IPA
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>🟡 Pokémon</h2>
 
         <div class="top-info">
 
@@ -476,7 +502,7 @@ textarea{
 
                 <input
                     id="pokemonName"
-                    placeholder="Ví dụ: Pikachu"
+                    placeholder="Tên Pokémon"
                     oninput="updateName()"
                 >
 
@@ -488,7 +514,7 @@ textarea{
 
                 <input
                     id="pokemonIPA"
-                    placeholder="/ˈpiːkətʃuː/"
+                    placeholder="/.../"
                     oninput="updateIPA()"
                 >
 
@@ -496,139 +522,57 @@ textarea{
 
         </div>
 
-
-        <!-- =========================
-             ENGLISH / VIETNAMESE
-        ========================== -->
-
-        <div class="section">
-
-            <h2>📖 Description</h2>
-
-            <div class="language-grid">
-
-                <div class="language-box">
-
-                    <label>
-                        🇬🇧 English
-                    </label>
-
-                    <textarea
-                        id="englishText"
-                        placeholder="Nội dung tiếng Anh OCR đọc được..."
-                    ></textarea>
-
-                </div>
+    </div>
 
 
-                <div class="language-box">
+    <!-- =================================================
+         DESCRIPTION
+    ================================================== -->
 
-                    <label>
-                        🇻🇳 Tiếng Việt
-                    </label>
+    <div class="section">
 
-                    <textarea
-                        id="vietnameseText"
-                        placeholder="Bản dịch tiếng Việt..."
-                    ></textarea>
+        <h2>📖 Description</h2>
 
-                </div>
+        <div class="language-grid">
+
+            <div class="language-box">
+
+                <label>
+                    🇬🇧 English
+                </label>
+
+                <textarea
+                    id="englishText"
+                    placeholder="Miêu tả tiếng Anh..."
+                ></textarea>
 
             </div>
 
 
-            <div class="translate-area">
+            <div class="language-box">
 
-                <button
-                    id="translateButton"
-                    class="blue"
-                    onclick="translateDescription()"
-                >
-                    🌐 Dịch sang tiếng Việt
-                </button>
+                <label>
+                    🇻🇳 Tiếng Việt
+                </label>
+
+                <textarea
+                    id="vietnameseText"
+                    placeholder="Bản dịch tiếng Việt..."
+                ></textarea>
 
             </div>
 
         </div>
 
 
-        <!-- =========================
-             VOCABULARY
-        ========================== -->
-
-        <div class="section">
-
-            <h2>📚 2–3 từ vựng khó</h2>
-
-            <p>
-                Chỉ giữ những từ khó hoặc ít gặp, không liệt kê từ cơ bản.
-            </p>
-
-            <textarea
-                id="vocabularyText"
-                placeholder="agile — nhanh nhẹn
-discharge — phóng ra
-stamina — sức bền"
-            ></textarea>
-
-        </div>
-
-
-        <!-- =========================
-             MOVES
-        ========================== -->
-
-        <div class="section">
-
-            <h2>⚔️ Moves</h2>
-
-            <p>
-                Tên move tiếng Anh + nghĩa tiếng Việt trong ngoặc.
-            </p>
-
-            <textarea
-                id="movesText"
-                placeholder="Thunderbolt (Đòn Sấm Sét)
-Quick Attack (Đòn Đánh Nhanh)"
-            ></textarea>
-
-        </div>
-
-
-        <!-- =========================
-             OCR GỐC
-        ========================== -->
-
-        <div class="section">
-
-            <h2>🔎 Văn bản OCR gốc</h2>
-
-            <textarea
-                id="ocrText"
-                placeholder="Nội dung OCR..."
-            ></textarea>
-
-        </div>
-
-
-        <!-- =========================
-             SAVE
-        ========================== -->
-
-        <div class="buttons">
+        <div class="translate-area">
 
             <button
-                class="green"
-                onclick="saveToDictionary()"
+                id="translateButton"
+                class="blue"
+                onclick="translateDescription()"
             >
-                💾 Lưu vào từ điển
-            </button>
-
-            <button
-                class="gray"
-                onclick="resetApp()"
-            >
-                📷 Nạp ảnh khác
+                🌐 Dịch sang tiếng Việt
             </button>
 
         </div>
@@ -636,41 +580,130 @@ Quick Attack (Đòn Đánh Nhanh)"
     </div>
 
 
-    <!-- =========================
-         DICTIONARY
-    ========================== -->
+    <!-- =================================================
+         VOCABULARY
+    ================================================== -->
 
-    <div class="card">
+    <div class="section">
 
-        <div class="dictionary-header">
+        <h2>📚 2–3 từ vựng khó</h2>
 
-            <h2>
-                📚 My Pokémon Dictionary
-            </h2>
+        <p>
+            Chỉ giữ 2–3 từ khó hoặc ít gặp.
+        </p>
 
-            <input
-                id="searchInput"
-                class="search"
-                placeholder="🔎 Tìm Pokémon..."
-                oninput="renderDictionary()"
-            >
+        <textarea
+            id="vocabularyText"
+            placeholder="Ví dụ:
+agile — nhanh nhẹn
+discharge — phóng ra
+stamina — sức bền"
+        ></textarea>
 
-        </div>
+    </div>
 
 
-        <div
-            id="dictionaryGrid"
-            class="dictionary-grid"
-        ></div>
+    <!-- =================================================
+         MOVES
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>⚔️ Moves</h2>
+
+        <p>
+            Tên move tiếng Anh + nghĩa tiếng Việt trong ngoặc.
+        </p>
+
+        <textarea
+            id="movesText"
+            placeholder="Thunderbolt (Đòn Sấm Sét)
+Quick Attack (Đòn Đánh Nhanh)"
+        ></textarea>
+
+    </div>
+
+
+    <!-- =================================================
+         OCR RAW
+    ================================================== -->
+
+    <div class="section">
+
+        <h2>🔎 Văn bản OCR gốc</h2>
+
+        <p>
+            Đây là toàn bộ chữ mà OCR đọc được.
+            Anh có thể sửa nếu OCR đọc sai.
+        </p>
+
+        <textarea
+            id="ocrText"
+        ></textarea>
+
+    </div>
+
+
+    <!-- =================================================
+         SAVE
+    ================================================== -->
+
+    <div class="buttons">
+
+        <button
+            class="green"
+            onclick="saveToDictionary()"
+        >
+            💾 Đúng rồi — Lưu vào từ điển
+        </button>
+
+        <button
+            class="gray"
+            onclick="resetApp()"
+        >
+            📷 Nạp ảnh khác
+        </button>
 
     </div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
+     DICTIONARY
+===================================================== -->
+
+<div class="card">
+
+    <div class="dictionary-header">
+
+        <h2>
+            📚 My Pokémon Dictionary
+        </h2>
+
+        <input
+            id="searchInput"
+            class="search"
+            placeholder="🔎 Tìm Pokémon..."
+            oninput="renderDictionary()"
+        >
+
+    </div>
+
+
+    <div
+        id="dictionaryGrid"
+        class="dictionary-grid"
+    ></div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
      MODAL
-========================== -->
+===================================================== -->
 
 <div
     id="modal"
@@ -712,18 +745,20 @@ Quick Attack (Đòn Đánh Nhanh)"
 <script>
 
 /* =====================================================
-   BIẾN
+   DATABASE
 ===================================================== */
-
-let currentImage = null;
 
 let db = null;
 
-const DB_NAME = "PokemonUltimateHandbook";
+let currentImage = null;
+
+const DB_NAME =
+    "PokemonUltimateHandbook";
 
 const DB_VERSION = 1;
 
-const STORE_NAME = "dictionary";
+const STORE_NAME =
+    "dictionary";
 
 
 /* =====================================================
@@ -773,61 +808,69 @@ const IPA = {
 
 
 /* =====================================================
-   DATABASE
+   MỞ DATABASE
 ===================================================== */
 
 function openDatabase(){
 
-    return new Promise((resolve,reject)=>{
+    return new Promise(
+        (resolve,reject)=>{
 
-        const request =
-            indexedDB.open(
-                DB_NAME,
-                DB_VERSION
-            );
-
-
-        request.onupgradeneeded = function(event){
-
-            db = event.target.result;
-
-            if(
-                !db.objectStoreNames.contains(
-                    STORE_NAME
-                )
-            ){
-
-                db.createObjectStore(
-                    STORE_NAME,
-                    {
-                        keyPath:"id",
-                        autoIncrement:true
-                    }
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
                 );
 
-            }
 
-        };
+            request.onupgradeneeded =
+                function(event){
 
-
-        request.onsuccess = function(event){
-
-            db = event.target.result;
-
-            resolve();
-
-        };
+                    db =
+                        event.target.result;
 
 
-        request.onerror = function(){
+                    if(
+                        !db.objectStoreNames.contains(
+                            STORE_NAME
+                        )
+                    ){
 
-            reject(
-                request.error
-            );
+                        db.createObjectStore(
+                            STORE_NAME,
+                            {
+                                keyPath:"id",
+                                autoIncrement:true
+                            }
+                        );
 
-        };
+                    }
 
-    });
+                };
+
+
+            request.onsuccess =
+                function(event){
+
+                    db =
+                        event.target.result;
+
+                    resolve();
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+    );
 
 }
 
@@ -838,39 +881,43 @@ function openDatabase(){
 
 function fileToDataURL(file){
 
-    return new Promise((resolve,reject)=>{
+    return new Promise(
+        (resolve,reject)=>{
 
-        const reader =
-            new FileReader();
-
-
-        reader.onload = function(){
-
-            resolve(
-                reader.result
-            );
-
-        };
+            const reader =
+                new FileReader();
 
 
-        reader.onerror = function(){
+            reader.onload =
+                function(){
 
-            reject(
-                reader.error
-            );
+                    resolve(
+                        reader.result
+                    );
 
-        };
+                };
 
 
-        reader.readAsDataURL(file);
+            reader.onerror =
+                function(){
 
-    });
+                    reject(
+                        reader.error
+                    );
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
 
 }
 
 
 /* =====================================================
-   CHỌN ẢNH
+   FILE INPUT
 ===================================================== */
 
 document
@@ -899,7 +946,7 @@ document
 
 
 /* =====================================================
-   DÁN ẢNH
+   PASTE ẢNH
 ===================================================== */
 
 document.addEventListener(
@@ -943,7 +990,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   HIỆN PREVIEW
+   SHOW PREVIEW
 ===================================================== */
 
 function showPreview(){
@@ -999,6 +1046,14 @@ async function startOCR(){
         "block";
 
 
+    document
+    .getElementById(
+        "processingTitle"
+    )
+    .textContent =
+        "🔍 Đang đọc chữ trong ảnh...";
+
+
     try{
 
         const result =
@@ -1014,7 +1069,7 @@ async function startOCR(){
                             message.status
                         ){
 
-                            let progress =
+                            const percent =
                                 Math.round(
                                     (
                                         message.progress
@@ -1035,7 +1090,7 @@ async function startOCR(){
                                 +
                                 " "
                                 +
-                                progress
+                                percent
                                 +
                                 "%";
 
@@ -1051,15 +1106,48 @@ async function startOCR(){
             result.data.text.trim();
 
 
-        /*
+        /* ============================================
+           HIỆN BƯỚC PHÂN TÍCH
+        ============================================ */
 
-        QUAN TRỌNG:
+        document
+        .getElementById(
+            "processingTitle"
+        )
+        .textContent =
+            "🧠 Đang phân tích văn bản...";
 
-        OCR chỉ đọc chữ.
 
-        Không tự đoán Pokémon.
+        document
+        .getElementById(
+            "progressText"
+        )
+        .textContent =
+            "Đang tìm tên, IPA, mô tả và Moves...";
 
-        */
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    500
+                )
+        );
+
+
+        /* ============================================
+           PHÂN TÍCH
+        ============================================ */
+
+        const analysis =
+            analyzeOCRText(
+                text
+            );
+
+
+        /* ============================================
+           ĐIỀN KẾT QUẢ
+        ============================================ */
 
         document
         .getElementById(
@@ -1071,10 +1159,42 @@ async function startOCR(){
 
         document
         .getElementById(
+            "pokemonName"
+        )
+        .value =
+            analysis.name;
+
+
+        document
+        .getElementById(
+            "pokemonIPA"
+        )
+        .value =
+            analysis.ipa;
+
+
+        document
+        .getElementById(
             "englishText"
         )
         .value =
-            text;
+            analysis.description;
+
+
+        document
+        .getElementById(
+            "movesText"
+        )
+        .value =
+            analysis.moves;
+
+
+        document
+        .getElementById(
+            "vocabularyText"
+        )
+        .value =
+            analysis.vocabulary;
 
 
         document
@@ -1087,26 +1207,15 @@ async function startOCR(){
 
         document
         .getElementById(
-            "vocabularyText"
-        )
-        .value =
-            "";
-
-
-        document
-        .getElementById(
-            "movesText"
-        )
-        .value =
-            "";
-
-
-        document
-        .getElementById(
             "resultImage"
         )
         .src =
             currentImage;
+
+
+        updateName();
+
+        updateIPA();
 
 
         document
@@ -1147,7 +1256,7 @@ async function startOCR(){
 
 
         alert(
-            "OCR không đọc được ảnh."
+            "Không đọc được chữ trong ảnh."
         );
 
     }
@@ -1156,7 +1265,649 @@ async function startOCR(){
 
 
 /* =====================================================
-   TÊN
+   PHÂN TÍCH OCR
+===================================================== */
+
+function analyzeOCRText(text){
+
+    const lines =
+        text
+        .split(/\r?\n/)
+        .map(
+            line =>
+                line
+                .replace(
+                    /\s+/g,
+                    " "
+                )
+                .trim()
+        )
+        .filter(Boolean);
+
+
+    let name = "";
+
+    let ipa = "";
+
+    let descriptionLines = [];
+
+    let moveLines = [];
+
+    let vocabulary = [];
+
+
+    /* =================================================
+       1. TÌM IPA
+    ================================================= */
+
+    for(
+        const line of lines
+    ){
+
+        const ipaMatch =
+            line.match(
+                /\/[^\/]{2,50}\//
+            );
+
+
+        if(ipaMatch){
+
+            ipa =
+                ipaMatch[0];
+
+            break;
+
+        }
+
+    }
+
+
+    /* =================================================
+       2. TÌM TÊN POKÉMON
+    ================================================= */
+
+    const knownNames =
+        Object.keys(IPA);
+
+
+    for(
+        const line of lines
+    ){
+
+        const clean =
+            line
+            .toLowerCase()
+            .replace(
+                /[^a-z]/g,
+                ""
+            );
+
+
+        const found =
+            knownNames.find(
+                pokemon =>
+                    clean ===
+                    pokemon
+            );
+
+
+        if(found){
+
+            name =
+                found
+                .charAt(0)
+                .toUpperCase()
+                +
+                found.slice(1);
+
+            break;
+
+        }
+
+    }
+
+
+    /*
+       Nếu chưa tìm thấy trong danh sách IPA,
+       lấy dòng chữ ngắn, giống tên nhất.
+    */
+
+    if(!name){
+
+        for(
+            const line of lines
+        ){
+
+            const candidate =
+                line
+                .replace(
+                    /[^A-Za-zÀ-ỹ' -]/g,
+                    ""
+                )
+                .trim();
+
+
+            const words =
+                candidate
+                .split(/\s+/);
+
+
+            if(
+                candidate.length >= 3
+                &&
+                candidate.length <= 25
+                &&
+                words.length <= 3
+                &&
+                !containsDescriptionWord(
+                    candidate
+                )
+            ){
+
+                name =
+                    candidate;
+
+                break;
+
+            }
+
+        }
+
+    }
+
+
+    /* =================================================
+       3. NHẬN IPA TỪ DATABASE
+    ================================================= */
+
+    if(
+        !ipa &&
+        name
+    ){
+
+        const key =
+            name
+            .toLowerCase();
+
+
+        if(
+            IPA[key]
+        ){
+
+            ipa =
+                IPA[key];
+
+        }
+
+    }
+
+
+    /* =================================================
+       4. XÁC ĐỊNH CÁC DÒNG MOVE
+    ================================================= */
+
+    let inMoves = false;
+
+    let inDescription = false;
+
+
+    for(
+        let i = 0;
+        i < lines.length;
+        i++
+    ){
+
+        const line =
+            lines[i];
+
+
+        const lower =
+            line.toLowerCase();
+
+
+        /* MOVE HEADER */
+
+        if(
+            /^(moves?|move set|attacks?)\s*[:\-]?$/i
+            .test(line)
+            ||
+            lower.includes("moves:")
+            ||
+            lower.includes("moves ")
+        ){
+
+            inMoves = true;
+
+            inDescription = false;
+
+            continue;
+
+        }
+
+
+        /* DESCRIPTION HEADER */
+
+        if(
+            /^(description|about|overview)\s*[:\-]?$/i
+            .test(line)
+            ||
+            lower.includes("description:")
+        ){
+
+            inDescription = true;
+
+            inMoves = false;
+
+            continue;
+
+        }
+
+
+        /* MOVE DETECTION */
+
+        if(
+            inMoves
+        ){
+
+            if(
+                line.length > 1
+            ){
+
+                moveLines.push(
+                    line
+                );
+
+            }
+
+            continue;
+
+        }
+
+
+        /* Nếu dòng giống move */
+
+        if(
+            looksLikeMove(line)
+        ){
+
+            moveLines.push(
+                line
+            );
+
+            continue;
+
+        }
+
+
+        /* =============================================
+           DESCRIPTION
+        ============================================= */
+
+        if(
+            line !== name
+            &&
+            line !== ipa
+        ){
+
+            if(
+                looksLikeDescription(line)
+                ||
+                inDescription
+            ){
+
+                descriptionLines.push(
+                    line
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* =================================================
+       5. NẾU KHÔNG TÌM ĐƯỢC DESCRIPTION
+    ================================================= */
+
+    if(
+        descriptionLines.length === 0
+    ){
+
+        for(
+            const line of lines
+        ){
+
+            if(
+                line === name ||
+                line === ipa
+            ){
+
+                continue;
+
+            }
+
+
+            if(
+                looksLikeMove(line)
+            ){
+
+                continue;
+
+            }
+
+
+            if(
+                line.length >= 30
+            ){
+
+                descriptionLines.push(
+                    line
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* =================================================
+       6. CHỌN 2–3 TỪ KHÓ
+    ================================================= */
+
+    vocabulary =
+        findDifficultWords(
+            descriptionLines.join(" ")
+        );
+
+
+    return {
+
+        name:name,
+
+        ipa:ipa,
+
+        description:
+            descriptionLines.join(
+                "\n"
+            ),
+
+        moves:
+            formatMoves(
+                moveLines
+            ),
+
+        vocabulary:
+            vocabulary.join(
+                "\n"
+            )
+
+    };
+
+}
+
+
+/* =====================================================
+   TỪ KHÓ
+===================================================== */
+
+function findDifficultWords(text){
+
+    const stopWords = new Set([
+
+        "about","after","again","their",
+        "there","these","those","which",
+        "while","where","when","with",
+        "from","have","has","that",
+        "this","they","them","into",
+        "over","under","also","than",
+        "then","very","more","most",
+        "some","such","will","would",
+        "could","should","being","been",
+        "pokemon","pokémon","type",
+        "types","using","used","make",
+        "made","like","often","only",
+        "each","other","both","many",
+        "much","because","during",
+        "through","around","power",
+        "attack","attacks","ability",
+        "abilities"
+
+    ]);
+
+
+    const words =
+        text
+        .toLowerCase()
+        .match(
+            /\b[a-z]{6,}\b/g
+        )
+        ||
+        [];
+
+
+    const unique =
+        [
+            ...new Set(
+                words.filter(
+                    word =>
+                        !stopWords.has(
+                            word
+                        )
+                )
+            )
+        ];
+
+
+    /*
+       Ưu tiên từ dài,
+       nhưng chỉ lấy tối đa 3.
+    */
+
+    unique.sort(
+        (a,b)=>
+            b.length -
+            a.length
+    );
+
+
+    return unique
+        .slice(0,3)
+        .map(
+            word =>
+                word +
+                " — chưa dịch"
+        );
+
+}
+
+
+/* =====================================================
+   DESCRIPTION DETECTION
+===================================================== */
+
+function looksLikeDescription(line){
+
+    if(
+        line.length < 25
+    ){
+
+        return false;
+
+    }
+
+
+    const lower =
+        line.toLowerCase();
+
+
+    const indicators = [
+
+        "is a",
+        "is an",
+        "has",
+        "have",
+        "can",
+        "its",
+        "it has",
+        "it can",
+        "known for",
+        "usually",
+        "often",
+        "when",
+        "because",
+        "during",
+        "this pokemon",
+        "this pokémon",
+        "pokemon is",
+        "pokémon is"
+
+    ];
+
+
+    return indicators.some(
+        word =>
+            lower.includes(
+                word
+            )
+    );
+
+}
+
+
+/* =====================================================
+   MOVE DETECTION
+===================================================== */
+
+function looksLikeMove(line){
+
+    const lower =
+        line.toLowerCase();
+
+
+    const moveWords = [
+
+        "thunderbolt",
+        "quick attack",
+        "iron tail",
+        "tackle",
+        "flamethrower",
+        "water gun",
+        "vine whip",
+        "razor leaf",
+        "ember",
+        "scratch",
+        "bite",
+        "surf",
+        "hydro pump",
+        "psychic",
+        "shadow ball",
+        "ice beam",
+        "earthquake",
+        "swift",
+        "protect",
+        "double team",
+        "focus blast",
+        "dragon claw",
+        "dragon pulse",
+        "aerial ace",
+        "slash"
+
+    ];
+
+
+    return moveWords.some(
+        move =>
+            lower.includes(
+                move
+            )
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT MOVES
+===================================================== */
+
+function formatMoves(lines){
+
+    if(
+        lines.length === 0
+    ){
+
+        return "";
+
+    }
+
+
+    return lines
+        .map(
+            line => {
+
+                /*
+                   Nếu đã có nghĩa trong ngoặc
+                   thì giữ nguyên.
+                */
+
+                if(
+                    /\(.+\)/.test(line)
+                ){
+
+                    return line;
+
+                }
+
+
+                return line;
+
+            }
+        )
+        .join("\n");
+
+}
+
+
+/* =====================================================
+   CHECK DESCRIPTION WORD
+===================================================== */
+
+function containsDescriptionWord(text){
+
+    const lower =
+        text.toLowerCase();
+
+
+    const words = [
+
+        "pokemon",
+        "description",
+        "ability",
+        "moves",
+        "attack",
+        "type",
+        "electric",
+        "fire",
+        "water",
+        "grass",
+        "psychic"
+
+    ];
+
+
+    return words.some(
+        word =>
+            lower.includes(
+                word
+            )
+    );
+
+}
+
+
+/* =====================================================
+   NAME UPDATE
 ===================================================== */
 
 function updateName(){
@@ -1194,16 +1945,16 @@ function updateName(){
         .value =
             IPA[key];
 
-
-        updateIPA();
-
     }
+
+
+    updateIPA();
 
 }
 
 
 /* =====================================================
-   IPA
+   IPA UPDATE
 ===================================================== */
 
 function updateIPA(){
@@ -1243,7 +1994,7 @@ async function translateDescription(){
     if(!english){
 
         alert(
-            "Chưa có nội dung tiếng Anh."
+            "Chưa có phần Description."
         );
 
         return;
@@ -1275,7 +2026,7 @@ async function translateDescription(){
             .filter(Boolean);
 
 
-        const results = [];
+        const translated = [];
 
 
         for(
@@ -1298,13 +2049,15 @@ async function translateDescription(){
 
 
                 const response =
-                    await fetch(url);
+                    await fetch(
+                        url
+                    );
 
 
                 if(!response.ok){
 
                     throw new Error(
-                        "Translation failed"
+                        "Translation error"
                     );
 
                 }
@@ -1320,23 +2073,23 @@ async function translateDescription(){
                     data.responseData.translatedText
                 ){
 
-                    results.push(
-                        data.responseData.translatedText
+                    translated.push(
+                        data
+                        .responseData
+                        .translatedText
                     );
 
                 }else{
 
-                    results.push(
-                        "[Không dịch được đoạn này]"
+                    translated.push(
+                        "[Không dịch được]"
                     );
 
                 }
 
             }catch(error){
 
-                console.error(error);
-
-                results.push(
+                translated.push(
                     "[Lỗi dịch đoạn này]"
                 );
 
@@ -1359,8 +2112,9 @@ async function translateDescription(){
             "vietnameseText"
         )
         .value =
-            results.join("\n");
-
+            translated.join(
+                "\n"
+            );
 
     }catch(error){
 
@@ -1382,7 +2136,7 @@ async function translateDescription(){
 
 
 /* =====================================================
-   LƯU
+   SAVE
 ===================================================== */
 
 function saveToDictionary(){
@@ -1469,20 +2223,18 @@ function saveToDictionary(){
         );
 
 
-    const store =
-        transaction.objectStore(
-            STORE_NAME
-        );
-
-
-    store.add(data);
+    transaction
+    .objectStore(
+        STORE_NAME
+    )
+    .add(data);
 
 
     transaction.oncomplete =
         function(){
 
             alert(
-                "✅ Đã lưu vào từ điển!"
+                "✅ Đã lưu vào Pokémon Dictionary!"
             );
 
 
@@ -1495,7 +2247,7 @@ function saveToDictionary(){
         function(){
 
             alert(
-                "Không thể lưu dữ liệu."
+                "Không thể lưu."
             );
 
         };
@@ -1504,10 +2256,15 @@ function saveToDictionary(){
 
 
 /* =====================================================
-   HIỆN TỪ ĐIỂN
+   RENDER DICTIONARY
 ===================================================== */
 
 function renderDictionary(){
+
+    if(!db){
+        return;
+    }
+
 
     const grid =
         document
@@ -1525,15 +2282,12 @@ function renderDictionary(){
         .toLowerCase();
 
 
-    const transaction =
-        db.transaction(
+    const request =
+        db
+        .transaction(
             STORE_NAME,
             "readonly"
-        );
-
-
-    const request =
-        transaction
+        )
         .objectStore(
             STORE_NAME
         )
@@ -1570,7 +2324,9 @@ function renderDictionary(){
             );
 
 
-            if(!list.length){
+            if(
+                list.length === 0
+            ){
 
                 grid.innerHTML = `
 
@@ -1581,9 +2337,9 @@ function renderDictionary(){
                         </h3>
 
                         <p>
-                            Nạp ảnh → đọc chữ →
-                            dịch → kiểm tra →
-                            lưu.
+                            Nạp ảnh → OCR →
+                            phân tích → dịch →
+                            kiểm tra → lưu.
                         </p>
 
                     </div>
@@ -1659,7 +2415,7 @@ function renderDictionary(){
 
 
 /* =====================================================
-   MỞ BÀI ĐÃ LƯU
+   OPEN POKEMON
 ===================================================== */
 
 function openPokemon(pokemon){
@@ -1773,7 +2529,7 @@ function openPokemon(pokemon){
 
 
 /* =====================================================
-   XÓA
+   DELETE
 ===================================================== */
 
 function deletePokemon(id){
@@ -1816,7 +2572,7 @@ function deletePokemon(id){
 
 
 /* =====================================================
-   ĐÓNG MODAL
+   CLOSE
 ===================================================== */
 
 function closeModal(){
@@ -1871,53 +2627,30 @@ function resetApp(){
         "none";
 
 
-    document
-    .getElementById(
-        "englishText"
-    )
-    .value = "";
+    const ids = [
 
-
-    document
-    .getElementById(
-        "vietnameseText"
-    )
-    .value = "";
-
-
-    document
-    .getElementById(
-        "vocabularyText"
-    )
-    .value = "";
-
-
-    document
-    .getElementById(
-        "movesText"
-    )
-    .value = "";
-
-
-    document
-    .getElementById(
+        "pokemonName",
+        "pokemonIPA",
+        "englishText",
+        "vietnameseText",
+        "vocabularyText",
+        "movesText",
         "ocrText"
-    )
-    .value = "";
+
+    ];
 
 
-    document
-    .getElementById(
-        "pokemonName"
-    )
-    .value = "";
+    ids.forEach(
+        id => {
 
+            document
+            .getElementById(
+                id
+            )
+            .value = "";
 
-    document
-    .getElementById(
-        "pokemonIPA"
-    )
-    .value = "";
+        }
+    );
 
 
     document
@@ -1945,14 +2678,14 @@ function resetApp(){
 function pasteInstruction(){
 
     alert(
-        "Anh hãy copy một bức ảnh, sau đó quay lại app và nhấn Ctrl + V."
+        "Anh copy ảnh → quay lại app → nhấn Ctrl + V. Ảnh sẽ tự xuất hiện."
     );
 
 }
 
 
 /* =====================================================
-   HTML SAFE
+   ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
@@ -1976,7 +2709,8 @@ function formatText(value){
 
     return escapeHTML(
         value || ""
-    ).replace(
+    )
+    .replace(
         /\n/g,
         "<br>"
     );
@@ -1985,7 +2719,7 @@ function formatText(value){
 
 
 /* =====================================================
-   KHỞI ĐỘNG
+   INIT
 ===================================================== */
 
 async function init(){
