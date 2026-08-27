@@ -9,14 +9,13 @@
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
 
 body{
     margin:0;
-    font-family:Arial,sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f3f5f8;
     color:#222;
 }
@@ -43,30 +42,34 @@ header p{
     padding:0 15px;
 }
 
-.upload-box{
+.card{
     background:white;
-    border:2px dashed #ccc;
     border-radius:18px;
-    padding:35px 20px;
+    padding:25px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    margin-bottom:20px;
+}
+
+.upload-box{
     text-align:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    border:2px dashed #ccc;
 }
 
 .upload-icon{
     font-size:55px;
 }
 
-.upload-buttons{
+.buttons{
     display:flex;
     justify-content:center;
-    gap:12px;
+    gap:10px;
     flex-wrap:wrap;
-    margin-top:20px;
+    margin-top:15px;
 }
 
 button,
-.upload-label{
-    border:none;
+.file-label{
+    border:0;
     border-radius:10px;
     padding:12px 18px;
     font-size:15px;
@@ -76,52 +79,49 @@ button,
 }
 
 button:hover,
-.upload-label:hover{
-    background:#c62828;
+.file-label:hover{
+    opacity:.9;
+}
+
+.file-label{
+    display:inline-block;
 }
 
 input[type=file]{
     display:none;
 }
 
-.preview{
-    display:none;
-    margin-top:25px;
-    background:white;
-    padding:20px;
-    border-radius:18px;
-}
-
-.preview img{
-    width:100%;
-    max-height:600px;
-    object-fit:contain;
-    border-radius:12px;
-    background:#f5f5f5;
-}
-
-.preview-buttons{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:15px;
-}
-
-.analyze{
+.blue{
     background:#1976d2;
 }
 
-.cancel{
+.green{
+    background:#2e7d32;
+}
+
+.gray{
     background:#757575;
+}
+
+.red{
+    background:#d32f2f;
+}
+
+.preview{
+    display:none;
+}
+
+.preview img{
+    display:block;
+    width:100%;
+    max-height:550px;
+    object-fit:contain;
+    background:#f5f5f5;
+    border-radius:12px;
 }
 
 .processing{
     display:none;
-    margin-top:25px;
-    background:white;
-    border-radius:18px;
-    padding:30px;
     text-align:center;
 }
 
@@ -132,7 +132,7 @@ input[type=file]{
     border-top:5px solid #e53935;
     border-radius:50%;
     animation:spin 1s linear infinite;
-    margin:auto;
+    margin:0 auto 15px;
 }
 
 @keyframes spin{
@@ -143,16 +143,9 @@ input[type=file]{
 
 .result{
     display:none;
-    margin-top:25px;
 }
 
-.result-card{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-}
-
-.result-grid{
+.top-info{
     display:grid;
     grid-template-columns:280px 1fr;
     gap:25px;
@@ -166,125 +159,90 @@ input[type=file]{
     border-radius:12px;
 }
 
-.pokemon-name{
-    font-size:34px;
-    margin:0;
+.name{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:5px;
 }
 
-.pokemon-ipa{
+.ipa{
     font-size:20px;
     color:#666;
-    margin-top:8px;
     font-style:italic;
+    margin-bottom:20px;
 }
 
-.field{
-    margin-top:20px;
-}
-
-.field label{
+label{
     display:block;
     font-weight:bold;
-    margin-bottom:8px;
+    margin-bottom:7px;
 }
 
 input,
 textarea{
     width:100%;
+    padding:12px;
     border:1px solid #ddd;
     border-radius:10px;
-    padding:12px;
-    font-size:15px;
     font-family:inherit;
+    font-size:15px;
 }
 
 textarea{
-    min-height:130px;
+    min-height:150px;
     resize:vertical;
-}
-
-.description{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.language-box{
-    background:#f7f8fa;
-    padding:15px;
-    border-radius:12px;
 }
 
 .section{
     margin-top:25px;
 }
 
-.section-title{
+.section h2{
     color:#d32f2f;
     border-bottom:2px solid #eee;
     padding-bottom:8px;
 }
 
-.translate-box{
+.language-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.language-box{
+    background:#f8f9fa;
+    padding:15px;
+    border-radius:12px;
+}
+
+.translate-area{
     text-align:center;
-    margin-top:15px;
+    margin-top:12px;
 }
 
-.translate{
-    background:#1976d2;
-}
-
-.translate:hover{
-    background:#0d47a1;
-}
-
-.result-buttons{
+.dictionary-header{
     display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:25px;
-}
-
-.save{
-    background:#2e7d32;
-}
-
-.save:hover{
-    background:#1b5e20;
-}
-
-.dictionary{
-    margin-top:35px;
-}
-
-.dictionary-top{
-    display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     gap:15px;
     flex-wrap:wrap;
 }
 
 .search{
     width:260px;
-    padding:11px;
-    border:1px solid #ddd;
-    border-radius:10px;
 }
 
 .dictionary-grid{
     display:grid;
-    grid-template-columns:
-        repeat(auto-fill,minmax(180px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
     gap:15px;
     margin-top:15px;
 }
 
 .dictionary-item{
     background:white;
-    padding:12px;
     border-radius:15px;
+    padding:12px;
     box-shadow:0 3px 10px rgba(0,0,0,.08);
     cursor:pointer;
 }
@@ -300,7 +258,7 @@ textarea{
 .dictionary-name{
     text-align:center;
     font-weight:bold;
-    margin-top:10px;
+    margin-top:8px;
 }
 
 .dictionary-ipa{
@@ -312,10 +270,10 @@ textarea{
 }
 
 .empty{
-    background:white;
-    padding:30px;
     text-align:center;
     color:#777;
+    padding:30px;
+    background:white;
     border-radius:15px;
 }
 
@@ -323,504 +281,449 @@ textarea{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.65);
-    z-index:999;
+    background:rgba(0,0,0,.7);
+    z-index:1000;
     padding:20px;
-    overflow-y:auto;
+    overflow:auto;
 }
 
 .modal-content{
     background:white;
     max-width:900px;
     margin:30px auto;
+    padding:25px;
     border-radius:18px;
-    padding:20px;
 }
 
 .modal-content img{
     width:100%;
     max-height:450px;
     object-fit:contain;
+    background:#f5f5f5;
+    border-radius:12px;
 }
 
-.close{
+.modal-close{
     float:right;
-    background:#757575;
-}
-
-.delete{
-    background:#d32f2f;
-    margin-top:20px;
 }
 
 @media(max-width:700px){
 
-    .result-grid,
-    .description{
+    .top-info,
+    .language-grid{
         grid-template-columns:1fr;
     }
 
-    .pokemon-name{
-        font-size:28px;
+    .name{
+        font-size:27px;
     }
 
 }
-
 </style>
 </head>
 
-
 <body>
 
-
 <header>
-
-<h1>⚡ Pokémon Ultimate Handbook</h1>
-
-<p>
-Pokémon English Learning Dictionary
-</p>
-
+    <h1>⚡ Pokémon Ultimate Handbook</h1>
+    <p>English Learning Dictionary</p>
 </header>
-
 
 <div class="container">
 
+    <!-- =========================
+         NẠP ẢNH
+    ========================== -->
 
-<!-- =========================
-     UPLOAD
-========================= -->
+    <div class="card upload-box">
 
-<div class="upload-box">
+        <div class="upload-icon">📷</div>
 
-<div class="upload-icon">
-📷
-</div>
+        <h2>Nạp ảnh</h2>
 
-<h2>
-Nạp ảnh Pokémon
-</h2>
+        <p>
+            Thêm ảnh từ máy hoặc copy ảnh rồi nhấn Ctrl + V
+        </p>
 
-<p>
-Thêm ảnh từ máy hoặc dán ảnh
-</p>
+        <div class="buttons">
 
-<div class="upload-buttons">
+            <label class="file-label">
+                📁 Thêm ảnh từ máy
 
-<label class="upload-label">
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                >
+            </label>
 
-📁 Thêm ảnh từ máy
+            <button
+                class="gray"
+                onclick="pasteInstruction()"
+            >
+                📋 Dán ảnh
+            </button>
 
-<input
-type="file"
-id="imageInput"
-accept="image/*"
->
+        </div>
 
-</label>
+    </div>
 
 
-<button onclick="pasteHelp()">
+    <!-- =========================
+         PREVIEW
+    ========================== -->
 
-📋 Dán ảnh
+    <div
+        id="previewCard"
+        class="card preview"
+    >
 
-</button>
+        <h2>🖼️ Ảnh đã nạp</h2>
 
-</div>
+        <img id="previewImage">
 
-<p>
-Copy ảnh → quay lại app → <strong>Ctrl + V</strong>
-</p>
+        <div class="buttons">
 
-</div>
+            <button
+                class="blue"
+                onclick="startOCR()"
+            >
+                🔍 Đọc chữ trong ảnh
+            </button>
 
+            <button
+                class="gray"
+                onclick="resetApp()"
+            >
+                Bỏ ảnh
+            </button>
 
-<!-- =========================
-     PREVIEW
-========================= -->
+        </div>
 
-<div
-id="preview"
-class="preview"
->
+    </div>
 
-<h2>
-🖼️ Ảnh đã nạp
-</h2>
 
-<img
-id="previewImage"
->
+    <!-- =========================
+         OCR PROCESSING
+    ========================== -->
 
+    <div
+        id="processingCard"
+        class="card processing"
+    >
 
-<div class="preview-buttons">
+        <div class="spinner"></div>
 
-<button
-class="analyze"
-onclick="analyzeImage()"
->
+        <h2>🔍 Đang đọc chữ...</h2>
 
-🔍 Đọc thông tin ảnh
+        <p id="progressText">
+            Đang khởi động OCR...
+        </p>
 
-</button>
+    </div>
 
 
-<button
-class="cancel"
-onclick="resetApp()"
->
+    <!-- =========================
+         KẾT QUẢ
+    ========================== -->
 
-🗑️ Bỏ ảnh
+    <div
+        id="resultCard"
+        class="card result"
+    >
 
-</button>
+        <h2>📖 Kiểm tra bài</h2>
 
-</div>
+        <p>
+            Anh kiểm tra và sửa nội dung trước khi lưu.
+        </p>
 
-</div>
 
+        <!-- TOP -->
 
-<!-- =========================
-     PROCESSING
-========================= -->
+        <div class="top-info">
 
-<div
-id="processing"
-class="processing"
->
+            <div>
 
-<div class="spinner"></div>
+                <img
+                    id="resultImage"
+                    class="result-image"
+                >
 
-<h3>
-🔍 Đang đọc ảnh...
-</h3>
+            </div>
 
-<p id="progressText">
-Đang khởi động OCR...
-</p>
 
-</div>
+            <div>
 
+                <div
+                    id="displayName"
+                    class="name"
+                >
+                    Pokémon
+                </div>
 
-<!-- =========================
-     RESULT
-========================= -->
+                <div
+                    id="displayIPA"
+                    class="ipa"
+                >
+                    /Chưa có IPA/
+                </div>
 
-<div
-id="result"
-class="result"
->
 
-<div class="result-card">
+                <label>
+                    Tên Pokémon
+                </label>
 
+                <input
+                    id="pokemonName"
+                    placeholder="Ví dụ: Pikachu"
+                    oninput="updateName()"
+                >
 
-<h2>
-📖 Kiểm tra thông tin
-</h2>
+                <br><br>
 
+                <label>
+                    Phiên âm IPA
+                </label>
 
-<div class="result-grid">
+                <input
+                    id="pokemonIPA"
+                    placeholder="/ˈpiːkətʃuː/"
+                    oninput="updateIPA()"
+                >
 
+            </div>
 
-<div>
+        </div>
 
-<img
-id="resultImage"
-class="result-image"
->
 
-</div>
+        <!-- =========================
+             ENGLISH / VIETNAMESE
+        ========================== -->
 
+        <div class="section">
 
-<div>
+            <h2>📖 Description</h2>
 
+            <div class="language-grid">
 
-<h1
-id="displayName"
-class="pokemon-name"
->
-Pokémon
-</h1>
+                <div class="language-box">
 
+                    <label>
+                        🇬🇧 English
+                    </label>
 
-<div
-id="displayIPA"
-class="pokemon-ipa"
->
-/IPA/
-</div>
+                    <textarea
+                        id="englishText"
+                        placeholder="Nội dung tiếng Anh OCR đọc được..."
+                    ></textarea>
 
+                </div>
 
-<div class="field">
 
-<label>
-Tên Pokémon
-</label>
+                <div class="language-box">
 
-<input
-id="pokemonName"
-oninput="updateName()"
-placeholder="Tên Pokémon"
->
+                    <label>
+                        🇻🇳 Tiếng Việt
+                    </label>
 
-</div>
+                    <textarea
+                        id="vietnameseText"
+                        placeholder="Bản dịch tiếng Việt..."
+                    ></textarea>
 
+                </div>
 
-<div class="field">
+            </div>
 
-<label>
-Phiên âm IPA
-</label>
 
-<input
-id="pokemonIPA"
-oninput="updateIPA()"
-placeholder="/.../"
->
+            <div class="translate-area">
 
-</div>
+                <button
+                    id="translateButton"
+                    class="blue"
+                    onclick="translateDescription()"
+                >
+                    🌐 Dịch sang tiếng Việt
+                </button>
 
+            </div>
 
-</div>
+        </div>
 
-</div>
 
+        <!-- =========================
+             VOCABULARY
+        ========================== -->
 
-<!-- DESCRIPTION -->
+        <div class="section">
 
-<div class="section">
+            <h2>📚 2–3 từ vựng khó</h2>
 
-<h2 class="section-title">
-📖 Description
-</h2>
+            <p>
+                Chỉ giữ những từ khó hoặc ít gặp, không liệt kê từ cơ bản.
+            </p>
 
+            <textarea
+                id="vocabularyText"
+                placeholder="agile — nhanh nhẹn
+discharge — phóng ra
+stamina — sức bền"
+            ></textarea>
 
-<div class="description">
+        </div>
 
 
-<div class="language-box">
+        <!-- =========================
+             MOVES
+        ========================== -->
 
-<strong>
-🇬🇧 English
-</strong>
+        <div class="section">
 
-<textarea
-id="english"
-placeholder="Nội dung tiếng Anh..."
-></textarea>
+            <h2>⚔️ Moves</h2>
 
-</div>
+            <p>
+                Tên move tiếng Anh + nghĩa tiếng Việt trong ngoặc.
+            </p>
 
-
-<div class="language-box">
-
-<strong>
-🇻🇳 Tiếng Việt
-</strong>
-
-<textarea
-id="vietnamese"
-placeholder="Bản dịch tiếng Việt..."
-></textarea>
-
-</div>
-
-
-</div>
-
-
-<div class="translate-box">
-
-<button
-id="translateButton"
-class="translate"
-onclick="translateCurrentText()"
->
-
-🌐 Dịch sang tiếng Việt
-
-</button>
-
-</div>
-
-
-</div>
-
-
-<!-- VOCABULARY -->
-
-<div class="section">
-
-<h2 class="section-title">
-📚 Vocabulary
-</h2>
-
-<p>
-Chỉ cần 2–3 từ khó hoặc ít gặp.
-</p>
-
-<textarea
-id="vocabulary"
-placeholder="discharge — phóng điện
-agile — nhanh nhẹn
-release — phóng ra"
-></textarea>
-
-</div>
-
-
-<!-- MOVES -->
-
-<div class="section">
-
-<h2 class="section-title">
-⚔️ Moves
-</h2>
-
-<textarea
-id="moves"
-placeholder="Thunderbolt (Đòn Sấm Sét)
+            <textarea
+                id="movesText"
+                placeholder="Thunderbolt (Đòn Sấm Sét)
 Quick Attack (Đòn Đánh Nhanh)"
-></textarea>
+            ></textarea>
 
-</div>
-
-
-<!-- OCR -->
-
-<div class="section">
-
-<h2 class="section-title">
-🔎 Văn bản đọc được
-</h2>
-
-<textarea
-id="ocrText"
-></textarea>
-
-</div>
+        </div>
 
 
-<!-- BUTTONS -->
+        <!-- =========================
+             OCR GỐC
+        ========================== -->
 
-<div class="result-buttons">
+        <div class="section">
 
-<button
-class="save"
-onclick="saveResult()"
->
+            <h2>🔎 Văn bản OCR gốc</h2>
 
-💾 Lưu vào từ điển
+            <textarea
+                id="ocrText"
+                placeholder="Nội dung OCR..."
+            ></textarea>
 
-</button>
-
-
-<button
-onclick="resetApp()"
->
-
-📷 Nạp ảnh khác
-
-</button>
-
-</div>
+        </div>
 
 
-</div>
+        <!-- =========================
+             SAVE
+        ========================== -->
 
-</div>
+        <div class="buttons">
 
+            <button
+                class="green"
+                onclick="saveToDictionary()"
+            >
+                💾 Lưu vào từ điển
+            </button>
 
-<!-- =========================
-     DICTIONARY
-========================= -->
+            <button
+                class="gray"
+                onclick="resetApp()"
+            >
+                📷 Nạp ảnh khác
+            </button>
 
-<div class="dictionary">
+        </div>
 
-
-<div class="dictionary-top">
-
-<h2>
-📚 My Pokémon Dictionary
-</h2>
-
-
-<input
-id="search"
-class="search"
-placeholder="🔎 Tìm Pokémon..."
-oninput="renderDictionary()"
->
-
-</div>
+    </div>
 
 
-<div
-id="dictionaryGrid"
-class="dictionary-grid"
-></div>
+    <!-- =========================
+         DICTIONARY
+    ========================== -->
+
+    <div class="card">
+
+        <div class="dictionary-header">
+
+            <h2>
+                📚 My Pokémon Dictionary
+            </h2>
+
+            <input
+                id="searchInput"
+                class="search"
+                placeholder="🔎 Tìm Pokémon..."
+                oninput="renderDictionary()"
+            >
+
+        </div>
 
 
-</div>
+        <div
+            id="dictionaryGrid"
+            class="dictionary-grid"
+        ></div>
 
+    </div>
 
 </div>
 
 
 <!-- =========================
      MODAL
-========================= -->
+========================== -->
 
 <div
-id="modal"
-class="modal"
+    id="modal"
+    class="modal"
 >
 
-<div class="modal-content">
+    <div class="modal-content">
 
+        <button
+            class="modal-close gray"
+            onclick="closeModal()"
+        >
+            ✕
+        </button>
 
-<button
-class="close"
-onclick="closeModal()"
->
+        <h2 id="modalName"></h2>
 
-✕
+        <div
+            id="modalIPA"
+            class="ipa"
+        ></div>
 
-</button>
+        <img id="modalImage">
 
+        <div id="modalBody"></div>
 
-<h2 id="modalName"></h2>
+        <button
+            id="deleteButton"
+            class="red"
+        >
+            🗑️ Xóa
+        </button>
 
-
-<p
-id="modalIPA"
-class="pokemon-ipa"
-></p>
-
-
-<img
-id="modalImage"
->
-
-
-<div id="modalText"></div>
-
-
-<button
-class="delete"
-id="deleteButton"
->
-
-🗑️ Xóa khỏi từ điển
-
-</button>
-
-
-</div>
+    </div>
 
 </div>
 
 
 <script>
+
+/* =====================================================
+   BIẾN
+===================================================== */
+
+let currentImage = null;
+
+let db = null;
+
+const DB_NAME = "PokemonUltimateHandbook";
+
+const DB_VERSION = 1;
+
+const STORE_NAME = "dictionary";
 
 
 /* =====================================================
@@ -829,43 +732,42 @@ id="deleteButton"
 
 const IPA = {
 
-"bulbasaur":"/ˈbʌlbəˌsɔːr/",
-"ivysaur":"/ˈaɪviˌsɔːr/",
-"venusaur":"/vəˈnəsɔːr/",
+    "pikachu": "/ˈpiːkətʃuː/",
+    "bulbasaur": "/ˈbʌlbəˌsɔːr/",
+    "ivysaur": "/ˈaɪviˌsɔːr/",
+    "venusaur": "/vəˈnəsɔːr/",
 
-"charmander":"/ˈtʃɑːrmændər/",
-"charmeleon":"/ˌtʃɑːrmɪˈliːən/",
-"charizard":"/ˈtʃɑːrɪzɑːrd/",
+    "charmander": "/ˈtʃɑːrmændər/",
+    "charmeleon": "/ˌtʃɑːrmɪˈliːən/",
+    "charizard": "/ˈtʃɑːrɪzɑːrd/",
 
-"squirtle":"/ˈskwɜːrtəl/",
-"wartortle":"/ˈwɔːrtɔːrtəl/",
-"blastoise":"/ˈblæstɔɪs/",
+    "squirtle": "/ˈskwɜːrtəl/",
+    "wartortle": "/ˈwɔːrtɔːrtəl/",
+    "blastoise": "/ˈblæstɔɪs/",
 
-"pikachu":"/ˈpiːkətʃuː/",
-"raichu":"/ˈraɪtʃuː/",
-"meowth":"/miˈaʊθ/",
-"psyduck":"/ˈsaɪdʌk/",
+    "raichu": "/ˈraɪtʃuː/",
+    "meowth": "/miˈaʊθ/",
+    "psyduck": "/ˈsaɪdʌk/",
 
-"eevee":"/ˈiːviː/",
-"vaporeon":"/ˌveɪpɔːriˈɒn/",
-"jolteon":"/ˌdʒəʊltiˈɒn/",
-"flareon":"/ˈflɛəriɒn/",
+    "eevee": "/ˈiːviː/",
+    "vaporeon": "/ˌveɪpɔːriˈɒn/",
+    "jolteon": "/ˌdʒəʊltiˈɒn/",
+    "flareon": "/ˈflɛəriɒn/",
 
-"espeon":"/ˈɛspiɒn/",
-"umbreon":"/ˈʌmbriɒn/",
+    "espeon": "/ˈɛspiɒn/",
+    "umbreon": "/ˈʌmbriɒn/",
 
-"gengar":"/ˈɡɛŋɡɑːr/",
-"snorlax":"/ˈsnɔːlæks/",
+    "gengar": "/ˈɡɛŋɡɑːr/",
+    "snorlax": "/ˈsnɔːlæks/",
+    "mew": "/mjuː/",
+    "mewtwo": "/ˈmjuːtuː/",
 
-"mew":"/mjuː/",
-"mewtwo":"/ˈmjuːtuː/",
-
-"lucario":"/luːˈkɑːriəʊ/",
-"greninja":"/ɡrəˈnɪndʒə/",
-"garchomp":"/ˈɡɑːrtʃɒmp/",
-"rayquaza":"/reɪˈkweɪzə/",
-"zoroark":"/zəˈrəʊɑːrk/",
-"sylveon":"/sɪlviˈɒn/"
+    "lucario": "/luːˈkɑːriəʊ/",
+    "greninja": "/ɡrəˈnɪndʒə/",
+    "garchomp": "/ˈɡɑːrtʃɒmp/",
+    "rayquaza": "/reɪˈkweɪzə/",
+    "zoroark": "/zəˈrəʊɑːrk/",
+    "sylveon": "/sɪlviˈɒn/"
 
 };
 
@@ -874,176 +776,58 @@ const IPA = {
    DATABASE
 ===================================================== */
 
-const DB_NAME =
-"PokemonUltimateHandbookDB";
-
-const DB_VERSION = 1;
-
-const STORE =
-"pokemon";
-
-let db;
-
-let currentImage = null;
-
-
-/* =====================================================
-   OPEN DATABASE
-===================================================== */
-
 function openDatabase(){
 
-return new Promise((resolve,reject)=>{
+    return new Promise((resolve,reject)=>{
 
-const request =
-indexedDB.open(
-DB_NAME,
-DB_VERSION
-);
-
-
-request.onupgradeneeded =
-event=>{
-
-db =
-event.target.result;
+        const request =
+            indexedDB.open(
+                DB_NAME,
+                DB_VERSION
+            );
 
 
-if(
-!db.objectStoreNames.contains(STORE)
-){
+        request.onupgradeneeded = function(event){
 
-db.createObjectStore(
-STORE,
-{
-keyPath:"id",
-autoIncrement:true
-}
-);
+            db = event.target.result;
 
-}
+            if(
+                !db.objectStoreNames.contains(
+                    STORE_NAME
+                )
+            ){
 
-};
+                db.createObjectStore(
+                    STORE_NAME,
+                    {
+                        keyPath:"id",
+                        autoIncrement:true
+                    }
+                );
 
+            }
 
-request.onsuccess =
-event=>{
-
-db =
-event.target.result;
-
-resolve(db);
-
-};
+        };
 
 
-request.onerror =
-()=>reject(request.error);
+        request.onsuccess = function(event){
 
-});
+            db = event.target.result;
 
-}
+            resolve();
 
-
-/* =====================================================
-   ADD
-===================================================== */
-
-function addPokemon(data){
-
-return new Promise(
-(resolve,reject)=>{
-
-const request =
-db
-.transaction(
-STORE,
-"readwrite"
-)
-.objectStore(STORE)
-.add(data);
+        };
 
 
-request.onsuccess =
-()=>resolve(
-request.result
-);
+        request.onerror = function(){
 
+            reject(
+                request.error
+            );
 
-request.onerror =
-()=>reject(
-request.error
-);
+        };
 
-});
-
-}
-
-
-/* =====================================================
-   GET
-===================================================== */
-
-function getPokemon(){
-
-return new Promise(
-(resolve,reject)=>{
-
-const request =
-db
-.transaction(
-STORE,
-"readonly"
-)
-.objectStore(STORE)
-.getAll();
-
-
-request.onsuccess =
-()=>resolve(
-request.result
-);
-
-
-request.onerror =
-()=>reject(
-request.error
-);
-
-});
-
-}
-
-
-/* =====================================================
-   DELETE
-===================================================== */
-
-function deletePokemon(id){
-
-return new Promise(
-(resolve,reject)=>{
-
-const request =
-db
-.transaction(
-STORE,
-"readwrite"
-)
-.objectStore(STORE)
-.delete(id);
-
-
-request.onsuccess =
-()=>resolve();
-
-
-request.onerror =
-()=>reject(
-request.error
-);
-
-});
+    });
 
 }
 
@@ -1054,116 +838,130 @@ request.error
 
 function fileToDataURL(file){
 
-return new Promise(
-(resolve,reject)=>{
+    return new Promise((resolve,reject)=>{
 
-const reader =
-new FileReader();
-
-
-reader.onload =
-()=>resolve(
-reader.result
-);
+        const reader =
+            new FileReader();
 
 
-reader.onerror =
-()=>reject(
-reader.error
-);
+        reader.onload = function(){
+
+            resolve(
+                reader.result
+            );
+
+        };
 
 
-reader.readAsDataURL(file);
+        reader.onerror = function(){
 
-});
+            reject(
+                reader.error
+            );
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
 
 }
 
 
 /* =====================================================
-   FILE INPUT
+   CHỌN ẢNH
 ===================================================== */
 
 document
 .getElementById("imageInput")
 .addEventListener(
-"change",
-async event=>{
+    "change",
+    async function(event){
 
-const file =
-event.target.files[0];
+        const file =
+            event.target.files[0];
 
-if(!file)return;
 
-currentImage =
-await fileToDataURL(file);
+        if(!file){
+            return;
+        }
 
-showPreview();
 
-}
+        currentImage =
+            await fileToDataURL(file);
+
+
+        showPreview();
+
+    }
 );
 
 
 /* =====================================================
-   PASTE
+   DÁN ẢNH
 ===================================================== */
 
 document.addEventListener(
-"paste",
-async event=>{
+    "paste",
+    async function(event){
 
-const items =
-event.clipboardData.items;
-
-
-for(
-const item of items
-){
-
-if(
-item.type.startsWith("image/")
-){
-
-const file =
-item.getAsFile();
+        const items =
+            event.clipboardData.items;
 
 
-currentImage =
-await fileToDataURL(file);
+        for(
+            const item of items
+        ){
+
+            if(
+                item.type.startsWith(
+                    "image/"
+                )
+            ){
+
+                const file =
+                    item.getAsFile();
 
 
-showPreview();
+                currentImage =
+                    await fileToDataURL(
+                        file
+                    );
 
-break;
 
-}
+                showPreview();
 
-}
+                break;
 
-}
+            }
+
+        }
+
+    }
 );
 
 
 /* =====================================================
-   PREVIEW
+   HIỆN PREVIEW
 ===================================================== */
 
 function showPreview(){
 
-document
-.getElementById(
-"previewImage"
-)
-.src =
-currentImage;
+    document
+    .getElementById(
+        "previewImage"
+    )
+    .src =
+        currentImage;
 
 
-document
-.getElementById(
-"preview"
-)
-.style.display =
-"block";
+    document
+    .getElementById(
+        "previewCard"
+    )
+    .style.display =
+        "block";
 
 }
 
@@ -1172,219 +970,234 @@ document
    OCR
 ===================================================== */
 
-async function analyzeImage(){
+async function startOCR(){
 
-if(!currentImage){
+    if(!currentImage){
 
-alert(
-"Anh chưa nạp ảnh."
-);
+        alert(
+            "Anh chưa nạp ảnh."
+        );
 
-return;
+        return;
 
-}
-
-
-document
-.getElementById(
-"preview"
-)
-.style.display =
-"none";
+    }
 
 
-document
-.getElementById(
-"processing"
-)
-.style.display =
-"block";
+    document
+    .getElementById(
+        "previewCard"
+    )
+    .style.display =
+        "none";
 
 
-try{
-
-const result =
-await Tesseract.recognize(
-currentImage,
-"eng",
-{
-
-logger:
-message=>{
-
-if(message.status){
-
-document
-.getElementById(
-"progressText"
-)
-.textContent =
-message.status
-+
-" "
-+
-Math.round(
-(message.progress||0)
-*
-100
-)
-+
-"%";
-
-}
-
-}
-
-}
-);
+    document
+    .getElementById(
+        "processingCard"
+    )
+    .style.display =
+        "block";
 
 
-const text =
-result.data.text.trim();
+    try{
+
+        const result =
+            await Tesseract.recognize(
+                currentImage,
+                "eng",
+                {
+
+                    logger:
+                    function(message){
+
+                        if(
+                            message.status
+                        ){
+
+                            let progress =
+                                Math.round(
+                                    (
+                                        message.progress
+                                        ||
+                                        0
+                                    )
+                                    *
+                                    100
+                                );
 
 
-document
-.getElementById(
-"ocrText"
-)
-.value =
-text;
+                            document
+                            .getElementById(
+                                "progressText"
+                            )
+                            .textContent =
+                                message.status
+                                +
+                                " "
+                                +
+                                progress
+                                +
+                                "%";
+
+                        }
+
+                    }
+
+                }
+            );
 
 
-document
-.getElementById(
-"resultImage"
-)
-.src =
-currentImage;
+        const text =
+            result.data.text.trim();
 
 
-/* TÌM TÊN */
+        /*
 
-let detectedName = "";
+        QUAN TRỌNG:
 
-const names =
-Object.keys(IPA);
+        OCR chỉ đọc chữ.
 
+        Không tự đoán Pokémon.
 
-for(
-const name of names
-){
+        */
 
-if(
-text
-.toLowerCase()
-.includes(
-name.toLowerCase()
-)
-){
-
-detectedName =
-name.charAt(0).toUpperCase()
-+
-name.slice(1);
-
-break;
-
-}
-
-}
+        document
+        .getElementById(
+            "ocrText"
+        )
+        .value =
+            text;
 
 
-document
-.getElementById(
-"pokemonName"
-)
-.value =
-detectedName;
+        document
+        .getElementById(
+            "englishText"
+        )
+        .value =
+            text;
 
 
-document
-.getElementById(
-"displayName"
-)
-.textContent =
-detectedName ||
-"Pokémon";
+        document
+        .getElementById(
+            "vietnameseText"
+        )
+        .value =
+            "";
 
 
-setIPA(detectedName);
+        document
+        .getElementById(
+            "vocabularyText"
+        )
+        .value =
+            "";
 
 
-document
-.getElementById(
-"english"
-)
-.value =
-text;
+        document
+        .getElementById(
+            "movesText"
+        )
+        .value =
+            "";
 
 
-document
-.getElementById(
-"vietnamese"
-)
-.value =
-"";
+        document
+        .getElementById(
+            "resultImage"
+        )
+        .src =
+            currentImage;
 
 
-document
-.getElementById(
-"vocabulary"
-)
-.value =
-"";
+        document
+        .getElementById(
+            "processingCard"
+        )
+        .style.display =
+            "none";
 
 
-document
-.getElementById(
-"moves"
-)
-.value =
-"";
+        document
+        .getElementById(
+            "resultCard"
+        )
+        .style.display =
+            "block";
 
 
-document
-.getElementById(
-"processing"
-)
-.style.display =
-"none";
+    }catch(error){
+
+        console.error(error);
 
 
-document
-.getElementById(
-"result"
-)
-.style.display =
-"block";
+        document
+        .getElementById(
+            "processingCard"
+        )
+        .style.display =
+            "none";
 
 
-}catch(error){
-
-console.error(error);
-
-
-document
-.getElementById(
-"processing"
-)
-.style.display =
-"none";
+        document
+        .getElementById(
+            "previewCard"
+        )
+        .style.display =
+            "block";
 
 
-document
-.getElementById(
-"preview"
-)
-.style.display =
-"block";
+        alert(
+            "OCR không đọc được ảnh."
+        );
 
-
-alert(
-"Không đọc được ảnh."
-);
+    }
 
 }
+
+
+/* =====================================================
+   TÊN
+===================================================== */
+
+function updateName(){
+
+    const name =
+        document
+        .getElementById(
+            "pokemonName"
+        )
+        .value
+        .trim();
+
+
+    document
+    .getElementById(
+        "displayName"
+    )
+    .textContent =
+        name ||
+        "Pokémon";
+
+
+    const key =
+        name.toLowerCase();
+
+
+    if(
+        IPA[key]
+    ){
+
+        document
+        .getElementById(
+            "pokemonIPA"
+        )
+        .value =
+            IPA[key];
+
+
+        updateIPA();
+
+    }
 
 }
 
@@ -1393,650 +1206,627 @@ alert(
    IPA
 ===================================================== */
 
-function setIPA(name){
-
-const key =
-name
-.trim()
-.toLowerCase();
-
-
-const ipa =
-IPA[key] || "";
-
-
-document
-.getElementById(
-"pokemonIPA"
-)
-.value =
-ipa;
-
-
-document
-.getElementById(
-"displayIPA"
-)
-.textContent =
-ipa ||
-"/Chưa có IPA/";
-
-}
-
-
-/* =====================================================
-   NAME UPDATE
-===================================================== */
-
-function updateName(){
-
-const name =
-document
-.getElementById(
-"pokemonName"
-)
-.value;
-
-
-document
-.getElementById(
-"displayName"
-)
-.textContent =
-name ||
-"Pokémon";
-
-
-setIPA(name);
-
-}
-
-
-/* =====================================================
-   IPA UPDATE
-===================================================== */
-
 function updateIPA(){
 
-document
-.getElementById(
-"displayIPA"
-)
-.textContent =
-document
-.getElementById(
-"pokemonIPA"
-)
-.value ||
-"/Chưa có IPA/";
+    document
+    .getElementById(
+        "displayIPA"
+    )
+    .textContent =
+        document
+        .getElementById(
+            "pokemonIPA"
+        )
+        .value
+        .trim()
+        ||
+        "/Chưa có IPA/";
 
 }
 
 
 /* =====================================================
-   TRANSLATE
+   DỊCH
 ===================================================== */
 
-async function translateText(text){
+async function translateDescription(){
 
-if(!text.trim())
-return "";
-
-
-const sentences =
-text
-.split(/\n+/)
-.map(x=>x.trim())
-.filter(Boolean);
+    const english =
+        document
+        .getElementById(
+            "englishText"
+        )
+        .value
+        .trim();
 
 
-const translated=[];
+    if(!english){
+
+        alert(
+            "Chưa có nội dung tiếng Anh."
+        );
+
+        return;
+
+    }
 
 
-for(
-const sentence of sentences
-){
-
-try{
-
-const url =
-"https://api.mymemory.translated.net/get"
-+
-"?q="
-+
-encodeURIComponent(sentence)
-+
-"&langpair=en|vi";
+    const button =
+        document
+        .getElementById(
+            "translateButton"
+        );
 
 
-const response =
-await fetch(url);
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ Đang dịch...";
 
 
-if(!response.ok)
-throw new Error(
-"Translation error"
-);
+    try{
+
+        const paragraphs =
+            english
+            .split(/\n+/)
+            .map(
+                x => x.trim()
+            )
+            .filter(Boolean);
 
 
-const data =
-await response.json();
+        const results = [];
 
 
-if(
-data.responseData &&
-data.responseData.translatedText
-){
+        for(
+            const paragraph
+            of paragraphs
+        ){
 
-translated.push(
-data.responseData.translatedText
-);
+            try{
 
-}else{
-
-translated.push(
-"[Không dịch được]"
-);
-
-}
-
-}catch(error){
-
-console.error(error);
-
-translated.push(
-"[Lỗi dịch]"
-);
-
-}
+                const url =
+                    "https://api.mymemory.translated.net/get"
+                    +
+                    "?q="
+                    +
+                    encodeURIComponent(
+                        paragraph
+                    )
+                    +
+                    "&langpair=en|vi";
 
 
-await new Promise(
-resolve =>
-setTimeout(
-resolve,
-300
-)
-);
-
-}
+                const response =
+                    await fetch(url);
 
 
-return translated.join("\n");
+                if(!response.ok){
+
+                    throw new Error(
+                        "Translation failed"
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if(
+                    data.responseData
+                    &&
+                    data.responseData.translatedText
+                ){
+
+                    results.push(
+                        data.responseData.translatedText
+                    );
+
+                }else{
+
+                    results.push(
+                        "[Không dịch được đoạn này]"
+                    );
+
+                }
+
+            }catch(error){
+
+                console.error(error);
+
+                results.push(
+                    "[Lỗi dịch đoạn này]"
+                );
+
+            }
+
+
+            await new Promise(
+                resolve =>
+                    setTimeout(
+                        resolve,
+                        300
+                    )
+            );
+
+        }
+
+
+        document
+        .getElementById(
+            "vietnameseText"
+        )
+        .value =
+            results.join("\n");
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Không thể kết nối nguồn dịch."
+        );
+
+    }
+
+
+    button.disabled = false;
+
+    button.textContent =
+        "🌐 Dịch sang tiếng Việt";
 
 }
 
 
 /* =====================================================
-   TRANSLATE BUTTON
+   LƯU
 ===================================================== */
 
-async function translateCurrentText(){
+function saveToDictionary(){
 
-const english =
-document
-.getElementById(
-"english"
-)
-.value
-.trim();
-
-
-if(!english){
-
-alert(
-"Chưa có nội dung tiếng Anh."
-);
-
-return;
-
-}
+    const name =
+        document
+        .getElementById(
+            "pokemonName"
+        )
+        .value
+        .trim();
 
 
-const button =
-document
-.getElementById(
-"translateButton"
-);
+    if(!name){
+
+        alert(
+            "Anh hãy nhập tên Pokémon."
+        );
+
+        return;
+
+    }
 
 
-button.disabled =
-true;
+    const data = {
+
+        name:name,
+
+        ipa:
+            document
+            .getElementById(
+                "pokemonIPA"
+            )
+            .value,
+
+        english:
+            document
+            .getElementById(
+                "englishText"
+            )
+            .value,
+
+        vietnamese:
+            document
+            .getElementById(
+                "vietnameseText"
+            )
+            .value,
+
+        vocabulary:
+            document
+            .getElementById(
+                "vocabularyText"
+            )
+            .value,
+
+        moves:
+            document
+            .getElementById(
+                "movesText"
+            )
+            .value,
+
+        ocr:
+            document
+            .getElementById(
+                "ocrText"
+            )
+            .value,
+
+        image:
+            currentImage,
+
+        createdAt:
+            new Date().toISOString()
+
+    };
 
 
-button.textContent =
-"⏳ Đang dịch...";
+    const transaction =
+        db.transaction(
+            STORE_NAME,
+            "readwrite"
+        );
 
 
-try{
-
-const vietnamese =
-await translateText(
-english
-);
+    const store =
+        transaction.objectStore(
+            STORE_NAME
+        );
 
 
-document
-.getElementById(
-"vietnamese"
-)
-.value =
-vietnamese;
+    store.add(data);
 
 
-}catch(error){
+    transaction.oncomplete =
+        function(){
 
-console.error(error);
-
-
-alert(
-"Không thể kết nối nguồn dịch."
-);
-
-}
+            alert(
+                "✅ Đã lưu vào từ điển!"
+            );
 
 
-button.disabled =
-false;
+            renderDictionary();
+
+        };
 
 
-button.textContent =
-"🌐 Dịch sang tiếng Việt";
+    transaction.onerror =
+        function(){
+
+            alert(
+                "Không thể lưu dữ liệu."
+            );
+
+        };
 
 }
 
 
 /* =====================================================
-   SAVE
+   HIỆN TỪ ĐIỂN
 ===================================================== */
 
-async function saveResult(){
+function renderDictionary(){
 
-const name =
-document
-.getElementById(
-"pokemonName"
-)
-.value
-.trim();
+    const grid =
+        document
+        .getElementById(
+            "dictionaryGrid"
+        );
 
 
-if(!name){
-
-alert(
-"Anh hãy nhập tên Pokémon."
-);
-
-return;
-
-}
+    const search =
+        document
+        .getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase();
 
 
-const data={
-
-name:name,
-
-ipa:
-document
-.getElementById(
-"pokemonIPA"
-)
-.value,
-
-english:
-document
-.getElementById(
-"english"
-)
-.value,
-
-vietnamese:
-document
-.getElementById(
-"vietnamese"
-)
-.value,
-
-vocabulary:
-document
-.getElementById(
-"vocabulary"
-)
-.value,
-
-moves:
-document
-.getElementById(
-"moves"
-)
-.value,
-
-ocr:
-document
-.getElementById(
-"ocrText"
-)
-.value,
-
-image:
-currentImage,
-
-createdAt:
-new Date().toISOString()
-
-};
+    const transaction =
+        db.transaction(
+            STORE_NAME,
+            "readonly"
+        );
 
 
-try{
-
-await addPokemon(data);
-
-
-alert(
-"✅ Đã lưu vào Pokémon Dictionary!"
-);
+    const request =
+        transaction
+        .objectStore(
+            STORE_NAME
+        )
+        .getAll();
 
 
-renderDictionary();
+    request.onsuccess =
+        function(){
+
+            let list =
+                request.result;
 
 
-}catch(error){
+            list =
+                list.filter(
+                    item =>
+                        item.name
+                        .toLowerCase()
+                        .includes(
+                            search
+                        )
+                );
 
-console.error(error);
+
+            list.sort(
+                (a,b)=>
+                    new Date(
+                        b.createdAt
+                    )
+                    -
+                    new Date(
+                        a.createdAt
+                    )
+            );
 
 
-alert(
-"Không thể lưu bài."
-);
+            if(!list.length){
 
-}
+                grid.innerHTML = `
+
+                    <div class="empty">
+
+                        <h3>
+                            📚 Chưa có bài nào
+                        </h3>
+
+                        <p>
+                            Nạp ảnh → đọc chữ →
+                            dịch → kiểm tra →
+                            lưu.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            grid.innerHTML = "";
+
+
+            list.forEach(
+                pokemon => {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "dictionary-item";
+
+
+                    item.innerHTML = `
+
+                        <img
+                            src="${pokemon.image}"
+                        >
+
+                        <div class="dictionary-name">
+
+                            ${escapeHTML(
+                                pokemon.name
+                            )}
+
+                        </div>
+
+                        <div class="dictionary-ipa">
+
+                            ${escapeHTML(
+                                pokemon.ipa
+                            )}
+
+                        </div>
+
+                    `;
+
+
+                    item.onclick =
+                        function(){
+
+                            openPokemon(
+                                pokemon
+                            );
+
+                        };
+
+
+                    grid.appendChild(
+                        item
+                    );
+
+                }
+            );
+
+        };
 
 }
 
 
 /* =====================================================
-   DICTIONARY
-===================================================== */
-
-async function renderDictionary(){
-
-const grid =
-document
-.getElementById(
-"dictionaryGrid"
-);
-
-
-const keyword =
-document
-.getElementById(
-"search"
-)
-.value
-.toLowerCase();
-
-
-const all =
-await getPokemon();
-
-
-const list =
-all.filter(
-item =>
-item.name
-.toLowerCase()
-.includes(keyword)
-);
-
-
-if(!list.length){
-
-grid.innerHTML=`
-
-<div class="empty">
-
-<h3>
-📚 Chưa có Pokémon
-</h3>
-
-<p>
-Nạp ảnh → OCR → dịch → kiểm tra → lưu.
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-grid.innerHTML="";
-
-
-list
-.sort(
-(a,b)=>
-new Date(b.createdAt)
--
-new Date(a.createdAt)
-)
-.forEach(
-pokemon=>{
-
-const item =
-document.createElement(
-"div"
-);
-
-
-item.className =
-"dictionary-item";
-
-
-item.innerHTML=`
-
-<img
-src="${pokemon.image}"
->
-
-<div class="dictionary-name">
-
-${escapeHTML(
-pokemon.name
-)}
-
-</div>
-
-<div class="dictionary-ipa">
-
-${escapeHTML(
-pokemon.ipa
-)}
-
-</div>
-
-`;
-
-
-item.onclick =
-() =>
-openPokemon(
-pokemon
-);
-
-
-grid.appendChild(item);
-
-}
-);
-
-}
-
-
-/* =====================================================
-   OPEN
+   MỞ BÀI ĐÃ LƯU
 ===================================================== */
 
 function openPokemon(pokemon){
 
-document
-.getElementById(
-"modalName"
-)
-.textContent =
-pokemon.name;
+    document
+    .getElementById(
+        "modalName"
+    )
+    .textContent =
+        pokemon.name;
 
 
-document
-.getElementById(
-"modalIPA"
-)
-.textContent =
-pokemon.ipa;
+    document
+    .getElementById(
+        "modalIPA"
+    )
+    .textContent =
+        pokemon.ipa;
 
 
-document
-.getElementById(
-"modalImage"
-)
-.src =
-pokemon.image;
+    document
+    .getElementById(
+        "modalImage"
+    )
+    .src =
+        pokemon.image;
 
 
-document
-.getElementById(
-"modalText"
-)
-.innerHTML=`
+    document
+    .getElementById(
+        "modalBody"
+    )
+    .innerHTML = `
 
-<div class="description">
+        <div class="section">
 
-<div class="language-box">
+            <h3>🇬🇧 English</h3>
 
-<strong>
-🇬🇧 English
-</strong>
+            <p>
+                ${formatText(
+                    pokemon.english
+                )}
+            </p>
 
-<p>
-${escapeHTML(
-pokemon.english
-).replace(
-/\n/g,
-"<br>"
-)}
-</p>
-
-</div>
+        </div>
 
 
-<div class="language-box">
+        <div class="section">
 
-<strong>
-🇻🇳 Tiếng Việt
-</strong>
+            <h3>🇻🇳 Tiếng Việt</h3>
 
-<p>
-${escapeHTML(
-pokemon.vietnamese
-).replace(
-/\n/g,
-"<br>"
-)}
-</p>
+            <p>
+                ${formatText(
+                    pokemon.vietnamese
+                )}
+            </p>
 
-</div>
-
-</div>
+        </div>
 
 
-<div class="section">
+        <div class="section">
 
-<h3>
-📚 Vocabulary
-</h3>
+            <h3>📚 Vocabulary</h3>
 
-<p>
-${escapeHTML(
-pokemon.vocabulary
-).replace(
-/\n/g,
-"<br>"
-)}
-</p>
+            <p>
+                ${formatText(
+                    pokemon.vocabulary
+                )}
+            </p>
 
-</div>
+        </div>
 
 
-<div class="section">
+        <div class="section">
 
-<h3>
-⚔️ Moves
-</h3>
+            <h3>⚔️ Moves</h3>
 
-<p>
-${escapeHTML(
-pokemon.moves
-).replace(
-/\n/g,
-"<br>"
-)}
-</p>
+            <p>
+                ${formatText(
+                    pokemon.moves
+                )}
+            </p>
 
-</div>
+        </div>
 
-`;
+    `;
 
 
-document
-.getElementById(
-"deleteButton"
-)
-.onclick =
-async()=>{
+    document
+    .getElementById(
+        "deleteButton"
+    )
+    .onclick =
+        function(){
 
-if(
-!confirm(
-"Xóa Pokémon này?"
-)
-)return;
+            deletePokemon(
+                pokemon.id
+            );
 
-
-await deletePokemon(
-pokemon.id
-);
+        };
 
 
-closeModal();
-
-renderDictionary();
-
-};
-
-
-document
-.getElementById(
-"modal"
-)
-.style.display =
-"block";
+    document
+    .getElementById(
+        "modal"
+    )
+    .style.display =
+        "block";
 
 }
 
 
 /* =====================================================
-   CLOSE
+   XÓA
+===================================================== */
+
+function deletePokemon(id){
+
+    if(
+        !confirm(
+            "Anh có chắc muốn xóa bài này?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const transaction =
+        db.transaction(
+            STORE_NAME,
+            "readwrite"
+        );
+
+
+    transaction
+    .objectStore(
+        STORE_NAME
+    )
+    .delete(id);
+
+
+    transaction.oncomplete =
+        function(){
+
+            closeModal();
+
+            renderDictionary();
+
+        };
+
+}
+
+
+/* =====================================================
+   ĐÓNG MODAL
 ===================================================== */
 
 function closeModal(){
 
-document
-.getElementById(
-"modal"
-)
-.style.display =
-"none";
+    document
+    .getElementById(
+        "modal"
+    )
+    .style.display =
+        "none";
 
 }
 
@@ -2047,38 +1837,103 @@ document
 
 function resetApp(){
 
-currentImage=null;
+    currentImage = null;
 
 
-document
-.getElementById(
-"imageInput"
-)
-.value="";
+    document
+    .getElementById(
+        "imageInput"
+    )
+    .value = "";
 
 
-document
-.getElementById(
-"preview"
-)
-.style.display =
-"none";
+    document
+    .getElementById(
+        "previewCard"
+    )
+    .style.display =
+        "none";
 
 
-document
-.getElementById(
-"processing"
-)
-.style.display =
-"none";
+    document
+    .getElementById(
+        "processingCard"
+    )
+    .style.display =
+        "none";
 
 
-document
-.getElementById(
-"result"
-)
-.style.display =
-"none";
+    document
+    .getElementById(
+        "resultCard"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "englishText"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "vietnameseText"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "vocabularyText"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "movesText"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "ocrText"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "pokemonName"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "pokemonIPA"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "displayName"
+    )
+    .textContent =
+        "Pokémon";
+
+
+    document
+    .getElementById(
+        "displayIPA"
+    )
+    .textContent =
+        "/Chưa có IPA/";
 
 }
 
@@ -2087,57 +1942,69 @@ document
    PASTE HELP
 ===================================================== */
 
-function pasteHelp(){
+function pasteInstruction(){
 
-alert(
-"Copy ảnh → quay lại app → nhấn Ctrl + V."
-);
+    alert(
+        "Anh hãy copy một bức ảnh, sau đó quay lại app và nhấn Ctrl + V."
+    );
 
 }
 
 
 /* =====================================================
-   ESCAPE
+   HTML SAFE
 ===================================================== */
 
 function escapeHTML(value){
 
-const div =
-document.createElement(
-"div"
-);
+    const div =
+        document.createElement(
+            "div"
+        );
 
 
-div.textContent =
-value || "";
+    div.textContent =
+        value || "";
 
 
-return div.innerHTML;
+    return div.innerHTML;
+
+}
+
+
+function formatText(value){
+
+    return escapeHTML(
+        value || ""
+    ).replace(
+        /\n/g,
+        "<br>"
+    );
 
 }
 
 
 /* =====================================================
-   INIT
+   KHỞI ĐỘNG
 ===================================================== */
 
 async function init(){
 
-try{
+    try{
 
-await openDatabase();
+        await openDatabase();
 
-await renderDictionary();
+        renderDictionary();
 
-}catch(error){
+    }catch(error){
 
-console.error(error);
+        console.error(error);
 
-alert(
-"Không thể mở bộ nhớ từ điển."
-);
+        alert(
+            "Không thể mở bộ nhớ từ điển."
+        );
 
-}
+    }
 
 }
 
